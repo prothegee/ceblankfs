@@ -6,7 +6,7 @@
 // #include <CrySchematyc/Env/Elements/EnvComponent.h>
 
 
-using namespace blankfs::entities;
+using namespace ceblankfs::entities;
 
 
 static void RegisterRotatorEntity(Schematyc::IEnvRegistrar& registrar)
@@ -57,6 +57,7 @@ void Rotator::ProcessEvent(const SEntityEvent& e)
             #endif
         }
         break;
+
 
         case Cry::Entity::EEvent::Update:
         {

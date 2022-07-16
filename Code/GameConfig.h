@@ -1,5 +1,6 @@
 // act as this project game config & may as pre compile header
 #pragma once
+#include "StdAfx.h"
 
 
 #include <CryEntitySystem/IEntityComponent.h>
@@ -10,7 +11,12 @@
 #include <CrySchematyc/Env/Elements/EnvComponent.h>
 
 
-namespace blankfs
+#include <DefaultComponents/Cameras/CameraComponent.h>
+#include <DefaultComponents/Input/InputComponent.h>
+#include <DefaultComponents/Physics/CharacterControllerComponent.h>
+
+
+namespace ceblankfs
 {
 
 /**
@@ -19,12 +25,14 @@ namespace blankfs
  */
 class GameConfig
 {
-private:
-    /* data */
+public:
+    const string projectName = "ceblankfs";
+    const string projectVersion = "0.0.0";
+
 public:
     GameConfig(/* args */);
     virtual ~GameConfig();
 };
 
 
-} // pace blankfs
+} // pace ceblankfs

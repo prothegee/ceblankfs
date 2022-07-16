@@ -1,12 +1,11 @@
 #pragma once
-#include "StdAfx.h"
 #include "GameConfig.h"
 
 
 // #include <CryEntitySystem/IEntityComponent.h>
 
 
-namespace blankfs
+namespace ceblankfs
 {
 namespace entities
 {
@@ -85,4 +84,4 @@ public:
 
 
 } // namespace entities
-} // namespace blankfs
+} // namespace ceblankfs

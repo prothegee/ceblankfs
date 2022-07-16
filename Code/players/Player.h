@@ -1,12 +1,14 @@
 #pragma once
-#include "StdAfx.h"
 #include "GameConfig.h"
+#include "players/PlayerCamera.h"
+#include "players/PlayerData.h"
+#include "players/PlayerMovement.h"
 
 
 // #include <CryEntitySystem/IEntityComponent.h>
 
 
-namespace blankfs
+namespace ceblankfs
 {
 namespace players
 {
@@ -18,11 +20,9 @@ namespace players
 class Player final
     :   public IEntityComponent
 {
-public:
-    bool m_isOnGround; // player is on ground status
+private:
+    /* data */
 
-    float m_movementSpeed; // player movement speed value
-    float m_jumpForce; // player jump force value
 
 public:
     Player(/* args */);
@@ -32,8 +32,10 @@ public:
     virtual void Initialize() override;
 
 
+    // core player event mask
 	virtual Cry::Entity::EventFlags GetEventMask() const override;
-	virtual void ProcessEvent(const SEntityEvent& e) override;
+	// core player process event
+    virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
     static void ReflectType(Schematyc::CTypeDesc<Player>& desc)
@@ -42,20 +44,19 @@ public:
         desc.SetLabel("Player");
         desc.SetEditorCategory("_players");
         desc.SetDescription("Core player entity");
-        desc.SetComponentFlags({
-            IEntityComponent::EFlags::Transform,
-            IEntityComponent::EFlags::Socket,
-            IEntityComponent::EFlags::Attach
-        });
     }
 
 
 protected:
     bool m_isAlive = false;
 
+    // PlayerCamera pPc; // player camera pointer from Player class
+    // PlayerData pPd; // player data pointer from Player class
+    PlayerMovement* pPm = nullptr; // player movement pointer from Player class
+
 protected:
     void InitializeLocalPlayer();
 };
 
 } // namespace players
-} // namespace blankfs
+} // namespace ceblankfs

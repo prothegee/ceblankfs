@@ -1,6 +1,6 @@
-<AssetMetadata version="0" type="Level" guid="393ed2ca-c9d8-4e38-f45a-100f3a685b7b" source="" timestamp="1657942046">
+<AssetMetadata version="0" type="Level" guid="dd6a0bc8-5510-99b7-edd1-03d7bf4ce635" source="" timestamp="1657973043">
  <Files>
-  <File path="test-entities/test-entities.level"/>
+  <File path="test-player/test-player.level"/>
  </Files>
  <Dependencies>
   <Path usageCount="1">%ENGINE%/EngineAssets/Shading/default.env</Path>
@@ -17,10 +17,11 @@
   <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
-  <Path>%engine%/engineassets/objects/primitive_cube.cgf</Path>
+  <Path>%engine%/engineassets/objects/helper.mtl</Path>
   <Path>%engine%/engineassets/objects/primitive_sphere.cgf</Path>
   <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
   <Path>%engine%/engineassets/textures/skys/night/half_moon.dds</Path>
+  <Path>scripts/ai/factions.xml</Path>
  </Dependencies>
 </AssetMetadata>

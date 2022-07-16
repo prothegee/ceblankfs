@@ -1,7 +1,7 @@
 #include "GameConfig.h"
 
 
-using namespace blankfs;
+using namespace ceblankfs;
 
 
 GameConfig::GameConfig(/* args */)
