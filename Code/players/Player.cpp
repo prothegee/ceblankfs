@@ -48,12 +48,15 @@ void Player::InitializeLocalPlayer()
 #pragma region event listener
 Cry::Entity::EventFlags Player::GetEventMask() const
 {
-
+    return
+        Cry::Entity::EEvent::Reset |
+        Cry::Entity::EEvent::Update
+        ;
 }
 
 void Player::ProcessEvent(const SEntityEvent& e)
 {
-    
+
 }
 #pragma endregion
 
