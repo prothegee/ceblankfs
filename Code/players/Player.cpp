@@ -46,6 +46,15 @@ void Player::InitializeLocalPlayer()
 
 
 #pragma region event listener
+Cry::Entity::EventFlags Player::GetEventMask() const
+{
+
+}
+
+void Player::ProcessEvent(const SEntityEvent& e)
+{
+    
+}
 #pragma endregion
 
 

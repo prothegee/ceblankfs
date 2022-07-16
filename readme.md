@@ -2,7 +2,7 @@
 
 __Note:__
 ```
-CryEngine blank from scratch study case
+CryEngine blank from scratch exercise case
 
 Engine: 5.7.1
 ```

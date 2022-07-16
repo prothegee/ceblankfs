@@ -32,8 +32,8 @@ public:
     virtual void Initialize() override;
 
 
-	// virtual Cry::Entity::EventFlags GetEventMask() const override;
-	// virtual void ProcessEvent(const SEntityEvent& event) override;
+	virtual Cry::Entity::EventFlags GetEventMask() const override;
+	virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
     static void ReflectType(Schematyc::CTypeDesc<Player>& desc)
