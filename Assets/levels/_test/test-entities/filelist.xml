@@ -1,0 +1,6 @@
+<download name="test-entities" type="Map">
+ <index src="filelist.xml" dest="filelist.xml"/>
+ <files>
+  <file src="level.pak" dest="level.pak" size="664347" md5="9237068d6b3e5cb5fa28aaabdef30e7e"/>
+ </files>
+</download>
