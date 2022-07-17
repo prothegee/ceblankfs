@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="808d00c3-c41a-cd82-7f30-5f68fd8898cf" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1657972933">
+ <Layer Name="Main" FullName="Main" GUID="808d00c3-c41a-cd82-7f30-5f68fd8898cf" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658061205">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="Main" LayerGUID="808d00c3-c41a-cd82-7f30-5f68fd8898cf" Id="85f80f87-d381-8e36-38b3-10f5ac24825c" Name="Entity-1" Pos="256.00702,269.8353,34.592533" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
@@ -30,7 +30,7 @@
        </scale>
       </Transform>
       <properties Networked="false">
-       <Physics Mass="80" Radius="0.44999999" Height="3.0349991" Capsule="true" GroundContactEps="0.0040000002" SendCollisionSignal="false"/>
+       <Physics Mass="3000" Radius="0.44999999" Height="3.0349991" Capsule="true" GroundContactEps="0.0040000002" SendCollisionSignal="false"/>
        <Movement AirControl="0" AirResistance="0.2" Inertia="8" InertiaAcc="8" MaxClimb="0.87266463" MaxJump="0.87266463" MinSlide="1.2217305" MinFall="1.3962634" MaxGroundVelocity="16"/>
       </properties>
      </Component>

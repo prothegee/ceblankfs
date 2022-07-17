@@ -22,8 +22,6 @@ public:
         static constexpr float jumpCharge = 0.f; // default value for jump charge
     };
 
-    bool m_isOnGround; // player is on ground status
-
     float m_movementSpeed; // player movement speed value
     float m_jumpForce; // player jump force value
     float m_jumpCharge; // player jump charge value

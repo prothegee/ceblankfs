@@ -17,6 +17,8 @@ class PlayerMovement final
 {
 private:
     float jumpDurationOnHold = 0.f;
+    float jumpCharge = 0.f;
+    bool youCanJump = false;
 
 
 public:
@@ -211,7 +213,7 @@ public:
             velocity.y += pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving forward %f", velocity.y);
+            CryLog("### Player moving %f forward", velocity.y);
             #endif
         }
 
@@ -220,7 +222,7 @@ public:
             velocity.y -= pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving backward %f", velocity.y);
+            CryLog("### Player moving %f backward", velocity.y);
             #endif
         }
 
@@ -229,7 +231,7 @@ public:
             velocity.x -= pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving left %f", velocity.x);
+            CryLog("### Player moving %f left", velocity.x);
             #endif
         }
 
@@ -238,7 +240,7 @@ public:
             velocity.x += pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving right %f", velocity.x);
+            CryLog("### Player moving %f right", velocity.x);
             #endif
         }
 
@@ -250,6 +252,8 @@ public:
     // update player jump response on request
     void HandlePlayerJumpRequest(float dt)
     {
+        if (!m_pCC->IsOnGround()) return;
+
         if (m_inputFlags & EInputFlag::jump) // do jump
         {
             jumpDurationOnHold += 1.f * dt;
@@ -259,26 +263,31 @@ public:
                 ? pmPd->m_jumpCharge = jumpDurationOnHold
                 : pmPd->m_jumpCharge = 0.f;
 
-            #ifndef NDEBUG
-            CryLog(
-                "### Player jump | hold duration: %f | mode: %s | charge: %f",
-                    jumpDurationOnHold,
-                    (jumpDurationOnHold < pmPd->pv_minJumpCharge)
-                        ? "normal"
-                        : "charging",
-                    pmPd->m_jumpCharge
-            );
-            #endif
+            jumpCharge = pmPd->m_jumpCharge;
+            youCanJump = true;
         }
         else
         {
-            jumpDurationOnHold = 0.f; // kinda insecure, so set to 0 again
+            jumpDurationOnHold = 0.f;
         }
 
         // update character controller to jump
-        if (m_pCC->IsOnGround())
+        if (youCanJump && jumpDurationOnHold == 0.f)
         {
-            m_pCC->AddVelocity(Vec3(0, 0, pmPd->m_jumpForce));
+            if (jumpCharge == 0.f)
+            {
+                m_pCC->AddVelocity(Vec3(0, 0, pmPd->m_jumpForce));
+
+                jumpCharge = 0.f;
+                youCanJump = false;
+            }
+            else
+            {
+                m_pCC->AddVelocity(Vec3(0, 0, (pmPd->m_jumpForce * jumpCharge)));
+
+                jumpCharge = 0.f;
+                youCanJump = false;
+            }
         }
     }
 
