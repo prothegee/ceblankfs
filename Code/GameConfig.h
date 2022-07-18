@@ -1,5 +1,9 @@
 // act as this project game config & may as pre compile header
 #pragma once
+#include <array>
+#include <numeric>
+
+
 #include "StdAfx.h"
 
 

@@ -35,16 +35,13 @@ add_sources("entities_uber.cpp"
 add_sources("players_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "players"
-        "players/Player.h"
-        "players/Player.cpp"
-
 		"players/PlayerCamera.h"
 
 		"players/PlayerData.h"
 
         "players/PlayerMovement.h"
 
-        "players/PlayerRegistrars.cpp"
+        "players/PlayerRegistrar.cpp"
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")

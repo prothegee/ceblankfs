@@ -1,6 +1,7 @@
 #pragma once
 #include "GameConfig.h"
 #include "PlayerData.h"
+#include "PlayerCamera.h"
 
 
 namespace ceblankfs
@@ -19,6 +20,7 @@ private:
     float jumpDurationOnHold = 0.f;
     float jumpCharge = 0.f;
     bool youCanJump = false;
+    bool cc_isAlive = false;
 
 
 public:
@@ -35,11 +37,18 @@ public:
         left = 1 << 2,
         right = 1 << 3,
         jump = 1 << 4,
+        sprint = 1 << 5,
     };
 
 public:
     PlayerMovement(/* args */);
     virtual ~PlayerMovement();
+
+
+    virtual void Initialize() override
+    {
+        initializePlayerMovement();
+    }
 
 
     // initialize PlayerMovement
@@ -132,6 +141,23 @@ public:
                 "jump",
                 eAID_KeyboardMouse,
                 EKeyId::eKI_Space);
+
+        m_pInput->RegisterAction(
+            "player",
+            "sprint",
+            [this](int activationMode, float value)
+            {
+                HandleInputFlagChange(
+                    EInputFlag::sprint,
+                    (EActionActivationMode)activationMode,
+                    EInputFlagType::Hold
+                );
+            });
+            m_pInput->BindAction(
+                "player",
+                "sprint",
+                eAID_KeyboardMouse,
+                EKeyId::eKI_LShift);
     #pragma endregion
 
         m_pCC = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
@@ -181,6 +207,45 @@ public:
     }
 
 
+#pragma region event listener
+    virtual Cry::Entity::EventFlags GetEventMask() const override
+    {
+        return
+            Cry::Entity::EEvent::Reset |
+            Cry::Entity::EEvent::Update
+            ;
+    }
+
+
+    virtual void ProcessEvent(const SEntityEvent& e) override
+    {
+        switch (e.event)
+        {
+            case Cry::Entity::EEvent::Reset:
+            {
+                cc_isAlive = e.nParam[0] != 0;
+                #ifndef NDEBUG
+                CryLog("### PlayerMovement cc_isAlive: %s", cc_isAlive ? "true" : "false");
+                #endif
+            }
+            break;
+
+
+            case Cry::Entity::EEvent::Update:
+            {
+                if (!cc_isAlive) return;
+
+                const float dt = e.fParam[0]; // frametime or deltatime
+
+                PM_JumpLogic(dt);
+                PM_MovementLogic(dt);
+            }
+            break;
+        }
+    }
+#pragma endregion
+
+
     static void ReflectType(Schematyc::CTypeDesc<PlayerMovement>& desc)
     {
         desc.SetGUID("{c7b725e9-8885-4852-bb5c-930a4d2a7924}"_cry_guid);
@@ -190,8 +255,11 @@ public:
     }
 
 
-public:
+protected:
     CEnumFlags<EInputFlag> m_inputFlags;
+
+    // player data pointer from PlayerMovement
+    PlayerData* pmPd = nullptr;
 
     // player input pointer
     Cry::DefaultComponents::CInputComponent*
@@ -200,9 +268,9 @@ public:
     Cry::DefaultComponents::CCharacterControllerComponent*
         m_pCC = nullptr;
 
-public:
-    // update player movement on request
-    void HanldePlayerMovementRequest(float dt)
+protected:
+    // update player movement 
+    void PM_MovementLogic(float dt)
     {
         if (!m_pCC->IsOnGround()) return;
         
@@ -213,7 +281,7 @@ public:
             velocity.y += pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving %f forward", velocity.y);
+            // CryLog("### Player moving %f forward", velocity.y);
             #endif
         }
 
@@ -222,7 +290,7 @@ public:
             velocity.y -= pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving %f backward", velocity.y);
+            // CryLog("### Player moving %f backward", velocity.y);
             #endif
         }
 
@@ -231,7 +299,7 @@ public:
             velocity.x -= pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving %f left", velocity.x);
+            // CryLog("### Player moving %f left", velocity.x);
             #endif
         }
 
@@ -240,17 +308,25 @@ public:
             velocity.x += pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
-            CryLog("### Player moving %f right", velocity.x);
+            // CryLog("### Player moving %f right", velocity.x);
             #endif
         }
 
-        // update character controller to move
-        m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * velocity);
+        // update character controller to move when sprint or not
+        if (m_inputFlags & EInputFlag::sprint)
+        {
+            m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * pmPd->m_sprintMultiplier));
+        }
+        else
+        {
+            m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * velocity);
+        }
+        
     }
 
 
-    // update player jump response on request
-    void HandlePlayerJumpRequest(float dt)
+    // player movement jump logic
+    void PM_JumpLogic(float dt)
     {
         if (!m_pCC->IsOnGround()) return;
 
@@ -290,10 +366,6 @@ public:
             }
         }
     }
-
-
-protected:
-    PlayerData* pmPd = nullptr; // player data pointer from PlayerMovement
 };
 
 } // namespace players
