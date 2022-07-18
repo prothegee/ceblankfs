@@ -1,13 +1,13 @@
 {
 	"version": 4,
 	"type": "",
-	"info": { "name": "blankfs", "guid": "cf957e42-2f59-03e6-d8cf-b05b3f1ee178" },
+	"info": { "name": "ceblankfs", "guid": "cf957e42-2f59-03e6-d8cf-b05b3f1ee178" },
 	"content": {
 		"assets": [ "Assets" ],
 		"code": [ "Code" ],
 		"libs": [
 			{
-				"name": "blankfs",
+				"name": "ceblankfs",
 				"shared": { "any": "", "win_x64": "", "win_x86": "" }
 			}
 		]
