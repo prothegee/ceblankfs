@@ -7,6 +7,10 @@ namespace ceblankfs
 namespace players
 {
 
+/**
+ * @brief core player camera movement handler, also handle x rotation for mesh
+ * 
+ */
 class PlayerCamera
     :   public IEntityComponent
 {
@@ -93,7 +97,29 @@ public:
         {
             case Cry::Entity::EEvent::GameplayStarted:
             {
-                
+                try
+                {
+                    auto l1 = m_pEntity->GetEntityLinks(); // -347391616
+                    auto l1_id = l1->entityId;
+                    auto l1_name = l1->name;
+
+                    auto l2 = l1->next;
+                    auto l2_id = l2->entityId;
+                    auto l2_name = l2->name;
+
+                    #ifndef NDEBUG
+                    CryLog("### PlayerCamera l1: %i", l1);
+                    CryLog("### PlayerCamera l1_id: %i", l1_id);
+                    CryLog("### PlayerCamera l1_name: %s", l1_name);
+                    CryLog("### PlayerCamera l1: %i", l2);
+                    CryLog("### PlayerCamera l1_id: %i", l2_id);
+                    CryLog("### PlayerCamera l1_name: %s", l2_name);
+                    #endif
+                }
+                catch(const std::exception& e)
+                {
+                    CryFatalError("### ERROR: %s", e.what());
+                }
             }
             break;
 
@@ -170,7 +196,7 @@ protected:
     /**
      * @brief player camera view logic
      * 
-     * @param dt 
+     * @param dt float
      */
     void PC_CameraViewLogic(float dt)
     {
@@ -193,7 +219,7 @@ protected:
     /**
      * @brief player parent rotation logic on x axis only
      * 
-     * @param dt 
+     * @param dt float
      */
     void PC_ParentRotationLogic(float dt)
     {

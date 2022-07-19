@@ -179,9 +179,9 @@ public:
     /**
      * @brief player movement event flag change
      * 
-     * @param flags 
-     * @param activationMode 
-     * @param type 
+     * @param flags CEnumFlags<EInputFlag>
+     * @param activationMode CEnumFlags<EActionActivationMode>
+     * @param type EInputFlagType
      */
     void HandleInputFlagChange(
         CEnumFlags<EInputFlag> flags,
@@ -287,7 +287,7 @@ protected:
     /**
      * @brief update player movement
      * 
-     * @param dt 
+     * @param dt float
      */
     void PM_MovementLogic(float dt)
     {
@@ -347,7 +347,7 @@ protected:
     /**
      * @brief player movement jump logic
      * 
-     * @param dt 
+     * @param dt float
      */
     void PM_JumpLogic(float dt)
     {
@@ -377,6 +377,7 @@ protected:
             {
                 m_pCC->AddVelocity(Vec3(0, 0, m_pmPd->m_jumpForce));
 
+                // reset
                 m_jumpCharge = 0.f;
                 m_youCanJump = false;
             }
@@ -384,6 +385,7 @@ protected:
             {
                 m_pCC->AddVelocity(Vec3(0, 0, (m_pmPd->m_jumpForce * m_jumpCharge) * m_jumpChargeMultiplier));
 
+                // reset
                 m_jumpCharge = 0.f;
                 m_youCanJump = false;
             }

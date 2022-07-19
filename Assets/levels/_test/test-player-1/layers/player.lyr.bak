@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="player" FullName="player" GUID="7f8999ac-a177-d253-45cc-b174669a7d10" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658205134">
+ <Layer Name="player" FullName="player" GUID="7f8999ac-a177-d253-45cc-b174669a7d10" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658227143">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="d93d9e0e-846f-afb0-b784-7f84e54783d1" Name="test-player" Pos="250.87849,260.12155,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
@@ -66,9 +66,10 @@
     </Components>
     <EntityLinks>
      <Link TargetId="d93d9e0e-846f-afb0-b784-7f84e54783d1" Name="test-player" Version="1"/>
+     <Link TargetId="8c39163e-f77c-b9d4-d370-c9070187d33f" Name="dummy-mesh-aim" Version="1"/>
     </EntityLinks>
    </Object>
-   <Object Type="EntityWithComponent" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="51cda937-84f7-5d07-dbc5-05d34ffbfada" Name="dummy-weapon" LinkedTo="d93d9e0e-846f-afb0-b784-7f84e54783d1" Pos="0,0,0.90311813" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EntityWithComponent" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="51cda937-84f7-5d07-dbc5-05d34ffbfada" Name="dummy-weapon" LinkedTo="d93d9e0e-846f-afb0-b784-7f84e54783d1" Pos="0,0,0.89999998" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
     <Components>
      <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="e4955ffc-2e91-323f-6326-1000747f54ee" Name="" UserAdded="true">
@@ -93,13 +94,13 @@
        <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
       </properties>
      </Component>
-     <Component CryXmlVersion="2" TypeGUID="52431c11-77ee-410a-a7a7-a7fa69e79685" TypeName="Cry::DefaultComponents::CBoxPrimitiveComponent" GUID="05ef636d-a708-4b3b-998b-ed2624d723f6" Name="" UserAdded="true">
+     <Component CryXmlVersion="2" TypeGUID="4a010113-38a2-4cb0-8c98-bc1956675f40" TypeName="Cry::DefaultComponents::CPointConstraintComponent" GUID="f99cc9ef-8552-8dfd-73b8-edeb93684cb1" Name="" UserAdded="true">
       <Transform>
        <translation>
         <position>
          <element element="0"/>
-         <element element="0.49999997"/>
-         <element element="-0.1"/>
+         <element element="0"/>
+         <element element="0"/>
         </position>
        </translation>
        <rotation x="0" y="-0" z="0"/>
@@ -109,9 +110,9 @@
         <element element="1"/>
        </scale>
       </Transform>
-      <properties Surface="" ReactToCollisions="true">
-       <Size x="0.1" y="0.5" z="0.1"/>
-       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      <properties Active="true" FreePos="false" RotationLimitsX0="0" RotationLimitsX1="0" RotationLimitsYZ1="0" Damping="0">
+       <Axis x="0" y="0" z="1"/>
+       <Attacher NoAttachColl="true" AutoDist="0" LinkBuddy="dummy-mesh-aim" LinkHelper="constr_helper"/>
       </properties>
      </Component>
     </Components>
