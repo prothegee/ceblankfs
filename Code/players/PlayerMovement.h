@@ -17,10 +17,11 @@ class PlayerMovement final
     :   public IEntityComponent
 {
 private:
-    float jumpDurationOnHold = 0.f;
-    float jumpCharge = 0.f;
-    bool youCanJump = false;
-    bool cc_isAlive = false;
+    float m_jumpDurationOnHold = 0.f; // value where how long it hold to jump
+    float m_jumpCharge = 0.f; // charge jump value
+    float m_jumpChargeMultiplier = 2.f; // charge jump multiplier value
+    bool m_youCanJump = false; // value where able to jump after certain condition
+    bool m_pmIsAlive = false; // player movement status
 
 
 public:
@@ -166,8 +167,8 @@ public:
             IDENTITY,
             Vec3(0, 0, 1.f)));
 
-        pmPd = m_pEntity->GetOrCreateComponent<PlayerData>();
-        pmPd->initializePlayerData();
+        m_pmPd = m_pEntity->GetOrCreateComponent<PlayerData>();
+        m_pmPd->initializePlayerData();
 
         #ifndef NDEBUG
         CryLog("### PlayerMovement::initializePlayerMovement");
@@ -175,7 +176,13 @@ public:
     }
 
 
-    // player movement event flag change
+    /**
+     * @brief player movement event flag change
+     * 
+     * @param flags 
+     * @param activationMode 
+     * @param type 
+     */
     void HandleInputFlagChange(
         CEnumFlags<EInputFlag> flags,
         CEnumFlags<EActionActivationMode> activationMode,
@@ -211,6 +218,7 @@ public:
     virtual Cry::Entity::EventFlags GetEventMask() const override
     {
         return
+            Cry::Entity::EEvent::GameplayStarted |
             Cry::Entity::EEvent::Reset |
             Cry::Entity::EEvent::Update
             ;
@@ -221,11 +229,18 @@ public:
     {
         switch (e.event)
         {
+            case Cry::Entity::EEvent::GameplayStarted:
+            {
+
+            }
+            break;
+
+
             case Cry::Entity::EEvent::Reset:
             {
-                cc_isAlive = e.nParam[0] != 0;
+                m_pmIsAlive = e.nParam[0] != 0;
                 #ifndef NDEBUG
-                CryLog("### PlayerMovement cc_isAlive: %s", cc_isAlive ? "true" : "false");
+                CryLog("### PlayerMovement m_pmIsAlive: %s", m_pmIsAlive ? "true" : "false");
                 #endif
             }
             break;
@@ -233,7 +248,7 @@ public:
 
             case Cry::Entity::EEvent::Update:
             {
-                if (!cc_isAlive) return;
+                if (!m_pmIsAlive) return;
 
                 const float dt = e.fParam[0]; // frametime or deltatime
 
@@ -259,7 +274,7 @@ protected:
     CEnumFlags<EInputFlag> m_inputFlags;
 
     // player data pointer from PlayerMovement
-    PlayerData* pmPd = nullptr;
+    PlayerData* m_pmPd = nullptr;
 
     // player input pointer
     Cry::DefaultComponents::CInputComponent*
@@ -269,7 +284,11 @@ protected:
         m_pCC = nullptr;
 
 protected:
-    // update player movement 
+    /**
+     * @brief update player movement
+     * 
+     * @param dt 
+     */
     void PM_MovementLogic(float dt)
     {
         if (!m_pCC->IsOnGround()) return;
@@ -278,7 +297,7 @@ protected:
 
         if (m_inputFlags & EInputFlag::forward) // move forward
         {
-            velocity.y += pmPd->m_movementSpeed * dt;
+            velocity.y += m_pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
             // CryLog("### Player moving %f forward", velocity.y);
@@ -287,7 +306,7 @@ protected:
 
         if (m_inputFlags & EInputFlag::backward) // move backward
         {
-            velocity.y -= pmPd->m_movementSpeed * dt;
+            velocity.y -= m_pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
             // CryLog("### Player moving %f backward", velocity.y);
@@ -296,7 +315,7 @@ protected:
 
         if (m_inputFlags & EInputFlag::left) // move left
         {
-            velocity.x -= pmPd->m_movementSpeed * dt;
+            velocity.x -= m_pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
             // CryLog("### Player moving %f left", velocity.x);
@@ -305,7 +324,7 @@ protected:
 
         if (m_inputFlags & EInputFlag::right) // move right
         {
-            velocity.x += pmPd->m_movementSpeed * dt;
+            velocity.x += m_pmPd->m_movementSpeed * dt;
 
             #ifndef NDEBUG
             // CryLog("### Player moving %f right", velocity.x);
@@ -315,7 +334,7 @@ protected:
         // update character controller to move when sprint or not
         if (m_inputFlags & EInputFlag::sprint)
         {
-            m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * pmPd->m_sprintMultiplier));
+            m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_pmPd->m_sprintMultiplier));
         }
         else
         {
@@ -325,44 +344,48 @@ protected:
     }
 
 
-    // player movement jump logic
+    /**
+     * @brief player movement jump logic
+     * 
+     * @param dt 
+     */
     void PM_JumpLogic(float dt)
     {
         if (!m_pCC->IsOnGround()) return;
 
         if (m_inputFlags & EInputFlag::jump) // do jump
         {
-            jumpDurationOnHold += 1.f * dt;
+            m_jumpDurationOnHold += 1.f * dt;
 
             // POLICY PlayerData
-            (jumpDurationOnHold > pmPd->pv_minJumpCharge)
-                ? pmPd->m_jumpCharge = jumpDurationOnHold
-                : pmPd->m_jumpCharge = 0.f;
+            (m_jumpDurationOnHold > m_pmPd->m_minJumpCharge)
+                ? m_pmPd->m_jumpCharge = m_jumpDurationOnHold
+                : m_pmPd->m_jumpCharge = 0.f;
 
-            jumpCharge = pmPd->m_jumpCharge;
-            youCanJump = true;
+            m_jumpCharge = m_pmPd->m_jumpCharge;
+            m_youCanJump = true;
         }
         else
         {
-            jumpDurationOnHold = 0.f;
+            m_jumpDurationOnHold = 0.f;
         }
 
         // update character controller to jump
-        if (youCanJump && jumpDurationOnHold == 0.f)
+        if (m_youCanJump && m_jumpDurationOnHold == 0.f)
         {
-            if (jumpCharge == 0.f)
+            if (m_jumpCharge == 0.f)
             {
-                m_pCC->AddVelocity(Vec3(0, 0, pmPd->m_jumpForce));
+                m_pCC->AddVelocity(Vec3(0, 0, m_pmPd->m_jumpForce));
 
-                jumpCharge = 0.f;
-                youCanJump = false;
+                m_jumpCharge = 0.f;
+                m_youCanJump = false;
             }
             else
             {
-                m_pCC->AddVelocity(Vec3(0, 0, (pmPd->m_jumpForce * jumpCharge)));
+                m_pCC->AddVelocity(Vec3(0, 0, (m_pmPd->m_jumpForce * m_jumpCharge) * m_jumpChargeMultiplier));
 
-                jumpCharge = 0.f;
-                youCanJump = false;
+                m_jumpCharge = 0.f;
+                m_youCanJump = false;
             }
         }
     }

@@ -7,8 +7,6 @@ using namespace ceblankfs::players;
 
 
 #pragma region players constructor desturctor
-
-
 PlayerCamera::PlayerCamera(/* args */)
 {
 }

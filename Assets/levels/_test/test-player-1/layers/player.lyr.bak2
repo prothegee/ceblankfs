@@ -1,0 +1,175 @@
+<ObjectLayer>
+ <Layer Name="player" FullName="player" GUID="7f8999ac-a177-d253-45cc-b174669a7d10" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658205097">
+  <LayerObjects>
+   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="d93d9e0e-846f-afb0-b784-7f84e54783d1" Name="test-player" Pos="250.87849,260.12155,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="2630c2d0-3aa3-4ee0-8859-085135e980eb" TypeName="ceblankfs::players::PlayerData" GUID="1e40c9e1-4472-c0f4-18fd-63f6e89c8edd" Name="" UserAdded="true">
+      <properties playerDataMassWeight="60" playerDataMovementSpeed="60" playerDataJumpForce="6" playerDataSprintMultiplier="2"/>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="c7b725e9-8885-4852-bb5c-930a4d2a7924" TypeName="ceblankfs::players::PlayerMovement" GUID="600afee2-f897-b944-a837-9f78b515638b" Name="" UserAdded="true">
+      <properties />
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="be5e0c18-73c3-d91a-db0f-137e4912c4b4" Name="" UserAdded="false">
+      <properties />
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="98183f31-a685-43cd-92a9-815274f0a81c" TypeName="Cry::DefaultComponents::CCharacterControllerComponent" GUID="a25d7828-4f94-c953-832f-02f1c6f3c9d3" Name="" UserAdded="false">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="1"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Networked="false">
+       <Physics Mass="80" Radius="1" Height="0.935" Capsule="true" GroundContactEps="0.0040000002" SendCollisionSignal="false"/>
+       <Movement AirControl="0" AirResistance="0.2" Inertia="8" InertiaAcc="8" MaxClimb="0.87266463" MaxJump="0.87266463" MinSlide="1.2217305" MinFall="1.3962634" MaxGroundVelocity="16"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="4bd2a862-4291-4ecc-ee6a-c4f7976182cd" Name="camera-entity" LinkedTo="d93d9e0e-846f-afb0-b784-7f84e54783d1" Pos="0,0,1.5" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="a4cb0508-5f07-46b4-b6d4-ab76bfd550f4" TypeName="Cry::DefaultComponents::CCameraComponent" GUID="d66d0348-11fb-e332-5360-95c5632bb05a" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="Default" Active="true" NearPlane="0.1" FarPlane="1024" FieldOfView="1.2217305"/>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="90085a54-7f05-46aa-b203-d614a938c0cc" TypeName="ceblankfs::players::PlayerCamera" GUID="bffc8d92-e7b7-1cbd-9626-3cc0fe4ad367" Name="" UserAdded="true">
+      <properties playerCameraRotationLimitsMinPitch="-0.89999998" playerCameraRotationLimitsMaxPitch="1.3"/>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="a5b93d04-d08c-ecea-e7dc-672641413adf" Name="" UserAdded="false">
+      <properties />
+     </Component>
+    </Components>
+    <EntityLinks>
+     <Link TargetId="d93d9e0e-846f-afb0-b784-7f84e54783d1" Name="test-player" Version="1"/>
+    </EntityLinks>
+   </Object>
+   <Object Type="EntityWithComponent" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="51cda937-84f7-5d07-dbc5-05d34ffbfada" Name="dummy-weapon" LinkedTo="d93d9e0e-846f-afb0-b784-7f84e54783d1" Pos="0,0,0.90311813" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="e4955ffc-2e91-323f-6326-1000747f54ee" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0.5"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="0.1"/>
+        <element element="1"/>
+        <element element="0.1"/>
+       </scale>
+      </Transform>
+      <properties Type="RenderAndCollider" FilePath="%engine%/engineassets/objects/primitive_cube.cgf" Material="%engine%/engineassets/objects/editorprimitive.mtl">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="52431c11-77ee-410a-a7a7-a7fa69e79685" TypeName="Cry::DefaultComponents::CBoxPrimitiveComponent" GUID="05ef636d-a708-4b3b-998b-ed2624d723f6" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Surface="" ReactToCollisions="true">
+       <Size x="1" y="1" z="1"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+   <Object Type="EntityWithComponent" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="33efffa5-eae7-0927-df2e-566ed447263e" Name="mesh-entity" LinkedTo="d93d9e0e-846f-afb0-b784-7f84e54783d1" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="d456c642-dfcf-b0b0-a292-26c9c71d9345" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0.5"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="RenderAndCollider" FilePath="%ENGINE%/EngineAssets/Objects/primitive_sphere.cgf" Material="%engine%/engineassets/objects/editorprimitive.mtl">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+   <Object Type="EntityWithComponent" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="8c39163e-f77c-b9d4-d370-c9070187d33f" Name="dummy-mesh-aim" LinkedTo="4bd2a862-4291-4ecc-ee6a-c4f7976182cd" Pos="0,6,0" Rotate="1,0,0,0" Scale="0.1,0.1,0.1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="13e55498-3cf3-1bf9-fcef-d8d0a7445174" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="Render" FilePath="%ENGINE%/EngineAssets/Objects/primitive_sphere.cgf" Material="%engine%/engineassets/objects/helper.mtl">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="None" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+  </LayerObjects>
+ </Layer>
+</ObjectLayer>

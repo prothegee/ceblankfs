@@ -18,6 +18,11 @@
 #include <DefaultComponents/Cameras/CameraComponent.h>
 #include <DefaultComponents/Input/InputComponent.h>
 #include <DefaultComponents/Physics/CharacterControllerComponent.h>
+#include <DefaultComponents/Geometry/AdvancedAnimationComponent.h>
+#include <DefaultComponents/Geometry/AlembicComponent.h>
+#include <DefaultComponents/Geometry/AnimatedMeshComponent.h>
+#include <DefaultComponents/Geometry/BaseMeshComponent.h>
+#include <DefaultComponents/Geometry/StaticMeshComponent.h>
 
 
 namespace ceblankfs
@@ -30,8 +35,11 @@ namespace ceblankfs
 class GameConfig
 {
 public:
-    const string projectName = "ceblankfs";
-    const string projectVersion = "0.0.0";
+    const string projectName = "ceblankfs"; // project name
+
+    static constexpr int MAJOR = 0; // project major version
+    static constexpr int MINOR = 0; // project minor version
+    static constexpr int PATCH = 0; // project patch version
 
 public:
     GameConfig(/* args */);

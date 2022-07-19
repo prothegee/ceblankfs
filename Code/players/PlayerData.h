@@ -32,24 +32,26 @@ public:
 
 
     // player jump charge policy value, required projectVersion
-    const float pv_minJumpCharge 
+    const float m_minJumpCharge 
         = []
         {
-            GameConfig GC;
             float retval;
 
-        #pragma region pv_minJumpCharge data patch adjustment
-            if (GC.projectVersion == "0.0.0")
+        #pragma region m_minJumpCharge data patch adjustment
+            switch (GameConfig::MAJOR, GameConfig::MINOR, GameConfig::PATCH)
             {
-                retval = .3f;
-            }
-            else
-            {
-                retval = .0f;
+                case (0, 0, 0):
+                {
+                    retval = .3f;
+                }
+                break;
 
-                #ifndef NDEBUG
-                CryLog("### WARNING: PlayerData patch data variable doesn't recognized");
-                #endif
+
+                default:
+                {
+                    retval = .0f;
+                }
+                break;
             }
         #pragma endregion
 
