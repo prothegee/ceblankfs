@@ -23,6 +23,8 @@ add_sources("Code_uber.cpp"
         "GamePlugin.h"
 		"GamePlugin.cpp"
 
+        "pch_ceblankfs.h"
+
 		"StdAfx.h"
 		"StdAfx.cpp"
 )
