@@ -12,6 +12,8 @@ namespace ceblankfs
 class GameConfig
 {
 public:
+    const static bool IS_DEBUG = true; // game config debug status, set to false when release
+
     const string projectName = "ceblankfs"; // project name
 
     static constexpr int MAJOR = 0; // project major version
