@@ -116,6 +116,7 @@ void CPCamera::RegisterCPPovDefaultValue()
 
 void CPCamera::MainCameraLogic(float dt)
 {
+    // Matrix34 transform = IDENTITY;
     Matrix34 transform = m_pEntity->GetWorldTM();
     Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_pController->m_lookOrientation));
 
@@ -137,10 +138,11 @@ void CPCamera::OrientParentRotationOnX(float dt)
     if (m_orientParentX)
     {
         auto parent = m_pEntity->GetParent();
+
         auto parentTranform = parent->GetWorldTM();
 
         Ang3 pYpr = CCamera::CreateAnglesYPR(Matrix33(m_pController->m_parentLookOrientation));
-        pYpr.x += m_pController->m_parentDeltaRotation.x * m_pController->m_rotationSpeed; // TODO: JAGGY ORIENTATION
+        pYpr.x += m_pController->m_parentDeltaRotation.x * m_pController->m_rotationSpeed;
         pYpr.y = 0;
         pYpr.z = 0;
 
@@ -150,7 +152,6 @@ void CPCamera::OrientParentRotationOnX(float dt)
         parentTranform.SetRotation33(CCamera::CreateOrientationYPR(pYpr));
 
         parent->SetWorldTM(parentTranform);
-        
     }
     else
     {

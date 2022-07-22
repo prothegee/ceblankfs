@@ -112,8 +112,6 @@ public:
 
     static void ReflectType(Schematyc::CTypeDesc<CPData>& desc)
     {
-        string dusername = "", dclassname = "";
-
         desc.SetGUID("{c88a9699-3f33-4304-8365-3a2f1074f5f4}"_cry_guid);
         desc.SetLabel("CPData");
         desc.SetEditorCategory("_players");
@@ -154,24 +152,24 @@ public:
             &CPData::m_hitPoint,
             'pdhp',
             "PlayerDataHitPoint",
-            "hp",
-            "hp value",
+            "health",
+            "health value",
             DVCPData::hitPoint
         );
         desc.AddMember(
             &CPData::m_manaPoint,
             'pdmp',
             "PlayerDataManaPoint",
-            "mp",
-            "mp value",
+            "mana",
+            "mana value",
             DVCPData::manaPoint
         );
         desc.AddMember(
             &CPData::m_energyPoint,
             'pdep',
             "PlayerDataEnergyPoint",
-            "ep",
-            "ep value",
+            "energy",
+            "energy value",
             DVCPData::energyPoint
         );
         desc.AddMember(
@@ -225,6 +223,8 @@ protected:
 protected:
     /**
      * @brief rules for CPData where some variable not allow to less than 0
+     * 
+     * @note insecure mode
      * 
      */
     void CPDataValueRules();

@@ -50,11 +50,6 @@ public:
         desc.SetLabel("Rotator");
         desc.SetEditorCategory("_entities");
         desc.SetDescription("Entity rotator for objects");
-        desc.SetComponentFlags({
-            IEntityComponent::EFlags::Transform,
-            IEntityComponent::EFlags::Socket,
-            IEntityComponent::EFlags::Attach
-        });
         desc.AddMember(
             &Rotator::m_rotationX,
             'rvlx',

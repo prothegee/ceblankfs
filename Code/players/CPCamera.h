@@ -34,7 +34,9 @@ public:
 
     // field of view
     float m_fov;
+    // min rotation pitch
     float m_rotationLimitsMinPitch;
+    // max rotation pitch
     float m_rotationLimitsMaxPitch;
 
 public:
