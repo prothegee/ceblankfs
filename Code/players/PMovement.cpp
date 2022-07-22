@@ -1,22 +1,22 @@
-#include "CPMovement.h"
+#include "PMovement.h"
 
 
 using namespace ceblankfs::players;
 
 
 #pragma region component and registrar
-static void RegisterCPMovementComponent(Schematyc::IEnvRegistrar& registrar)
+static void RegisterPMovementComponent(Schematyc::IEnvRegistrar& registrar)
 {
     Schematyc::CEnvRegistrationScope scope = registrar.Scope(IEntity::GetEntityScopeGUID());
     {
-        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(CPMovement));
+        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(PMovement));
     }
 }
-CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterCPMovementComponent);
-CPMovement::CPMovement(/* args */)
+CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterPMovementComponent);
+PMovement::PMovement(/* args */)
 {
 }
-CPMovement::~CPMovement()
+PMovement::~PMovement()
 {
 }
 #pragma endregion
@@ -25,13 +25,13 @@ CPMovement::~CPMovement()
 
 
 #pragma region initialize and binding
-void CPMovement::Initialize()
+void PMovement::Initialize()
 {
-    RegisterCPMovementPointer();
+    RegisterPMovementPointer();
 
     if (GameConfig::IS_DEBUG)
     {
-        CryLog("### players::CPMovementAndAction::Initialize");
+        CryLog("### players::PMovementAndAction::Initialize");
     }
 }
 #pragma endregion
@@ -40,7 +40,7 @@ void CPMovement::Initialize()
 
 
 #pragma region event listener
-Cry::Entity::EventFlags CPMovement::GetEventMask() const
+Cry::Entity::EventFlags PMovement::GetEventMask() const
 {
     return
         Cry::Entity::EEvent::Reset |
@@ -49,7 +49,7 @@ Cry::Entity::EventFlags CPMovement::GetEventMask() const
 }
 
 
-void CPMovement::ProcessEvent(const SEntityEvent& e)
+void PMovement::ProcessEvent(const SEntityEvent& e)
 {
     switch (e.event)
     {
@@ -60,7 +60,7 @@ void CPMovement::ProcessEvent(const SEntityEvent& e)
             // log base on game config
             if (GameConfig::IS_DEBUG)
             {
-                CryLog("### CPMovementAndAction::m_isAlive: %s", m_isAlive ? "true" : "false");
+                CryLog("### PMovementAndAction::m_isAlive: %s", m_isAlive ? "true" : "false");
             }
         }
         break;
@@ -84,45 +84,45 @@ void CPMovement::ProcessEvent(const SEntityEvent& e)
 
 
 #pragma region functions or methods
-void CPMovement::RegisterCPMovementPointer()
+void PMovement::RegisterPMovementPointer()
 {
     m_pCC = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
 
-    m_pMAA = m_pEntity->GetOrCreateComponent<ceblankfs::players::CPMovement>();
+    m_pMAA = m_pEntity->GetOrCreateComponent<ceblankfs::players::PMovement>();
 
-    m_pControllerPtr = m_pEntity->GetOrCreateComponent<ceblankfs::players::CPController>();
+    m_pControllerPtr = m_pEntity->GetOrCreateComponent<ceblankfs::players::PController>();
 
-    m_pDataPtr = m_pEntity->GetOrCreateComponent<ceblankfs::players::CPData>();
+    m_pDataPtr = m_pEntity->GetOrCreateComponent<ceblankfs::players::PData>();
 }
 
 
-void CPMovement::GroundMovementHandler(float dt)
+void PMovement::GroundMovementHandler(float dt)
 {
     if (!m_pCC->IsOnGround()) return;
 
     Vec3 velocity = ZERO;
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::forward)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::forward)
     {
         velocity.y += m_pDataPtr->m_movementSpeed * dt;
     }
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::backward)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::backward)
     {
         velocity.y -= m_pDataPtr->m_movementSpeed * dt;
     }
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::left)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::left)
     {
         velocity.x -= m_pDataPtr->m_movementSpeed * dt;
     }
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::right)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::right)
     {
         velocity.x += m_pDataPtr->m_movementSpeed * dt;
     }
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::sprint)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::sprint)
     {
         m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_pDataPtr->m_sprintMultiplier));
     }
@@ -133,11 +133,11 @@ void CPMovement::GroundMovementHandler(float dt)
 }
 
 
-void CPMovement::GroundJumpHandler(float dt)
+void PMovement::GroundJumpHandler(float dt)
 {
     if (!m_pCC->IsOnGround()) return;
 
-    if (m_pControllerPtr->m_inputFlags & CPController::EInputFlag::jump)
+    if (m_pControllerPtr->m_inputFlags & PController::EInputFlag::jump)
     {
         m_pDataPtr->m_jumpDurationOnHold += 1.f * dt;
 

@@ -1,22 +1,22 @@
-#include "CPController.h"
+#include "PController.h"
 
 
 using namespace ceblankfs::players;
 
 
 #pragma region component and registrar
-static void RegisterCPControllerComponent(Schematyc::IEnvRegistrar& registrar)
+static void RegisterPControllerComponent(Schematyc::IEnvRegistrar& registrar)
 {
     Schematyc::CEnvRegistrationScope scope = registrar.Scope(IEntity::GetEntityScopeGUID());
     {
-        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(CPController));
+        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(PController));
     }
 }
-CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterCPControllerComponent);
-CPController::CPController(/* args */)
+CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterPControllerComponent);
+PController::PController(/* args */)
 {
 }
-CPController::~CPController()
+PController::~PController()
 {
 }
 #pragma endregion
@@ -25,14 +25,14 @@ CPController::~CPController()
 
 
 #pragma region initialize and binding
-void CPController::Initialize()
+void PController::Initialize()
 {
     AssignInputController();
-    RegisterCPControllerPointer();
+    RegisterPControllerPointer();
 
     if (GameConfig::IS_DEBUG)
     {
-        CryLog("### players::CPController::Initialize");
+        CryLog("### players::PController::Initialize");
     }
 }
 #pragma endregion
@@ -41,7 +41,7 @@ void CPController::Initialize()
 
 
 #pragma region event listener
-Cry::Entity::EventFlags CPController::GetEventMask() const
+Cry::Entity::EventFlags PController::GetEventMask() const
 {
     return
         Cry::Entity::EEvent::Reset |
@@ -50,7 +50,7 @@ Cry::Entity::EventFlags CPController::GetEventMask() const
 }
 
 
-void CPController::ProcessEvent(const SEntityEvent& e)
+void PController::ProcessEvent(const SEntityEvent& e)
 {
     switch (e.event)
     {
@@ -61,7 +61,7 @@ void CPController::ProcessEvent(const SEntityEvent& e)
             // log base on game config
             if (GameConfig::IS_DEBUG)
             {
-                CryLog("### CPController::m_isAlive: %s", m_isAlive ? "true" : "false");
+                CryLog("### PController::m_isAlive: %s", m_isAlive ? "true" : "false");
             }
         }
         break;
@@ -80,7 +80,7 @@ void CPController::ProcessEvent(const SEntityEvent& e)
 
 
 #pragma region functions or methods
-void CPController::AssignInputController()
+void PController::AssignInputController()
 {
     m_pInput = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CInputComponent>();
 
@@ -216,7 +216,7 @@ void CPController::AssignInputController()
 }
 
 
-void CPController::HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type)
+void PController::HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type)
 {
     switch (type)
     {
@@ -243,8 +243,8 @@ void CPController::HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlag
 }
 
 
-void CPController::RegisterCPControllerPointer()
+void PController::RegisterPControllerPointer()
 {
-    m_pController = m_pEntity->GetOrCreateComponent<ceblankfs::players::CPController>();
+    m_pController = m_pEntity->GetOrCreateComponent<ceblankfs::players::PController>();
 }
 #pragma endregion

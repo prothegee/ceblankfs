@@ -1,6 +1,6 @@
 #pragma once
 #include "GameConfig.h"
-#include "CPController.h"
+#include "PController.h"
 
 
 namespace ceblankfs
@@ -9,10 +9,10 @@ namespace players
 {
 
 /**
- * @brief class player camera
+ * @brief player camera core class
  * 
  */
-class CPCamera
+class PCamera
     :   public IEntityComponent
 {
 private:
@@ -23,7 +23,7 @@ private:
 
 
 public:
-    struct DVCPCamera
+    struct DVPCamera
     {
         static constexpr bool orientParentX = true;
 
@@ -40,8 +40,8 @@ public:
     float m_rotationLimitsMaxPitch;
 
 public:
-    CPCamera(/* args */);
-    virtual ~CPCamera();
+    PCamera(/* args */);
+    virtual ~PCamera();
 
 
     virtual void Initialize() override;
@@ -51,43 +51,43 @@ public:
     virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
-    static void ReflectType(Schematyc::CTypeDesc<CPCamera>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<PCamera>& desc)
     {
         desc.SetGUID("{60c6297d-5905-4a8f-aaef-41c79774a2c2}"_cry_guid);
-        desc.SetLabel("CPCamera");
+        desc.SetLabel("PCamera");
         desc.SetEditorCategory("_players");
         desc.SetDescription("Players camera");
         desc.AddMember(
-            &CPCamera::m_fov,
+            &PCamera::m_fov,
             'pfov',
             "PlayerFieldOfView",
             "fov",
             "fov value",
-            DVCPCamera::fov
+            DVPCamera::fov
         );
         desc.AddMember(
-            &CPCamera::m_orientParentX,
+            &PCamera::m_orientParentX,
             'popx',
             "PlayerFieldOfViewOrientParentX",
             "oritent parent on x",
             "oritent parent on x value",
-            DVCPCamera::orientParentX
+            DVPCamera::orientParentX
         );
         desc.AddMember(
-            &CPCamera::m_rotationLimitsMinPitch,
+            &PCamera::m_rotationLimitsMinPitch,
             'prmn',
             "PlayerCameraRotationMinPitch",
             "rotation min pitch",
             "rotation min pitch value",
-            DVCPCamera::rotationLimitsMinPitch
+            DVPCamera::rotationLimitsMinPitch
         );
         desc.AddMember(
-            &CPCamera::m_rotationLimitsMaxPitch,
+            &PCamera::m_rotationLimitsMaxPitch,
             'prmx',
             "PlayerCameraRotationMaxPitch",
             "rotation max pitch",
             "rotation max pitch value",
-            DVCPCamera::rotationLimitsMaxPitch
+            DVPCamera::rotationLimitsMaxPitch
         );
     }
 
@@ -99,7 +99,7 @@ protected:
     Cry::DefaultComponents::CCameraComponent* m_pCamera = nullptr;
 
     // player controller pointer from CPPov
-    ceblankfs::players::CPController* m_pController = nullptr;
+    ceblankfs::players::PController* m_pController = nullptr;
 
 protected:
     /**
@@ -127,7 +127,7 @@ protected:
     /**
      * @brief orient parent rotation on x axis
      * 
-     * @param dt 
+     * @param dt float
      */
     void OrientParentRotationOnX(float dt);
 };

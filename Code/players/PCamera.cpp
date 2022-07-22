@@ -1,22 +1,22 @@
-#include "CPCamera.h"
+#include "PCamera.h"
 
 
 using namespace ceblankfs::players;
 
 
 #pragma region component and registrar
-static void RegisterCPCameraComponent(Schematyc::IEnvRegistrar& registrar)
+static void RegisterPCameraComponent(Schematyc::IEnvRegistrar& registrar)
 {
     Schematyc::CEnvRegistrationScope scope = registrar.Scope(IEntity::GetEntityScopeGUID());
     {
-        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(CPCamera));
+        Schematyc::CEnvRegistrationScope componentScope = scope.Register(SCHEMATYC_MAKE_ENV_COMPONENT(PCamera));
     }
 }
-CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterCPCameraComponent);
-CPCamera::CPCamera(/* args */)
+CRY_STATIC_AUTO_REGISTER_FUNCTION(&RegisterPCameraComponent);
+PCamera::PCamera(/* args */)
 {
 }
-CPCamera::~CPCamera()
+PCamera::~PCamera()
 {
 }
 #pragma endregion
@@ -25,7 +25,7 @@ CPCamera::~CPCamera()
 
 
 #pragma region initialize and binding
-void CPCamera::Initialize()
+void PCamera::Initialize()
 {
     RegisterCPPovDefaultValue();
     RegisterCPPovPointer();
@@ -41,7 +41,7 @@ void CPCamera::Initialize()
 
 
 #pragma region event listener
-Cry::Entity::EventFlags CPCamera::GetEventMask() const
+Cry::Entity::EventFlags PCamera::GetEventMask() const
 {
     return
         Cry::Entity::EEvent::GameplayStarted |
@@ -51,7 +51,7 @@ Cry::Entity::EventFlags CPCamera::GetEventMask() const
 }
 
 
-void CPCamera::ProcessEvent(const SEntityEvent& e)
+void PCamera::ProcessEvent(const SEntityEvent& e)
 {
     switch (e.event)
     {
@@ -60,7 +60,7 @@ void CPCamera::ProcessEvent(const SEntityEvent& e)
             // log base on game config
             if (GameConfig::IS_DEBUG)
             {
-                CryLog("### CPCamera::m_orientParentX is %s", m_orientParentX ? "true" : "false");
+                CryLog("### PCamera::m_orientParentX is %s", m_orientParentX ? "true" : "false");
             }
         }
         break;
@@ -97,24 +97,24 @@ void CPCamera::ProcessEvent(const SEntityEvent& e)
 
 
 #pragma region functions or methods
-void CPCamera::RegisterCPPovPointer()
+void PCamera::RegisterCPPovPointer()
 {
     m_pCamera = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCameraComponent>();
 
-    m_pController = m_pEntity->GetOrCreateComponent<ceblankfs::players::CPController>();
+    m_pController = m_pEntity->GetOrCreateComponent<ceblankfs::players::PController>();
 }
 
 
-void CPCamera::RegisterCPPovDefaultValue()
+void PCamera::RegisterCPPovDefaultValue()
 {
-    m_fov = DVCPCamera::fov;
-    m_orientParentX = DVCPCamera::orientParentX;
-    m_rotationLimitsMinPitch = DVCPCamera::rotationLimitsMinPitch;
-    m_rotationLimitsMaxPitch = DVCPCamera::rotationLimitsMaxPitch;
+    m_fov = DVPCamera::fov;
+    m_orientParentX = DVPCamera::orientParentX;
+    m_rotationLimitsMinPitch = DVPCamera::rotationLimitsMinPitch;
+    m_rotationLimitsMaxPitch = DVPCamera::rotationLimitsMaxPitch;
 }
 
 
-void CPCamera::MainCameraLogic(float dt)
+void PCamera::MainCameraLogic(float dt)
 {
     // Matrix34 transform = IDENTITY;
     Matrix34 transform = m_pEntity->GetWorldTM();
@@ -133,7 +133,7 @@ void CPCamera::MainCameraLogic(float dt)
 }
 
 
-void CPCamera::OrientParentRotationOnX(float dt)
+void PCamera::OrientParentRotationOnX(float dt)
 {
     if (m_orientParentX)
     {

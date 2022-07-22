@@ -8,10 +8,10 @@ namespace players
 {
 
 /**
- * @brief class player controller and input
+ * @brief player controller core class
  * 
  */
-class CPController
+class PController
     :   public IEntityComponent
 {
 private:
@@ -45,12 +45,12 @@ public:
     // input flags
     CEnumFlags<EInputFlag> m_inputFlags;
 
-    // player controller pointer from CPData
-    ceblankfs::players::CPController* m_pController = nullptr;
+    // player controller pointer from PData
+    ceblankfs::players::PController* m_pController = nullptr;
 
 public:
-    CPController(/* args */);
-    virtual ~CPController();
+    PController(/* args */);
+    virtual ~PController();
 
 
     virtual void Initialize() override;
@@ -60,10 +60,10 @@ public:
     virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
-    static void ReflectType(Schematyc::CTypeDesc<CPController>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<PController>& desc)
     {
         desc.SetGUID("{97193e3d-4359-4b6a-afd6-1b52d508844c}"_cry_guid);
-        desc.SetLabel("CPController");
+        desc.SetLabel("PController");
         desc.SetEditorCategory("_players");
         desc.SetDescription("Players controller");
     }
@@ -72,7 +72,7 @@ public:
 
 
 protected:
-    // player input pointer from CPController
+    // player input pointer from PController
     Cry::DefaultComponents::CInputComponent* m_pInput = nullptr;
 
 protected:
@@ -94,10 +94,10 @@ protected:
 
 
     /**
-     * @brief CPController register pointer
+     * @brief PController register pointer
      * 
      */
-    void RegisterCPControllerPointer();
+    void RegisterPControllerPointer();
 };
 
 } // namespace players

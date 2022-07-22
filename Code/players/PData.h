@@ -8,10 +8,10 @@ namespace players
 {
 
 /**
- * @brief class player data storage, e.g. health, power, armor & etc.
+ * @brief player data storage core class, e.g. health, power, armor & etc.
  * 
  */
-class CPData
+class PData
     :   public IEntityComponent
 {
 private:
@@ -21,8 +21,8 @@ private:
 
 
 public:
-    // CPData default value
-    struct DVCPData
+    // PData default value
+    struct DVPData
     {
         static constexpr bool spawnOnCamera = false;
         static constexpr bool ableToDoubleJump = false;
@@ -95,12 +95,12 @@ public:
             return retval;
         }();
 
-    // player data pointer from CPData
-    ceblankfs::players::CPData* m_pData = nullptr;
+    // player data pointer from PData
+    ceblankfs::players::PData* m_pData = nullptr;
 
 public:
-    CPData(/* args */);
-    virtual ~CPData();
+    PData(/* args */);
+    virtual ~PData();
 
 
     virtual void Initialize() override;
@@ -110,14 +110,14 @@ public:
     virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
-    static void ReflectType(Schematyc::CTypeDesc<CPData>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<PData>& desc)
     {
         desc.SetGUID("{c88a9699-3f33-4304-8365-3a2f1074f5f4}"_cry_guid);
-        desc.SetLabel("CPData");
+        desc.SetLabel("PData");
         desc.SetEditorCategory("_players");
         desc.SetDescription("Players base data");
         desc.AddMember(
-            &CPData::m_username,
+            &PData::m_username,
             'pdun',
             "PlayerDataUsername",
             "username",
@@ -125,7 +125,7 @@ public:
             ""
         );
         desc.AddMember(
-            &CPData::m_charactername,
+            &PData::m_charactername,
             'pdcn',
             "PlayerDataCharacterName",
             "character name",
@@ -133,84 +133,84 @@ public:
             ""
         );
         desc.AddMember(
-            &CPData::m_spawnOnCamera,
+            &PData::m_spawnOnCamera,
             'psoc',
             "PlayerDataSpawnOnCamera",
             "spawn on camera",
             "spawn on camera value",
-            DVCPData::spawnOnCamera
+            DVPData::spawnOnCamera
         );
         desc.AddMember(
-            &CPData::m_ableToDoubleJump,
+            &PData::m_ableToDoubleJump,
             'padj',
             "PlayerDataAbleToDoubleJump",
             "double jump",
             "double jump value",
-            DVCPData::ableToDoubleJump
+            DVPData::ableToDoubleJump
         );
         desc.AddMember(
-            &CPData::m_hitPoint,
+            &PData::m_hitPoint,
             'pdhp',
             "PlayerDataHitPoint",
             "health",
             "health value",
-            DVCPData::hitPoint
+            DVPData::hitPoint
         );
         desc.AddMember(
-            &CPData::m_manaPoint,
+            &PData::m_manaPoint,
             'pdmp',
             "PlayerDataManaPoint",
             "mana",
             "mana value",
-            DVCPData::manaPoint
+            DVPData::manaPoint
         );
         desc.AddMember(
-            &CPData::m_energyPoint,
+            &PData::m_energyPoint,
             'pdep',
             "PlayerDataEnergyPoint",
             "energy",
             "energy value",
-            DVCPData::energyPoint
+            DVPData::energyPoint
         );
         desc.AddMember(
-            &CPData::m_weight,
+            &PData::m_weight,
             'pdw',
             "PlayerDataWeight",
             "weight",
             "weight value",
-            DVCPData::weight
+            DVPData::weight
         );
         desc.AddMember(
-            &CPData::m_movementSpeed,
+            &PData::m_movementSpeed,
             'pdms',
             "PlayerDataMovementSpeed",
             "movement speed",
             "movement speed value",
-            DVCPData::movementSpeed
+            DVPData::movementSpeed
         );
         desc.AddMember(
-            &CPData::m_jumpForce,
+            &PData::m_jumpForce,
             'pdjf',
             "PlayerDataJumpForce",
             "jump force",
             "jump force value",
-            DVCPData::jumpForce
+            DVPData::jumpForce
         );
         desc.AddMember(
-            &CPData::m_jumpCharge,
+            &PData::m_jumpCharge,
             'pdjf',
             "PlayerDataJumpForce",
             "jump force",
             "jump force value",
-            DVCPData::jumpCharge
+            DVPData::jumpCharge
         );
         desc.AddMember(
-            &CPData::m_jumpChargeMultiplier,
+            &PData::m_jumpChargeMultiplier,
             'pdjm',
             "PlayerDataJumpmultiplier",
             "jump multiplier",
             "jump multiplier value",
-            DVCPData::jumpChargeMultiplier
+            DVPData::jumpChargeMultiplier
         );
     }
 
@@ -222,26 +222,26 @@ protected:
 
 protected:
     /**
-     * @brief rules for CPData where some variable not allow to less than 0
+     * @brief rules for PData where some variable not allow to less than 0
      * 
      * @note insecure mode
      * 
      */
-    void CPDataValueRules();
+    void PDataValueRules();
 
 
     /**
-     * @brief CPDataPointer register
+     * @brief PDataPointer register
      * 
      */
-    void RegisterCPDataPointer();
+    void RegisterPDataPointer();
 
 
     /**
-     * @brief CPDataP default value register
+     * @brief PDataP default value register
      * 
      */
-    void RegisterCPDataDefaultValue();
+    void RegisterPDataDefaultValue();
 };
  
 

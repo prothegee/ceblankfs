@@ -1,7 +1,7 @@
 #pragma once
 #include "GameConfig.h"
-#include "CPData.h"
-#include "CPController.h"
+#include "PData.h"
+#include "PController.h"
 
 
 namespace ceblankfs
@@ -10,10 +10,10 @@ namespace players
 {
 
 /**
- * @brief class player movement and action logics
+ * @brief player movement core class
  * 
  */
-class CPMovement
+class PMovement
     :   public IEntityComponent
 {
 private:
@@ -24,12 +24,12 @@ private:
 
 
 public:
-    // playr movement and action pointer from CPMovementAndAction
-    ceblankfs::players::CPMovement* m_pMAA = nullptr;
+    // playr movement and action pointer from PMovementAndAction
+    ceblankfs::players::PMovement* m_pMAA = nullptr;
 
 public:
-    CPMovement(/* args */);
-    virtual ~CPMovement();
+    PMovement(/* args */);
+    virtual ~PMovement();
 
 
     virtual void Initialize() override;
@@ -39,10 +39,10 @@ public:
     virtual void ProcessEvent(const SEntityEvent& e) override;
 
 
-    static void ReflectType(Schematyc::CTypeDesc<CPMovement>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<PMovement>& desc)
     {
         desc.SetGUID("{c95b48f9-4f9f-4bd1-95f0-f828a1831fa4}"_cry_guid);
-        desc.SetLabel("CPMovement");
+        desc.SetLabel("PMovement");
         desc.SetEditorCategory("_players");
         desc.SetDescription("Players movement");
     }
@@ -51,21 +51,21 @@ public:
 
 
 protected:
-    // player character controller pointer from CPMovementAndAction
+    // player character controller pointer from PMovementAndAction
     Cry::DefaultComponents::CCharacterControllerComponent* m_pCC = nullptr;
 
-    // CPController pointer from CPMovementAndAction
-    ceblankfs::players::CPController* m_pControllerPtr = nullptr;
+    // PController pointer from PMovementAndAction
+    ceblankfs::players::PController* m_pControllerPtr = nullptr;
 
-    // CPController pointer from CPMovementAndAction
-    ceblankfs::players::CPData* m_pDataPtr = nullptr;
+    // PController pointer from PMovementAndAction
+    ceblankfs::players::PData* m_pDataPtr = nullptr;
 
 protected:
     /**
-     * @brief RegisterCPMovementPointer register pointer
+     * @brief RegisterPMovementPointer register pointer
      * 
      */
-    void RegisterCPMovementPointer();
+    void RegisterPMovementPointer();
 
 
     /**
