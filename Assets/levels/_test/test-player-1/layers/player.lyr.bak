@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="player" FullName="player" GUID="7f8999ac-a177-d253-45cc-b174669a7d10" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658419496">
+ <Layer Name="player" FullName="player" GUID="7f8999ac-a177-d253-45cc-b174669a7d10" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658488577">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="f5c7af8a-fd4f-3d7f-b7bf-38831d104e35" Name="player-camera" LinkedTo="b18f3836-fc99-1a92-de72-a65072dc9d05" Pos="0,0,1.5" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
@@ -22,10 +22,10 @@
       </Transform>
       <properties Type="Default" Active="true" NearPlane="0.1" FarPlane="1024" FieldOfView="1.2217305"/>
      </Component>
-     <Component CryXmlVersion="2" TypeGUID="60c6297d-5905-4a8f-aaef-41c79774a2c2" TypeName="ceblankfs::players::CPCamera" GUID="8a15c8b5-18f6-c160-6b48-c89d096fc6db" Name="" UserAdded="true">
+     <Component CryXmlVersion="2" TypeGUID="60c6297d-5905-4a8f-aaef-41c79774a2c2" TypeName="ceblankfs::players::PCamera" GUID="8a15c8b5-18f6-c160-6b48-c89d096fc6db" Name="" UserAdded="true">
       <properties PlayerFieldOfView="80" PlayerFieldOfViewOrientParentX="true" PlayerCameraRotationMinPitch="-0.89999998" PlayerCameraRotationMaxPitch="1.3"/>
      </Component>
-     <Component CryXmlVersion="2" TypeGUID="97193e3d-4359-4b6a-afd6-1b52d508844c" TypeName="ceblankfs::players::CPController" GUID="6e2d412f-9ca2-9307-a611-ca7719d95fa4" Name="" UserAdded="false">
+     <Component CryXmlVersion="2" TypeGUID="97193e3d-4359-4b6a-afd6-1b52d508844c" TypeName="ceblankfs::players::PController" GUID="6e2d412f-9ca2-9307-a611-ca7719d95fa4" Name="" UserAdded="false">
       <properties />
      </Component>
      <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="5f2d7bea-0fad-4eea-1160-5fda59864959" Name="" UserAdded="false">
@@ -60,45 +60,7 @@
      </Component>
     </Components>
    </Object>
-   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="b18f3836-fc99-1a92-de72-a65072dc9d05" Name="test-player" Pos="247.98938,265.3577,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
-    <Properties />
-    <Components>
-     <Component CryXmlVersion="2" TypeGUID="98183f31-a685-43cd-92a9-815274f0a81c" TypeName="Cry::DefaultComponents::CCharacterControllerComponent" GUID="cd9d71af-6554-a11a-8f8d-b8609dd12a84" Name="" UserAdded="true">
-      <Transform>
-       <translation>
-        <position>
-         <element element="0"/>
-         <element element="0"/>
-         <element element="0"/>
-        </position>
-       </translation>
-       <rotation x="0" y="-0" z="0"/>
-       <scale>
-        <element element="1"/>
-        <element element="1"/>
-        <element element="1"/>
-       </scale>
-      </Transform>
-      <properties Networked="false">
-       <Physics Mass="80" Radius="1.0000001" Height="0" Capsule="true" GroundContactEps="0.0040000002" SendCollisionSignal="false"/>
-       <Movement AirControl="0.2" AirResistance="0.2" Inertia="8" InertiaAcc="8" MaxClimb="0.87266463" MaxJump="0.87266463" MinSlide="1.2217305" MinFall="1.3962634" MaxGroundVelocity="16"/>
-      </properties>
-     </Component>
-     <Component CryXmlVersion="2" TypeGUID="c88a9699-3f33-4304-8365-3a2f1074f5f4" TypeName="ceblankfs::players::CPData" GUID="07381119-cce1-8d88-c86c-8d3c40b7fc22" Name="" UserAdded="true">
-      <properties PlayerDataUsername="TESTUSER" PlayerDataCharacterName="TESTCHARACTER" PlayerDataSpawnOnCamera="false" PlayerDataAbleToDoubleJump="false" PlayerDataHitPoint="100" PlayerDataManaPoint="100" PlayerDataEnergyPoint="100" PlayerDataWeight="60" PlayerDataMovementSpeed="60" PlayerDataJumpForce="6" PlayerDataJumpmultiplier="2"/>
-     </Component>
-     <Component CryXmlVersion="2" TypeGUID="97193e3d-4359-4b6a-afd6-1b52d508844c" TypeName="ceblankfs::players::CPController" GUID="43ce91cf-ed62-5629-f64b-882e8419ae18" Name="" UserAdded="true">
-      <properties />
-     </Component>
-     <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="54faf698-e934-3b66-0dd8-9908503df4bc" Name="" UserAdded="false">
-      <properties />
-     </Component>
-     <Component CryXmlVersion="2" TypeGUID="c95b48f9-4f9f-4bd1-95f0-f828a1831fa4" TypeName="ceblankfs::players::CPMovement" GUID="3b6d3e03-f8b9-8033-6785-2b379f942ac7" Name="" UserAdded="true">
-      <properties />
-     </Component>
-    </Components>
-   </Object>
-   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="8dee0e62-aab0-d5d1-dd6b-26b3b44f2789" Name="mesh-aim-guide" LinkedTo="f5c7af8a-fd4f-3d7f-b7bf-38831d104e35" Pos="0,0.50241089,-0.17715073" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="8dee0e62-aab0-d5d1-dd6b-26b3b44f2789" Name="dummy-weap" LinkedTo="f5c7af8a-fd4f-3d7f-b7bf-38831d104e35" Pos="0,0.50241089,-0.17715073" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
     <Components>
      <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="667ba8a2-cc43-8963-8fc8-07baa497583c" Name="" UserAdded="true">
@@ -123,7 +85,12 @@
        <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
       </properties>
      </Component>
-     <Component CryXmlVersion="2" TypeGUID="62e968de-c441-4e8c-9f89-032ee6fb59b8" TypeName="ceblankfs::entities::Rotator" GUID="f93a0972-20f2-5043-6757-8dc6a45f4895" Name="" UserAdded="true">
+    </Components>
+   </Object>
+   <Object Type="EmptyEntity" Layer="player" LayerGUID="7f8999ac-a177-d253-45cc-b174669a7d10" Id="b18f3836-fc99-1a92-de72-a65072dc9d05" Name="test-player" Pos="247.98938,265.3577,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="5099901" UseCustomLevelLayerColor="1" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="98183f31-a685-43cd-92a9-815274f0a81c" TypeName="Cry::DefaultComponents::CCharacterControllerComponent" GUID="cd9d71af-6554-a11a-8f8d-b8609dd12a84" Name="" UserAdded="true">
       <Transform>
        <translation>
         <position>
@@ -139,7 +106,22 @@
         <element element="1"/>
        </scale>
       </Transform>
-      <properties rotationX="1" rotationY="1" rotationZ="1"/>
+      <properties Networked="false">
+       <Physics Mass="80" Radius="1.0000001" Height="0" Capsule="true" GroundContactEps="0.0040000002" SendCollisionSignal="false"/>
+       <Movement AirControl="0.2" AirResistance="0.2" Inertia="8" InertiaAcc="8" MaxClimb="0.87266463" MaxJump="0.87266463" MinSlide="1.2217305" MinFall="1.3962634" MaxGroundVelocity="16"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="c88a9699-3f33-4304-8365-3a2f1074f5f4" TypeName="ceblankfs::players::PData" GUID="07381119-cce1-8d88-c86c-8d3c40b7fc22" Name="" UserAdded="true">
+      <properties PlayerDataUsername="TESTUSER" PlayerDataCharacterName="TESTCHARACTER" PlayerDataSpawnOnCamera="false" PlayerDataAbleToDoubleJump="false" PlayerDataHitPoint="100" PlayerDataManaPoint="100" PlayerDataEnergyPoint="100" PlayerDataWeight="60" PlayerDataMovementSpeed="60" PlayerDataJumpForce="6" PlayerDataJumpmultiplier="2"/>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="97193e3d-4359-4b6a-afd6-1b52d508844c" TypeName="ceblankfs::players::PController" GUID="43ce91cf-ed62-5629-f64b-882e8419ae18" Name="" UserAdded="true">
+      <properties />
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="54faf698-e934-3b66-0dd8-9908503df4bc" Name="" UserAdded="false">
+      <properties />
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="c95b48f9-4f9f-4bd1-95f0-f828a1831fa4" TypeName="ceblankfs::players::PMovement" GUID="3b6d3e03-f8b9-8033-6785-2b379f942ac7" Name="" UserAdded="true">
+      <properties />
      </Component>
     </Components>
    </Object>

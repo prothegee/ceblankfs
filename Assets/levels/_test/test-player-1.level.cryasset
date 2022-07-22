@@ -1,4 +1,4 @@
-<AssetMetadata version="0" type="Level" guid="4d21f775-5794-3633-4a2a-26e621cc9dbd" source="" timestamp="1658419517">
+<AssetMetadata version="0" type="Level" guid="4d21f775-5794-3633-4a2a-26e621cc9dbd" source="" timestamp="1658492710">
  <Files>
   <File path="test-player-1/test-player-1.level"/>
  </Files>
@@ -17,9 +17,7 @@
   <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
-  <Path>%engine%/engineassets/objects/helper.mtl</Path>
   <Path>%engine%/engineassets/objects/primitive_cube.cgf</Path>
-  <Path>%engine%/engineassets/objects/primitive_pyramid.cgf</Path>
   <Path>%engine%/engineassets/objects/primitive_sphere.cgf</Path>
   <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
   <Path>%engine%/engineassets/texturemsg/defaultsolids.mtl</Path>
