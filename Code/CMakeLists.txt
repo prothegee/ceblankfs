@@ -37,17 +37,11 @@ add_sources("entities_uber.cpp"
 add_sources("players_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "players"
-        "players/PCamera.h"
-        "players/PCamera.cpp"
+        "players/player.cpp"
+        "players/player.h"
 
-        "players/PController.h"
-        "players/PController.cpp"
-
-        "players/PData.h"
-        "players/PData.cpp"
-        
-        "players/PMovement.h"
-        "players/PMovement.cpp"
+        "players/projectile.cpp"
+        "players/projectile.h"
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")

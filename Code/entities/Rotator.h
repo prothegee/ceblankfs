@@ -2,9 +2,6 @@
 #include "GameConfig.h"
 
 
-// #include <CryEntitySystem/IEntityComponent.h>
-
-
 namespace ceblankfs
 {
 namespace entities

@@ -1,3 +1,36 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1657931941"/>
+ <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658488836">
+  <LayerObjects>
+   <Object Type="EmptyEntity" Layer="Main" LayerGUID="14d8d161-f192-894d-7b15-22433d3f6af3" Id="cb40e048-5d85-48da-c2c6-38e6ab2f9061" Name="box-rotator" Pos="255.96478,262.08429,34.196648" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="ab28847b-1eb8-a221-bbd4-82a31834e26b" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="RenderAndCollider" FilePath="%engine%/engineassets/objects/primitive_cube.cgf" Material="%ENGINE%/EngineAssets/Objects/editorprimitive">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="62e968de-c441-4e8c-9f89-032ee6fb59b8" TypeName="ceblankfs::entities::Rotator" GUID="f639c42d-6fbe-d9b8-774a-8493b043ba56" Name="" UserAdded="true">
+      <properties rotationX="1" rotationY="1" rotationZ="1"/>
+     </Component>
+    </Components>
+   </Object>
+  </LayerObjects>
+ </Layer>
 </ObjectLayer>

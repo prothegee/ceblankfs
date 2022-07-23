@@ -1,9 +1,9 @@
 #include "Rotator.h"
 
 
-// #include <CryCore/StaticInstanceList.h>
-// #include <CrySchematyc/Env/IEnvRegistrar.h>
-// #include <CrySchematyc/Env/Elements/EnvComponent.h>
+#include <CryCore/StaticInstanceList.h>
+#include <CrySchematyc/Env/IEnvRegistrar.h>
+#include <CrySchematyc/Env/Elements/EnvComponent.h>
 
 
 using namespace ceblankfs::entities;

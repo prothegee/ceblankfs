@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658488836">
+ <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658592491">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="Main" LayerGUID="14d8d161-f192-894d-7b15-22433d3f6af3" Id="cb40e048-5d85-48da-c2c6-38e6ab2f9061" Name="box-rotator" Pos="255.96478,262.08429,34.196648" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
