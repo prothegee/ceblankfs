@@ -55,6 +55,7 @@ void ceblankfs::players::player::ProcessEvent(const SEntityEvent& e)
         {
             #ifndef NDEBUG
             CryLog("# players::player::GameplayStarted");
+            CryLog("# spawn on camera: %s", m_spawnOnCamera ? "true" : "false");
             #else
             #endif
         }
@@ -63,6 +64,8 @@ void ceblankfs::players::player::ProcessEvent(const SEntityEvent& e)
         case Cry::Entity::EEvent::Reset:
         {
             m_isAlive = e.nParam[0] != 0;
+
+            PlayerCameraViewPolicy();
 
             #ifndef NDEBUG
             CryLog("# players::player::ProcessEvent m_isAlive: %s", m_isAlive ? "true" : "false");
@@ -73,11 +76,14 @@ void ceblankfs::players::player::ProcessEvent(const SEntityEvent& e)
 
         case Cry::Entity::EEvent::Update:
         {
-            if (!m_isAlive) return;
-
-            ValuePolicy();
+            if (!m_isAlive) return; // hold & do nothing if not on gameplaystarted
 
             const float dt = e.fParam[0];
+
+            ValuePolicy();
+            AimValuePolicy();
+
+            StaminaHanlder(dt);
 
             MovementHandler(dt);
             JumpHandler(dt);
@@ -115,7 +121,11 @@ void ceblankfs::players::player::ValuePolicy()
 {
     (m_health < 0.f) ? m_health = 0.f : m_health = this->m_health;
     (m_armor < 0.f) ? m_armor = 0.f : m_armor = this->m_armor;
-    (m_stamina < 0.f) ? m_stamina = 0.f : m_stamina = this->m_stamina;
+    
+    // stamina
+    (m_stamina < m_staminaMinLimit) ? m_stamina = m_staminaMinLimit : m_stamina = this->m_stamina;
+    (m_stamina > m_staminaMaxLimit) ? m_stamina = m_staminaMaxLimit : m_stamina = this->m_stamina;
+    
     (m_movementSpeed < 0.f) ? m_movementSpeed = 0.f : m_movementSpeed = this->m_movementSpeed;
     (m_jumpForce < 0.f) ? m_jumpForce = 0.f : m_jumpForce = this->m_jumpForce;
     (m_jumpCharge < 0.f) ? m_jumpCharge = 0.f : m_jumpCharge = this->m_jumpCharge;
@@ -123,7 +133,22 @@ void ceblankfs::players::player::ValuePolicy()
     (m_jumpDurationOnHold < 0.f) ? m_jumpDurationOnHold = 0.f : m_jumpDurationOnHold = this->m_jumpDurationOnHold;
     (m_weight < 0.f) ? m_weight = 0.f : m_weight = this->m_weight;
     (m_sprintMultiplier < 0.f) ? m_sprintMultiplier = 0.f : m_sprintMultiplier = this->m_sprintMultiplier;
+
+    (m_sensitivity < 0.f) ? m_sensitivity = 0.f : m_sensitivity = this->m_sensitivity;
 }
+
+
+void ceblankfs::players::player::AimValuePolicy()
+{
+    if (m_aimStance)
+    {
+        m_movementSpeed = DVplayer::movementSpeed/2;
+    }
+    else
+    {
+        m_movementSpeed = DVplayer::movementSpeed;
+    }
+} 
 
 
 void ceblankfs::players::player::PointerComponentsRegistrar()
@@ -132,6 +157,8 @@ void ceblankfs::players::player::PointerComponentsRegistrar()
     m_pCC->Physicalize();
 
     m_pCamera = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCameraComponent>();
+
+    m_pAudioListener = m_pEntity->GetOrCreateComponent<Cry::Audio::DefaultComponents::CListenerComponent>();
 
     #ifndef NDEBUG
     CryLog("# players::player::PointerComponentsRegistrar");
@@ -407,8 +434,15 @@ void ceblankfs::players::player::MovementHandler(float dt)
 
     if (m_inputFlags & EInputFlag::sprint)
     {
-        m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_sprintMultiplier));
-        m_isSprint = true;
+        if (m_stamina > m_staminaMinLimit)
+            m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_sprintMultiplier));
+            m_isSprint = true;
+
+            // reduce stamina if moving
+            if (m_pCC->GetVelocity() != Vec3(0, 0, 0))
+            {
+                m_stamina -= m_staminaReductionRate * dt;
+            }
     }
     else
     {
@@ -420,59 +454,44 @@ void ceblankfs::players::player::MovementHandler(float dt)
 
 void ceblankfs::players::player::JumpHandler(float dt)
 {
-    if (!m_pCC->IsOnGround()) return;
+    float tmpjumpcharge = 0.0f; // temporal jump charge
 
     if (m_jumpInputFlags & EInputFlag::jump)
     {
         m_jumpDurationOnHold += 1.f * dt;
 
         (m_jumpDurationOnHold >= m_minJumpCharge)
-            ? m_jumpCharge = m_jumpDurationOnHold
-            : m_jumpCharge = 0.f;
+            ?   
+                tmpjumpcharge = m_jumpDurationOnHold,
+                m_canJumpNow = true,
+                m_stamina -= m_staminaReductionRate * dt
+            :   
+                tmpjumpcharge = 1.f,
+                m_canJumpNow = true,
+                m_stamina -= m_staminaReductionRate * dt;
 
-        (m_pCC->IsOnGround())
-            ? m_canJumpNow = true
-            : m_canJumpNow = false;
+        (tmpjumpcharge >= m_maxJumpCharge)
+            ? m_jumpCharge = m_maxJumpCharge
+            : m_jumpCharge = tmpjumpcharge;
     }
     else
     {
         m_jumpDurationOnHold = 0.f;
     }
 
-    if (m_canJumpNow && m_jumpDurationOnHold == 0.f)
+    if (m_canJumpNow && m_jumpDurationOnHold == 0.0f && m_stamina >= m_staminaMinLimit)
     {
-        if (m_canJumpNow && m_jumpCharge < m_minJumpCharge)
+        if (m_pCC->IsOnGround())
         {
-            // bouncy policy when on air then land #1
-            (m_pCC->GetVelocity() != Vec3(0, 0, 0))
-                ? m_pCC->AddVelocity(Vec3(0, 0, (m_jumpForce * m_jumpChargeMultiplier)))
-                : m_pCC->AddVelocity(Vec3(0, 0, (m_jumpForce * 0.f)));
-
-            m_canJumpNow = false;
-            m_jumpDurationOnHold = 0.f;
-
-            m_jumpCharge = DVplayer::jumpCharge;
-            m_jumpChargeMultiplier = DVplayer::jumpChargeMultiplier;
+            m_pCC->AddVelocity(Vec3(0, 0, ((m_jumpForce * m_jumpCharge) * m_jumpChargeMultiplier)));
         }
-        if (m_canJumpNow && m_jumpCharge > m_minJumpCharge)
-        {
-            // bouncy policy when on air then land #1
-            (m_pCC->GetVelocity() != Vec3(0, 0, 0))
-                ? m_pCC->AddVelocity(Vec3(0, 0, ((m_jumpForce * m_jumpCharge) * m_jumpChargeMultiplier)))
-                : m_pCC->AddVelocity(Vec3(0, 0, ((m_jumpForce * m_jumpCharge) * 0.f)));
-            
-            m_canJumpNow = false;
-            m_jumpDurationOnHold = 0.f;
 
-            m_jumpCharge = DVplayer::jumpCharge;
-            m_jumpChargeMultiplier = DVplayer::jumpChargeMultiplier;
-        }
+        m_canJumpNow = false;
+        m_jumpDurationOnHold = 0.f;
+        m_jumpCharge = DVplayer::jumpCharge;
+        m_jumpChargeMultiplier = DVplayer::jumpChargeMultiplier;
+        tmpjumpcharge = 0.0f;
     }
-
-    // #ifndef NDEBUG
-    // CryLog("%s | %i | %f | %f", m_pCC->GetVelocity() == Vec3(0, 0, 0) ? "VZERO" : "NZERO", m_canJumpNow, m_jumpDurationOnHold, m_jumpCharge);
-    // #else
-    // #endif
 }
 
 
@@ -481,7 +500,7 @@ void ceblankfs::players::player::CharacterControllerHandlerRotationX(float dt)
     Matrix34 etf = m_pEntity->GetWorldTM();
     Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_entityLookOrientation));
 
-    ypr.x += m_entityDeltaRotation.x * m_rotationSpeed;
+    ypr.x += m_entityDeltaRotation.x * (m_rotationSpeed * m_sensitivity);
     ypr.y = 0;
     ypr.z = 0;
 
@@ -499,8 +518,36 @@ void ceblankfs::players::player::CameraViewHandler(float dt)
     Matrix34 ctf = m_pCamera->GetTransformMatrix();
     Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_lookOrientation));
 
+    ypr.x = 0; // x axis already handle by CharacterControllerHandlerRotationX
+    ypr.y = CLAMP(ypr.y + m_mouseDeltaRotation.y * (m_rotationSpeed * m_sensitivity), m_rotationLimitsMinPitch, m_rotationLimitsMaxPitch);
+    ypr.z = 0;
+
+    m_lookOrientation = Quat(CCamera::CreateOrientationYPR(ypr));
+    m_mouseDeltaRotation = ZERO;
+
+    ctf.SetRotation33(CCamera::CreateOrientationYPR(ypr));
+
+    m_pCamera->SetTransformMatrix(ctf);
+}
+
+
+void ceblankfs::players::player::StaminaHanlder(float dt)
+{
+    m_stamina += m_staminaRegenerationRate * dt;
+}
+#pragma endregion
+
+
+
+
+#pragma region player misc
+void ceblankfs::players::player::PlayerCameraViewPolicy()
+{
+    Matrix34 ctf = m_pCamera->GetTransformMatrix();
+    Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_lookOrientation));
+
     ypr.x = 0;
-    ypr.y = CLAMP(ypr.y + m_mouseDeltaRotation.y * m_rotationSpeed, m_rotationLimitsMinPitch, m_rotationLimitsMaxPitch);
+    ypr.y = 0;
     ypr.z = 0;
 
     m_lookOrientation = Quat(CCamera::CreateOrientationYPR(ypr));

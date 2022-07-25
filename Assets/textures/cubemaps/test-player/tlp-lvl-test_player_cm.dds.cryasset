@@ -1,0 +1,10 @@
+<AssetMetadata version="0" type="Texture" guid="3d488924-aa73-7c7a-e7d5-66b1d7508519" source="tlp-lvl-test_player_cm.tif">
+ <Files>
+  <File path="tlp-lvl-test_player_cm.dds"/>
+ </Files>
+ <Details>
+  <Detail name="width">1536</Detail>
+  <Detail name="height">256</Detail>
+  <Detail name="mipCount">7</Detail>
+ </Details>
+</AssetMetadata>

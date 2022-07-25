@@ -1,0 +1,36 @@
+<ObjectLayer>
+ <Layer Name="lights" FullName="lights" GUID="2cfe42c0-0972-4484-1369-7f4dc66a2d1d" Hidden="0" Frozen="1" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658680408">
+  <LayerObjects>
+   <Object Type="EntityWithComponent" Layer="lights" LayerGUID="2cfe42c0-0972-4484-1369-7f4dc66a2d1d" Id="0760518c-86e5-4eef-a794-cb83262dec28" Name="tlp-lvl-test_player" Pos="256,256,33.99976" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="63297e89-ea00-4f56-ac23-2e93c68fe71d" TypeName="Cry::DefaultComponents::CEnvironmentProbeComponent" GUID="36baf3e9-03ed-ccd1-9b27-3b7ae41e28b6" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Active="true">
+       <BoxSize x="1024" y="1024" z="1024"/>
+       <Options IgnoreVisAreas="false" SortPriority="0" AttenuationFalloffMax="1" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="true" BoxProjection="false"/>
+       <Color DiffMult="1" SpecMult="1">
+        <Color r="0.54509807" g="0.68235296" b="0.78431374" a="1"/>
+       </Color>
+       <Generation GeneratedCubemapPath="" AutoLoad="true" Resolution="Low"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+  </LayerObjects>
+ </Layer>
+</ObjectLayer>

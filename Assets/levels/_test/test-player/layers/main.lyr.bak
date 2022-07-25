@@ -1,7 +1,7 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="9ba0a3d2-1bd7-b035-d6f3-bcb20be47b80" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658604213">
+ <Layer Name="Main" FullName="Main" GUID="9ba0a3d2-1bd7-b035-d6f3-bcb20be47b80" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658726354">
   <LayerObjects>
-   <Object Type="EmptyEntity" Layer="Main" LayerGUID="9ba0a3d2-1bd7-b035-d6f3-bcb20be47b80" Id="35fd854d-99f6-c4b6-289a-b54a760520c3" Name="player-entity" Pos="255.96103,265.38992,31.999268" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EmptyEntity" Layer="Main" LayerGUID="9ba0a3d2-1bd7-b035-d6f3-bcb20be47b80" Id="35fd854d-99f6-c4b6-289a-b54a760520c3" Name="player-entity" Pos="258.12744,260.02838,31.999268" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
     <Components>
      <Component CryXmlVersion="2" TypeGUID="a4cb0508-5f07-46b4-b6d4-ab76bfd550f4" TypeName="Cry::DefaultComponents::CCameraComponent" GUID="902d1539-f11c-e707-4a11-8b620b34e9ea" Name="" UserAdded="true">
@@ -13,14 +13,14 @@
          <element element="1.75"/>
         </position>
        </translation>
-       <rotation x="-18.907656" y="0" z="0"/>
+       <rotation x="0" y="-0" z="0"/>
        <scale>
         <element element="1"/>
         <element element="1"/>
         <element element="1"/>
        </scale>
       </Transform>
-      <properties Type="Default" Active="true" NearPlane="0.25" FarPlane="1024" FieldOfView="1.2217305"/>
+      <properties Type="Default" Active="true" NearPlane="0.1" FarPlane="1024" FieldOfView="1.2217305"/>
      </Component>
      <Component CryXmlVersion="2" TypeGUID="98183f31-a685-43cd-92a9-815274f0a81c" TypeName="Cry::DefaultComponents::CCharacterControllerComponent" GUID="dbde3603-8feb-ac66-8349-3d76030b8337" Name="" UserAdded="true">
       <Transform>
@@ -44,10 +44,17 @@
       </properties>
      </Component>
      <Component CryXmlVersion="2" TypeGUID="b39fbff6-f9bf-4597-9cf9-a8f76c2ed878" TypeName="ceblankfs::players::player" GUID="572414fb-eaf7-77b7-298d-2581c8ce2fd2" Name="" UserAdded="true">
-      <properties player-username="username" player-character-name="character" player-health="100" player-armor="0" player-stamina="100" player-movement-peed="50" player-jump-force="6" player-jump-charge="0" player-jump-charge-multiplier="1" player-jump-duration-on-hold="0" player-sprint-multiplier="2"/>
+      <properties player-spawn-on-camera="false" player-username="username" player-character-name="character" player-health="100" player-armor="0" player-stamina="100" player-movement-peed="50" player-jump-force="6" player-jump-charge="0" player-jump-charge-multiplier="1" player-jump-duration-on-hold="0" player-sprint-multiplier="2" player-controller-sesnsitivity="1"/>
      </Component>
      <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="df078772-f937-cc8e-6b04-73a125c19c6b" Name="" UserAdded="false">
       <properties />
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="bae91d5c-8cfb-40b2-8397-f5a9eedb9ac4" TypeName="Cry::Audio::DefaultComponents::CListenerComponent" GUID="5da2b7aa-169e-b602-f8ac-9b10ee9d9d94" Name="" UserAdded="false">
+      <properties>
+       <listener name="Default Listener">
+        <offset x="0" y="0" z="0"/>
+       </listener>
+      </properties>
      </Component>
     </Components>
    </Object>

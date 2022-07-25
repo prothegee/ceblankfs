@@ -16,6 +16,7 @@ class player final
     :   public IEntityComponent
 {
 private:
+    bool m_spawnOnCamera = false;
     bool m_isAlive = false;
     bool m_canJumpNow = false;
     bool m_isSprint = false;
@@ -38,6 +39,10 @@ private:
         sprint = 1 << 5,
     };
 
+private:
+    // some condition when EEvent Reset trigger to player camera view
+    void PlayerCameraViewPolicy();
+
 
 
 
@@ -45,11 +50,13 @@ public:
     // default value for player class
     struct DVplayer
     {
+        static constexpr bool spawnOnCamera = false;
+
         static constexpr float velocity = 0.f;
 
         static constexpr float health = 100.f;
         static constexpr float armor = 0.f;
-        static constexpr float stamina = 100.f;
+        static constexpr float stamina = 100.0f;
         static constexpr float movementSpeed = 50.f;
         static constexpr float jumpForce = 6.f;
         static constexpr float jumpCharge = 0.f;
@@ -57,6 +64,8 @@ public:
         static constexpr float jumpDurationOnHold = 0.f;
         static constexpr float weight = 60.f;
         static constexpr float sprintMultiplier = 2.f;
+
+        static constexpr float sensitivity = 1.f;
     };
 
 public:
@@ -78,6 +87,14 @@ public:
         desc.SetEditorCategory("_players");
         desc.SetDescription("Player entity component");
         #pragma region player data member
+        desc.AddMember(
+            &player::m_spawnOnCamera,
+            'psoc',
+            "player-spawn-on-camera",
+            "spawn on camera",
+            "spawn on camera value",
+            DVplayer::spawnOnCamera
+        );
         desc.AddMember(
             &player::m_username,
             'punm',
@@ -190,6 +207,14 @@ public:
             "sprint multiplier value",
             DVplayer::sprintMultiplier
         );
+        desc.AddMember(
+            &player::m_sensitivity,
+            'pcs',
+            "player-controller-sesnsitivity",
+            "sesnsitivity",
+            "sesnsitivity value",
+            DVplayer::sensitivity
+        );
         #pragma endregion
     }
 
@@ -216,6 +241,11 @@ protected:
     const float m_minJumpCharge = 0.3f;
     const float m_maxJumpCharge = 3.0f;
 
+    const float m_staminaMinLimit = 0.0f;
+    const float m_staminaMaxLimit = 100.0f;
+    const float m_staminaReductionRate = 30.0f;
+    const float m_staminaRegenerationRate = 15.0f;
+
     CEnumFlags<EInputFlag> m_inputFlags;
     CEnumFlags<EInputFlag> m_jumpInputFlags;
 
@@ -225,8 +255,8 @@ protected:
     Vec2 m_mouseDeltaRotation;
     float m_sensitivity = 1.f;
     const float m_rotationSpeed = 0.002f;
-    float m_rotationLimitsMinPitch = -0.9f; // df : -.84f;
-    float m_rotationLimitsMaxPitch = 1.3f; // df: 1.5f;
+    float m_rotationLimitsMinPitch = -0.85f; // df : -.84f;
+    float m_rotationLimitsMaxPitch = 1.6f; // df: 1.5f;
 
 
     // player character controller
@@ -235,12 +265,17 @@ protected:
     Cry::DefaultComponents::CInputComponent* m_pInput = nullptr;
     // player camera
     Cry::DefaultComponents::CCameraComponent* m_pCamera = nullptr;
+    // player animation mesh
+    // player audio listener
+    Cry::Audio::DefaultComponents::CListenerComponent* m_pAudioListener = nullptr;
 
 protected:
     // set default value
     void DefaultValue();
-    // value policy for non unsigned type
+    // value policy for non-unsigned data type
     void ValuePolicy();
+    // certain rule value policy when on aim stance
+    void AimValuePolicy();
     // register class member pointer
     void PointerComponentsRegistrar();
     // register and bind player input
@@ -254,10 +289,12 @@ protected:
     void MovementHandler(float dt);
     // ground jump handler
     void JumpHandler(float dt);
-    // player character/mesh handler
+    // player character/mesh handler mainly on root entity x axis
     void CharacterControllerHandlerRotationX(float dt);
     // main player camera handler
     void CameraViewHandler(float dt);
+    // player stamina reduction & regeneration handler
+    void StaminaHanlder(float dt);
 };
 
 

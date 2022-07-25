@@ -24,6 +24,7 @@
 #include <CrySchematyc/Env/Elements/EnvComponent.h>
 
 
+#include <DefaultComponents/Audio/ListenerComponent.h>
 #include <DefaultComponents/Cameras/CameraComponent.h>
 #include <DefaultComponents/Input/InputComponent.h>
 #include <DefaultComponents/Physics/CharacterControllerComponent.h>
