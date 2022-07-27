@@ -23,6 +23,12 @@ add_sources("Code_uber.cpp"
 		"PCH_CEBLANKFS.h"
 		"StdAfx.h"
 )
+add_sources("configs_uber.cpp"
+    PROJECTS ceblankfs
+    SOURCE_GROUP "configs"
+        "configs/GConfig.cpp"
+        "configs/GConfig.h"
+)
 add_sources("cores_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "cores"
