@@ -6,10 +6,11 @@
 #include <CryEntitySystem/IEntityClass.h>
 #include <CryNetwork/INetwork.h>
 
+class CPlayer;
 
 // The entry-point of the application
 // An instance of CGamePlugin is automatically created when the library is loaded
-// We then construct the local player entity and CPlayerComponent instance when OnClientConnectionReceived is first called.
+// We then construct the local player entity and CPlayer instance when OnClientConnectionReceived is first called.
 class CGamePlugin 
 	: public Cry::IEnginePlugin
 	, public ISystemEventListener
@@ -45,6 +46,10 @@ public:
 	// Sent to the server when a client is timing out (no packets for X seconds)
 	// Return true to allow disconnection, otherwise false to keep client.
 	virtual bool OnClientTimingOut(int channelId, EDisconnectionCause cause, const char* description) override { return true; }
+	// ~INetworkedClientListener
+
+	// Helper function to call the specified callback for every player in the game
+	void IterateOverPlayers(std::function<void(CPlayer& player)> func) const;
 
 	// Helper function to get the CGamePlugin instance
 	// Note that CGamePlugin is declared as a singleton, so the CreateClassInstance will always return the same pointer

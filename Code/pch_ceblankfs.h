@@ -1,5 +1,5 @@
 /**
- * @file pch_ceblankfs.h
+ * @file PCH_CEBLANKFS.h
  * @brief precompiler header for ceblankfs project
  * 
  * @note lazy mode to include header/s if you may
@@ -14,12 +14,14 @@
 
 
 #include "StdAfx.h"
+#include "GamePlugin.h"
 
 
 #include <CryEntitySystem/IEntityComponent.h>
 
 
 #include <CryCore/StaticInstanceList.h>
+#include <CryRenderer/IRenderAuxGeom.h>
 #include <CrySchematyc/Env/IEnvRegistrar.h>
 #include <CrySchematyc/Env/Elements/EnvComponent.h>
 

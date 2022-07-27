@@ -1,6 +1,6 @@
-<AssetMetadata version="0" type="Texture" guid="d2fbd8ae-f69a-a16d-2566-13369a380f2e" source="environmentprobe_cm.tif">
+<AssetMetadata version="0" type="Texture" guid="d2fbd8ae-f69a-a16d-2566-13369a380f2e" source="EnvironmentProbe_cm.tif">
  <Files>
-  <File path="environmentprobe_cm.dds"/>
+  <File path="EnvironmentProbe_cm.dds"/>
  </Files>
  <Details>
   <Detail name="width">1536</Detail>
