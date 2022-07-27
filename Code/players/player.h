@@ -16,11 +16,9 @@ class player final
     :   public IEntityComponent
 {
 private:
-    bool m_spawnOnCamera = false;
+    bool m_spawnOnCamera = false; // editor/sandbox purpose variable
     bool m_isAlive = false;
     bool m_canJumpNow = false;
-    bool m_isSprint = false;
-    bool m_readyStance = false;
     bool m_aimStance = false;
 
     enum class EInputFlagType
@@ -255,8 +253,8 @@ protected:
     Vec2 m_mouseDeltaRotation;
     float m_sensitivity = 1.f;
     const float m_rotationSpeed = 0.002f;
-    float m_rotationLimitsMinPitch = -0.85f; // df : -.84f;
-    float m_rotationLimitsMaxPitch = 1.6f; // df: 1.5f;
+    float m_rotationLimitsMinPitch = -0.85f; // dfr : -.84f;
+    float m_rotationLimitsMaxPitch = 1.6f; // dfr: 1.5f;
 
 
     // player character controller
@@ -289,10 +287,10 @@ protected:
     void MovementHandler(float dt);
     // ground jump handler
     void JumpHandler(float dt);
-    // player character/mesh handler mainly on root entity x axis
+    // player character/mesh handler mainly on root entity x axis. Don't use this
     void CharacterControllerHandlerRotationX(float dt);
-    // main player camera handler
-    void CameraViewHandler(float dt);
+    // main character controller handler
+    void CharacterControllerHandler(float dt);
     // player stamina reduction & regeneration handler
     void StaminaHanlder(float dt);
 };

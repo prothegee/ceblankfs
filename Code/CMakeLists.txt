@@ -17,16 +17,13 @@ sources_platform(ALL)
 add_sources("Code_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "Root"
-        "GameConfig.h"
 		"GameConfig.cpp"
-		
-        "GamePlugin.h"
 		"GamePlugin.cpp"
-
-        "pch_ceblankfs.h"
-
-		"StdAfx.h"
 		"StdAfx.cpp"
+		"GameConfig.h"
+		"GamePlugin.h"
+		"pch_ceblankfs.h"
+		"StdAfx.h"
 )
 add_sources("entities_uber.cpp"
     PROJECTS ceblankfs
@@ -37,11 +34,9 @@ add_sources("entities_uber.cpp"
 add_sources("players_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "players"
-        "players/player.cpp"
-        "players/player.h"
-
-        "players/projectile.cpp"
-        "players/projectile.h"
+		"players/player.cpp"
+		"players/player.h"
+		"players/projectile.h"
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")

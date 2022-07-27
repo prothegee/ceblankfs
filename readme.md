@@ -2,9 +2,11 @@
 
 __Note:__
 ```
-CryEngine blank from scratch exercise case
+CryEngine blank from scratch exercise case,
+to learn core engine behaviours & features.
 
-Engine: 5.7.1
+Version:
+    Engine: 5.7.1
 ```
 
 <br>

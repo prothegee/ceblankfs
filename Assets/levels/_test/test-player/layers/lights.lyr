@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="lights" FullName="lights" GUID="2cfe42c0-0972-4484-1369-7f4dc66a2d1d" Hidden="0" Frozen="1" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658680408">
+ <Layer Name="lights" FullName="lights" GUID="2cfe42c0-0972-4484-1369-7f4dc66a2d1d" Hidden="0" Frozen="1" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658905446">
   <LayerObjects>
    <Object Type="EntityWithComponent" Layer="lights" LayerGUID="2cfe42c0-0972-4484-1369-7f4dc66a2d1d" Id="0760518c-86e5-4eef-a794-cb83262dec28" Name="tlp-lvl-test_player" Pos="256,256,33.99976" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
@@ -26,7 +26,7 @@
        <Color DiffMult="1" SpecMult="1">
         <Color r="0.54509807" g="0.68235296" b="0.78431374" a="1"/>
        </Color>
-       <Generation GeneratedCubemapPath="" AutoLoad="true" Resolution="Low"/>
+       <Generation GeneratedCubemapPath="textures\cubemaps\test-player\tlp-lvl-test_player_cm.tif" AutoLoad="true" Resolution="Low"/>
       </properties>
      </Component>
     </Components>

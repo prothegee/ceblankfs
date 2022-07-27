@@ -1,30 +1,21 @@
-<AssetMetadata version="0" type="Level" guid="642dcd42-89cb-f642-a3ae-a85cf3d4df96" source="" timestamp="1658726354">
+<AssetMetadata version="0" type="Level" guid="642dcd42-89cb-f642-a3ae-a85cf3d4df96" source="" timestamp="1658918335">
  <Files>
   <File path="test-player/test-player.level"/>
  </Files>
  <Dependencies>
   <Path usageCount="1">%ENGINE%/EngineAssets/Shading/default.env</Path>
   <Path>%editor%/objects/envcube.cgf</Path>
-  <Path>%editor%/objects/envcube.mtl</Path>
+  <Path>%engine%/config/defaultscripts/compressionpolicy.xml</Path>
   <Path>%engine%/engineassets/icons/averagememoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/highmemoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/livepreview.dds</Path>
   <Path>%engine%/engineassets/icons/lowmemoryusage.dds</Path>
-  <Path>%engine%/engineassets/materials/fog/fogvolumebox.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/fogvolumeellipsoid.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceaninto.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanintolowspec.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanoutof.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanoutoflowspec.mtl</Path>
-  <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
-  <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
-  <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
-  <Path>%engine%/engineassets/objects/primitive_sphere.cgf</Path>
-  <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
   <Path>%engine%/engineassets/texturemsg/defaultsolids.mtl</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
-  <Path>%engine%/engineassets/textures/skys/night/half_moon.dds</Path>
+  <Path>editor/resourcecache/textures/cubemaps/test-player/tlp-lvl-test_player_cm.dds</Path>
+  <Path>editor/resourcecache/textures/cubemaps/test-player/tlp-lvl-test_player_cm_diff.dds</Path>
   <Path usageCount="1">libs/environmentpresets/_test-1.env</Path>
-  <Path>scripts/ai/factions.xml</Path>
+  <Path>textures/cubemaps/test-player/tlp-lvl-test_player_cm.dds</Path>
+  <Path>textures/cubemaps/test-player/tlp-lvl-test_player_cm_diff.dds</Path>
  </Dependencies>
 </AssetMetadata>

@@ -1,5 +1,6 @@
 <TimeOfDay Time="13.566333" TimeStart="8" TimeEnd="12" TimeAnimSpeed="0">
  <Presets>
-  <Preset Name="libs/environmentpresets/example.xml" Default="1"/>
+  <Preset Name="libs/environmentpresets/_test-1.env" Default="1"/>
+  <Preset Name="libs/environmentpresets/example.env"/>
  </Presets>
 </TimeOfDay>

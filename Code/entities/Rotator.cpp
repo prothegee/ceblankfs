@@ -38,6 +38,7 @@ void Rotator::Initialize()
 Cry::Entity::EventFlags Rotator::GetEventMask() const
 {
     return
+        Cry::Entity::EEvent::GameplayStarted |
         Cry::Entity::EEvent::Reset |
         Cry::Entity::EEvent::Update
         ;
@@ -47,6 +48,15 @@ void Rotator::ProcessEvent(const SEntityEvent& e)
 {
     switch (e.event)
     {
+        case Cry::Entity::EEvent::GameplayStarted:
+        {
+            // force to rotate on game start
+            (!m_isRotating)
+                ? m_isRotating = true
+                : m_isRotating = this->m_isRotating;
+        }
+        break;
+
         case Cry::Entity::EEvent::Reset:
         {
             m_isRotating = e.nParam[0] != 0;

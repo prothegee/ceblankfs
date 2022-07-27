@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658592128">
+ <Layer Name="Main" FullName="Main" GUID="14d8d161-f192-894d-7b15-22433d3f6af3" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658917071">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="Main" LayerGUID="14d8d161-f192-894d-7b15-22433d3f6af3" Id="cb40e048-5d85-48da-c2c6-38e6ab2f9061" Name="box-rotator" Pos="255.96478,262.08429,34.196648" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
@@ -31,15 +31,23 @@
      </Component>
     </Components>
    </Object>
-   <Object Type="Entity" Layer="Main" LayerGUID="14d8d161-f192-894d-7b15-22433d3f6af3" Id="2bb7fad7-f563-000e-9c1a-ba2456ffc5b8" Name="entities::_test::player-entity-1" Pos="250.894,262.58255,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="schematyc::entities::_test::player-entity" ClassGUID="bf71c182-eda5-41a5-b759-a73d2d372008" HasEntity="1">
+   <Object Type="Entity" Layer="Main" LayerGUID="14d8d161-f192-894d-7b15-22433d3f6af3" Id="9c9078a6-8c33-c6cd-5305-62df5ae425f2" Name="schematyc::entities::_test::tplayer-1" Pos="251.99104,257.78128,33.782978" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="schematyc::schematyc::entities::_test::tplayer" ClassGUID="57b3fc83-a4b0-4c8e-a0b3-45cab7d2780a" HasEntity="1">
     <Properties />
-    <Components>
-     <Component CryXmlVersion="2" TypeGUID="183e3c84-2e08-4506-95fa-b362f7e735e9" TypeName="Cry::DefaultComponents::CInputComponent" GUID="f0aa7961-f115-ee9c-d2eb-4f9469fbcddc" Name="" UserAdded="false">
-      <properties />
-     </Component>
-    </Components>
     <SchematycProperties CryXmlVersion="2">
-     <components />
+     <components>
+      <element key="e43ea60f-574c-41f9-a1e6-8edf01e811d0">
+       <value overridePolicy="Default"/>
+      </element>
+      <element key="7528d254-99d9-4507-a3e9-e26f8b857ba4">
+       <value overridePolicy="Default"/>
+      </element>
+      <element key="5b270e14-c441-4709-9d47-2f822efa1466">
+       <value overridePolicy="Default"/>
+      </element>
+      <element key="4d649ed2-d905-4f6d-8dc8-feac60c2d70d">
+       <value overridePolicy="Default"/>
+      </element>
+     </components>
      <variables />
     </SchematycProperties>
    </Object>

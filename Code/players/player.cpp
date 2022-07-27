@@ -40,6 +40,7 @@ void ceblankfs::players::player::Initialize()
 Cry::Entity::EventFlags ceblankfs::players::player::GetEventMask() const
 {
     return
+        Cry::Entity::EEvent::Initialize |
         Cry::Entity::EEvent::GameplayStarted |
         Cry::Entity::EEvent::Reset |
         Cry::Entity::EEvent::Update
@@ -87,8 +88,8 @@ void ceblankfs::players::player::ProcessEvent(const SEntityEvent& e)
 
             MovementHandler(dt);
             JumpHandler(dt);
-            CharacterControllerHandlerRotationX(dt);
-            CameraViewHandler(dt);
+            // CharacterControllerHandlerRotationX(dt);
+            CharacterControllerHandler(dt);
         }
         break;
     }
@@ -119,22 +120,63 @@ void ceblankfs::players::player::DefaultValue()
 
 void ceblankfs::players::player::ValuePolicy()
 {
-    (m_health < 0.f) ? m_health = 0.f : m_health = this->m_health;
-    (m_armor < 0.f) ? m_armor = 0.f : m_armor = this->m_armor;
+    // health
+    (m_health < 0.f)
+        ? m_health = 0.f
+        : m_health = this->m_health;
+    
+    // armor
+    (m_armor < 0.f)
+        ? m_armor = 0.f
+        : m_armor = this->m_armor;
     
     // stamina
-    (m_stamina < m_staminaMinLimit) ? m_stamina = m_staminaMinLimit : m_stamina = this->m_stamina;
-    (m_stamina > m_staminaMaxLimit) ? m_stamina = m_staminaMaxLimit : m_stamina = this->m_stamina;
+    (m_stamina < m_staminaMinLimit)
+        ? m_stamina = m_staminaMinLimit
+        : m_stamina = this->m_stamina;
+    (m_stamina > m_staminaMaxLimit)
+        ? m_stamina = m_staminaMaxLimit
+        : m_stamina = this->m_stamina;
     
-    (m_movementSpeed < 0.f) ? m_movementSpeed = 0.f : m_movementSpeed = this->m_movementSpeed;
-    (m_jumpForce < 0.f) ? m_jumpForce = 0.f : m_jumpForce = this->m_jumpForce;
-    (m_jumpCharge < 0.f) ? m_jumpCharge = 0.f : m_jumpCharge = this->m_jumpCharge;
-    (m_jumpChargeMultiplier < 0.f) ? m_jumpChargeMultiplier = 0.f : m_jumpChargeMultiplier = this->m_jumpChargeMultiplier;
-    (m_jumpDurationOnHold < 0.f) ? m_jumpDurationOnHold = 0.f : m_jumpDurationOnHold = this->m_jumpDurationOnHold;
-    (m_weight < 0.f) ? m_weight = 0.f : m_weight = this->m_weight;
-    (m_sprintMultiplier < 0.f) ? m_sprintMultiplier = 0.f : m_sprintMultiplier = this->m_sprintMultiplier;
+    // movement speed
+    (m_movementSpeed < 0.f)
+        ? m_movementSpeed = 0.f
+        : m_movementSpeed = this->m_movementSpeed;
+    
+    // jumpforce
+    (m_jumpForce < 0.f)
+        ? m_jumpForce = 0.f
+        : m_jumpForce = this->m_jumpForce;
+    
+    // jumpcharge
+    (m_jumpCharge < 0.f)
+        ? m_jumpCharge = 0.f
+        : m_jumpCharge = this->m_jumpCharge;
+    
+    // jumpcharge multiplier
+    (m_jumpChargeMultiplier < 0.f)
+        ? m_jumpChargeMultiplier = 0.f
+        : m_jumpChargeMultiplier = this->m_jumpChargeMultiplier;
+    
+    // jump on hold
+    (m_jumpDurationOnHold < 0.f)
+        ? m_jumpDurationOnHold = 0.f
+        : m_jumpDurationOnHold = this->m_jumpDurationOnHold;
 
-    (m_sensitivity < 0.f) ? m_sensitivity = 0.f : m_sensitivity = this->m_sensitivity;
+    // weight
+    (m_weight < 0.f)
+        ? m_weight = 0.f
+        : m_weight = this->m_weight;
+    
+    // sprint multiplier
+    (m_sprintMultiplier < 0.f)
+        ? m_sprintMultiplier = 0.f
+        : m_sprintMultiplier = this->m_sprintMultiplier;
+
+    // sensitivity
+    (m_sensitivity < 0.f)
+        ? m_sensitivity = 0.f
+        : m_sensitivity = this->m_sensitivity;
 }
 
 
@@ -436,7 +478,6 @@ void ceblankfs::players::player::MovementHandler(float dt)
     {
         if (m_stamina > m_staminaMinLimit)
             m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_sprintMultiplier));
-            m_isSprint = true;
 
             // reduce stamina if moving
             if (m_pCC->GetVelocity() != Vec3(0, 0, 0))
@@ -447,7 +488,6 @@ void ceblankfs::players::player::MovementHandler(float dt)
     else
     {
         m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * velocity);
-        m_isSprint = false;
     }
 }
 
@@ -497,6 +537,27 @@ void ceblankfs::players::player::JumpHandler(float dt)
 
 void ceblankfs::players::player::CharacterControllerHandlerRotationX(float dt)
 {
+    // // POSTPONE
+    // Matrix34 etf = m_pEntity->GetWorldTM();
+    // Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_entityLookOrientation));
+
+    // ypr.x += m_entityDeltaRotation.x * (m_rotationSpeed * m_sensitivity);
+    // ypr.y = 0;
+    // ypr.z = 0;
+
+    // m_entityLookOrientation = Quat(CCamera::CreateOrientationYPR(ypr));
+    // m_entityDeltaRotation = ZERO;
+
+    // etf.SetRotation33(CCamera::CreateOrientationYPR(ypr));
+
+    // m_pEntity->SetWorldTM(etf);
+}
+
+
+void ceblankfs::players::player::CharacterControllerHandler(float dt)
+{
+#pragma region root or parent section
+    // core/root entity world tranformation
     Matrix34 etf = m_pEntity->GetWorldTM();
     Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_entityLookOrientation));
 
@@ -510,24 +571,25 @@ void ceblankfs::players::player::CharacterControllerHandlerRotationX(float dt)
     etf.SetRotation33(CCamera::CreateOrientationYPR(ypr));
 
     m_pEntity->SetWorldTM(etf);
-}
+#pragma endregion
 
 
-void ceblankfs::players::player::CameraViewHandler(float dt)
-{
+#pragma region camera section
+    // camera entity world tranformation
     Matrix34 ctf = m_pCamera->GetTransformMatrix();
-    Ang3 ypr = CCamera::CreateAnglesYPR(Matrix33(m_lookOrientation));
+    Ang3 rypr = CCamera::CreateAnglesYPR(Matrix33(m_lookOrientation));
 
-    ypr.x = 0; // x axis already handle by CharacterControllerHandlerRotationX
-    ypr.y = CLAMP(ypr.y + m_mouseDeltaRotation.y * (m_rotationSpeed * m_sensitivity), m_rotationLimitsMinPitch, m_rotationLimitsMaxPitch);
-    ypr.z = 0;
+    rypr.x = 0; // x axis already handle by CharacterControllerHandlerRotationX
+    rypr.y = CLAMP(rypr.y + m_mouseDeltaRotation.y * (m_rotationSpeed * m_sensitivity), m_rotationLimitsMinPitch, m_rotationLimitsMaxPitch);
+    rypr.z = 0;
 
-    m_lookOrientation = Quat(CCamera::CreateOrientationYPR(ypr));
+    m_lookOrientation = Quat(CCamera::CreateOrientationYPR(rypr));
     m_mouseDeltaRotation = ZERO;
 
-    ctf.SetRotation33(CCamera::CreateOrientationYPR(ypr));
+    ctf.SetRotation33(CCamera::CreateOrientationYPR(rypr));
 
     m_pCamera->SetTransformMatrix(ctf);
+#pragma endregion
 }
 
 
