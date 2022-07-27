@@ -1,4 +1,4 @@
-<AssetMetadata version="0" type="Level" guid="7dd1e33e-bd4c-db75-be18-b4abd1078d01" source="" timestamp="1658944648">
+<AssetMetadata version="0" type="Level" guid="7dd1e33e-bd4c-db75-be18-b4abd1078d01" source="" timestamp="1658952076">
  <Files>
   <File path="test-player/test-player.level"/>
  </Files>
@@ -9,7 +9,13 @@
   <Path>%engine%/engineassets/icons/highmemoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/livepreview.dds</Path>
   <Path>%engine%/engineassets/icons/lowmemoryusage.dds</Path>
+  <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
+  <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
+  <Path>%engine%/engineassets/objects/primitive_cube.cgf</Path>
+  <Path>%engine%/engineassets/objects/primitive_cylinder.cgf</Path>
+  <Path>%engine%/engineassets/objects/primitive_pyramid.cgf</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
   <Path usageCount="1">libs/environmentpresets/test-env-1.env</Path>
+  <Path>scripts/ai/factions.xml</Path>
  </Dependencies>
 </AssetMetadata>

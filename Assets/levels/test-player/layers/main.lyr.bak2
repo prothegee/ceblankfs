@@ -1,8 +1,65 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658936351">
+ <Layer Name="Main" FullName="Main" GUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658952015">
   <LayerObjects>
-   <Object Type="EmptyEntity" Layer="Main" LayerGUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Id="a9650795-9111-4d04-91fe-5067a4206151" Name="test-player" Pos="255.99017,262.71719,31.999756" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EmptyEntity" Layer="Main" LayerGUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Id="6c8a073a-e0c7-fb5a-98de-e8383efa4e41" Name="ERotator-1" Pos="246.97263,266.58197,34.617596" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="3738c858-c2c5-e3a7-5f4f-f17a8e85c033" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="RenderAndCollider" FilePath="%engine%/engineassets/objects/primitive_cube.cgf" Material="%ENGINE%/EngineAssets/Objects/editorprimitive">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="6705341c-f532-444b-84c7-b73fc3a9ed4f" TypeName="ERotator" GUID="2e7a4616-94ae-32f4-aada-4ebbacc25ac8" Name="" UserAdded="true">
+      <properties rotation-x="1" rotation-y="2" rotation-z="3"/>
+     </Component>
+    </Components>
+   </Object>
+   <Object Type="EmptyEntity" Layer="Main" LayerGUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Id="9c94f513-fd8e-d1ea-061f-686032863a5e" Name="ERotator-2" Pos="255.34001,277.58539,40.328194" Rotate="0.77214348,-0.43580097,-0.38620007,-0.25440413" Scale="4.2200007,4.2200017,4.2200007" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="3eb7dee6-3f8b-1e66-af11-aa5a16eb3475" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Type="RenderAndCollider" FilePath="%engine%/engineassets/objects/primitive_cylinder.cgf" Material="%ENGINE%/EngineAssets/Objects/editorprimitive">
+       <IEditorEntityComponent />
+       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="6705341c-f532-444b-84c7-b73fc3a9ed4f" TypeName="ERotator" GUID="5c15f756-8905-67cf-062a-389336f6aa18" Name="" UserAdded="true">
+      <properties rotation-x="0.30000001" rotation-y="0.60000002" rotation-z="0.89999998"/>
+     </Component>
+    </Components>
    </Object>
   </LayerObjects>
  </Layer>

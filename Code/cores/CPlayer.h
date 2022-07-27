@@ -7,7 +7,7 @@
  * @brief core player class
  * 
  */
-class CPlayer final
+class CPlayer
     :   public IEntityComponent
 {
 	enum class EInputFlagType
@@ -54,7 +54,7 @@ public:
 	virtual void Initialize() override;
 
 	virtual Cry::Entity::EventFlags GetEventMask() const override;
-	virtual void ProcessEvent(const SEntityEvent& event) override;
+	virtual void ProcessEvent(const SEntityEvent& e) override;
 	
 	virtual bool NetSerialize(TSerialize ser, EEntityAspects aspect, uint8 profile, int flags) override;
 	virtual NetworkAspectType GetNetSerializeAspectMask() const override { return InputAspect; }
@@ -64,13 +64,133 @@ public:
 	static void ReflectType(Schematyc::CTypeDesc<CPlayer>& desc)
 	{
 		desc.SetGUID("{7cdcdaa7-7f11-4801-9cb6-a674dd691dc0}"_cry_guid);
-        desc.SetLabel("player class");
+        desc.SetLabel("CPlayer");
         desc.SetEditorCategory("_players");
-        desc.SetDescription("core player component");
+        desc.SetDescription("core player entity");
+        #pragma region player data member
+        desc.AddMember(
+            &CPlayer::m_username,
+            'punm',
+            "player-username",
+            "username",
+            "username value",
+            ""
+        );
+        desc.AddMember(
+            &CPlayer::m_character,
+            'pcnm',
+            "player-character-name",
+            "character",
+            "character value",
+            ""
+        );
+        desc.AddMember(
+            &CPlayer::m_health,
+            'phv',
+            "player-health",
+            "health",
+            "health value",
+            DVCPlayer::health
+        );
+        desc.AddMember(
+            &CPlayer::m_stamina,
+            'psv',
+            "player-stamina",
+            "stamina",
+            "stamina value",
+            DVCPlayer::stamina
+        );
+        desc.AddMember(
+            &CPlayer::m_stamina,
+            'psv',
+            "player-stamina",
+            "stamina",
+            "stamina value",
+            DVCPlayer::stamina
+        );
+        desc.AddMember(
+            &CPlayer::m_movementSpeed,
+            'pmsv',
+            "player-movement-peed",
+            "movement speed",
+            "movement speed value",
+            DVCPlayer::movementSpeed
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpForce,
+            'pjfv',
+            "player-jump-force",
+            "jump force",
+            "jump force value",
+            DVCPlayer::jumpForce
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpCharge,
+            'pjcv',
+            "player-jump-charge",
+            "jump charge",
+            "jump charge value",
+            DVCPlayer::jumpCharge
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpChargeMultiplier,
+            'pjcm',
+            "player-jump-charge-multiplier",
+            "jump charge multiplier",
+            "jump charge multiplier value",
+            DVCPlayer::jumpChargeMultiplier
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpDurationOnHold,
+            'pjdh',
+            "player-jump-duration-on-hold",
+            "jump duration on hold",
+            "jump duration on hold value",
+            DVCPlayer::jumpDurationOnHold
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpDurationOnHold,
+            'pjdh',
+            "player-jump-duration-on-hold",
+            "jump duration on hold",
+            "jump duration on hold value",
+            DVCPlayer::jumpDurationOnHold
+        );
+        desc.AddMember(
+            &CPlayer::m_jumpDurationOnHold,
+            'pwv',
+            "player-weight",
+            "weight",
+            "weight value",
+            DVCPlayer::weight
+        );
+        desc.AddMember(
+            &CPlayer::m_sprintMultiplier,
+            'psmv',
+            "player-sprint-multiplier",
+            "sprint multiplier",
+            "sprint multiplier value",
+            DVCPlayer::sprintMultiplier
+        );
+        desc.AddMember(
+            &CPlayer::m_sensitivity,
+            'pcs',
+            "player-controller-sesnsitivity",
+            "sesnsitivity",
+            "sesnsitivity value",
+            DVCPlayer::sensitivity
+        );
+        #pragma endregion
 	}
 
 	void OnReadyForGameplayOnServer();
 	bool IsLocalClient() const { return (m_pEntity->GetFlags() & ENTITY_FLAG_LOCAL_PLAYER) != 0; }
+
+    // pub get current player character value
+    string PubGetCharacter() const
+    {
+        return m_character.c_str();
+    }
 
 
 protected:
@@ -209,7 +329,6 @@ protected:
 
     float m_rotationLimitsMinPitch = -0.85f; // dfr : -.84f;
     float m_rotationLimitsMaxPitch = 1.6f; // dfr: 1.5f;
-    
     #pragma endregion
 
     CEnumFlags<EInputFlag> m_inputFlags, m_jumpInputFlags;

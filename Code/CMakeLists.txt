@@ -28,6 +28,14 @@ add_sources("cores_uber.cpp"
     SOURCE_GROUP "cores"
         "cores/CPlayer.cpp"
 		"cores/CPlayer.h"
+		"cores/CProjectile.cpp"
+		"cores/CProjectile.h"
+)
+add_sources("entities_uber.cpp"
+    PROJECTS ceblankfs
+    SOURCE_GROUP "entities"
+        "entities/ERotator.cpp"
+        "entities/ERotator.h"
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")

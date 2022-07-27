@@ -43,6 +43,7 @@ void CPlayer::InitializeLocalPlayer()
 	m_pInput = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CInputComponent>();
 
     m_pCC = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
+    m_pCC->SetTransformMatrix(Matrix34::Create(Vec3(.5f), IDENTITY, Vec3(0, 0, .5f)));
     #pragma endregion
 
 
@@ -224,9 +225,9 @@ Cry::Entity::EventFlags CPlayer::GetEventMask() const
         ;
 }
 
-void CPlayer::ProcessEvent(const SEntityEvent& event)
+void CPlayer::ProcessEvent(const SEntityEvent& e)
 {
-	switch (event.event)
+	switch (e.event)
 	{
         case Cry::Entity::EEvent::GameplayStarted:
         {
@@ -247,7 +248,7 @@ void CPlayer::ProcessEvent(const SEntityEvent& event)
             // Don't update the player if we haven't spawned yet
             if(!m_isAlive) return;
             
-            const float dt = event.fParam[0];
+            const float dt = e.fParam[0];
 
             ValuePolicy();
             AimStanceHandler();
@@ -264,7 +265,7 @@ void CPlayer::ProcessEvent(const SEntityEvent& event)
         case Cry::Entity::EEvent::Reset:
         {
             // Disable player when leaving game mode.
-            m_isAlive = event.nParam[0] != 0;
+            m_isAlive = e.nParam[0] != 0;
         }
         break;
 	}
@@ -363,12 +364,17 @@ void CPlayer::Revive(const Matrix34& transform)
 	{
 		m_pEntity->SetWorldTM(transform);
 	}
+
+    m_pCC->Physicalize();
 	
 	// Reset input now that the player respawned
 	m_inputFlags.Clear();
 	NetMarkAspectsDirty(InputAspect);
 	
 	m_mouseDeltaRotation = ZERO;
+	m_lookOrientation = IDENTITY;
+	m_entityDeltaRotation = ZERO;
+	m_entityLookOrientation = IDENTITY;
 }
 #pragma endregion
 
