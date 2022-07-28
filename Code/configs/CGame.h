@@ -1,12 +1,12 @@
 #pragma once
-#include "PCH_CEBLANKFS.h"
+#include "StdAfx.h"
 
 
 /**
- * @brief this game config project class
+ * @brief config game project class
  * 
  */
-class GConfig
+class CGame
     :   public IEntityComponent
 {
 public:
@@ -15,21 +15,21 @@ public:
     static const uint m_patch = 0; // patch semantic version
 
 public:
-    GConfig(/* args */) = default;
-    ~GConfig() = default;
+    CGame(/* args */) = default;
+    ~CGame() = default;
 
     virtual void Initialize() override
     {
         #ifndef NDEBUG
-        CryLog("# ceblankfs GConfig::version v.%i.%i.%i", GConfig::m_major, GConfig::m_minor, GConfig::m_patch);
+        CryLog("# ceblankfs GConfig::version v.%i.%i.%i", CGame::m_major, CGame::m_minor, CGame::m_patch);
         #else
         #endif
     }
 
-    static void ReflectType(Schematyc::CTypeDesc<GConfig>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<CGame>& desc)
     {
         desc.SetGUID("{42b3f78a-89eb-477e-a23c-36b0e8a54f15}"_cry_guid);
-        desc.SetLabel("GConfig");
+        desc.SetLabel("CGame");
         desc.SetEditorCategory("_configs");
         desc.SetDescription("ceblankfs game config");
     }

@@ -1,9 +1,9 @@
 #pragma once
-#include "PCH_CEBLANKFS.h"
+#include "StdAfx.h"
 
 
 /**
- * @brief core player projectile header
+ * @brief POSTPONE: core player projectile header
  * 
  */
 class CProjectile

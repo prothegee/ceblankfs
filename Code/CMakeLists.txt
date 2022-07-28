@@ -1,4 +1,5 @@
 cmake_minimum_required (VERSION 3.14)
+
 set(CRYENGINE_DIR "D:/game-engine/cryengine/engine/crytek/cryengine-57-lts/5.7.1" CACHE STRING "CRYENGINE root directory.")
 set(TOOLS_CMAKE_DIR "${CRYENGINE_DIR}/Tools/CMake")
 
@@ -20,28 +21,33 @@ add_sources("Code_uber.cpp"
 		"GamePlugin.cpp"
 		"StdAfx.cpp"
 		"GamePlugin.h"
-		"PCH_CEBLANKFS.h"
 		"StdAfx.h"
 )
 add_sources("configs_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "configs"
-        "configs/GConfig.cpp"
-        "configs/GConfig.h"
+		"configs/CGame.cpp"
+		"configs/CGame.h"
 )
 add_sources("cores_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "cores"
-        "cores/CPlayer.cpp"
-		"cores/CPlayer.h"
+		"cores/CPlayer.cpp"
 		"cores/CProjectile.cpp"
+		"cores/CPlayer.h"
 		"cores/CProjectile.h"
+		"cores/CSpawnPoint.h"
 )
 add_sources("entities_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "entities"
-        "entities/ERotator.cpp"
-        "entities/ERotator.h"
+		"entities/ERotator.cpp"
+		"entities/ERotator.h"
+)
+add_sources("tools_uber.cpp"
+    PROJECTS ceblankfs
+    SOURCE_GROUP "tools"
+		"tools/TDateAndTime.h"
 )
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")
@@ -155,4 +161,6 @@ endif()
 
 #BEGIN-CUSTOM
 # Make any custom changes here, modifications outside of the block will be discarded on regeneration.
+find_package(jsoncpp CONFIG REQUIRED)
+target_link_libraries(ceblankfs PRIVATE jsoncpp_lib jsoncpp_object JsonCpp::JsonCpp)
 #END-CUSTOM

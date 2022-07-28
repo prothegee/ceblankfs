@@ -1,6 +1,5 @@
 #pragma once
-
-#include "PCH_CEBLANKFS.h"
+#include "StdAfx.h"
 
 
 /**
@@ -33,6 +32,7 @@ public:
     {
         #ifndef NDEBUG
         CryLog("### ERotator Initialize");
+        #else
         #endif
     }
 

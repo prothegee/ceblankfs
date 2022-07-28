@@ -1,5 +1,5 @@
 #include "CPlayer.h"
-#include "configs/GConfig.h"
+#include "configs/CGame.h"
 
 #include <CryNetwork/Rmi.h> // required on *.cc or *.cpp file
 
