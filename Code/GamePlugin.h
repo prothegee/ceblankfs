@@ -6,11 +6,11 @@
 #include <CryEntitySystem/IEntityClass.h>
 #include <CryNetwork/INetwork.h>
 
-class CPlayer;
+class PCore;
 
 // The entry-point of the application
 // An instance of CGamePlugin is automatically created when the library is loaded
-// We then construct the local player entity and CPlayer instance when OnClientConnectionReceived is first called.
+// We then construct the local player entity and PCore instance when OnClientConnectionReceived is first called.
 class CGamePlugin 
 	: public Cry::IEnginePlugin
 	, public ISystemEventListener
@@ -49,7 +49,7 @@ public:
 	// ~INetworkedClientListener
 
 	// Helper function to call the specified callback for every player in the game
-	void IterateOverPlayers(std::function<void(CPlayer& player)> func) const;
+	void IterateOverPlayers(std::function<void(PCore& player)> func) const;
 
 	// Helper function to get the CGamePlugin instance
 	// Note that CGamePlugin is declared as a singleton, so the CreateClassInstance will always return the same pointer

@@ -2,7 +2,7 @@
 #include "StdAfx.h"
 #include "GamePlugin.h"
 
-#include "cores/CPlayer.h"
+#include "players/PCore.h"
 
 #include <IGameObjectSystem.h>
 #include <IGameObject.h>
@@ -113,7 +113,7 @@ bool CGamePlugin::OnClientConnectionReceived(int channelId, bool bIsReset)
 		pPlayerEntity->GetNetEntity()->SetChannelId(channelId);
 
 		// Create the player component instance
-		CPlayer* pPlayer = pPlayerEntity->GetOrCreateComponentClass<CPlayer>();
+		PCore* pPlayer = pPlayerEntity->GetOrCreateComponentClass<PCore>();
 
 		if (pPlayer != nullptr)
 		{
@@ -133,7 +133,7 @@ bool CGamePlugin::OnClientReadyForGameplay(int channelId, bool bIsReset)
 	{
 		if (IEntity* pPlayerEntity = gEnv->pEntitySystem->GetEntity(it->second))
 		{
-			if (CPlayer* pPlayer = pPlayerEntity->GetComponent<CPlayer>())
+			if (PCore* pPlayer = pPlayerEntity->GetComponent<PCore>())
 			{
 				pPlayer->OnReadyForGameplayOnServer();
 			}
@@ -155,13 +155,13 @@ void CGamePlugin::OnClientDisconnected(int channelId, EDisconnectionCause cause,
 	}
 }
 
-void CGamePlugin::IterateOverPlayers(std::function<void(CPlayer& player)> func) const
+void CGamePlugin::IterateOverPlayers(std::function<void(PCore& player)> func) const
 {
 	for (const std::pair<int, EntityId>& playerPair : m_players)
 	{
 		if (IEntity* pPlayerEntity = gEnv->pEntitySystem->GetEntity(playerPair.second))
 		{
-			if (CPlayer* pPlayer = pPlayerEntity->GetComponent<CPlayer>())
+			if (PCore* pPlayer = pPlayerEntity->GetComponent<PCore>())
 			{
 				func(*pPlayer);
 			}

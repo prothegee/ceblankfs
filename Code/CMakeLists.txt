@@ -19,8 +19,8 @@ add_sources("Code_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "Root"
 		"GamePlugin.cpp"
-		"StdAfx.cpp"
 		"GamePlugin.h"
+		"StdAfx.cpp"
 		"StdAfx.h"
 )
 add_sources("configs_uber.cpp"
@@ -29,14 +29,25 @@ add_sources("configs_uber.cpp"
 		"configs/CGame.cpp"
 		"configs/CGame.h"
 )
-add_sources("cores_uber.cpp"
+add_sources("players_uber.cpp"
     PROJECTS ceblankfs
-    SOURCE_GROUP "cores"
-		"cores/CPlayer.cpp"
-		"cores/CProjectile.cpp"
-		"cores/CPlayer.h"
-		"cores/CProjectile.h"
-		"cores/CSpawnPoint.h"
+    SOURCE_GROUP "players"
+        "players/_PRegistrar.cpp"
+
+        "players/PCore_Handler.cpp"
+        "players/PCore_Initialize.cpp"
+        
+		"players/PCore.cpp"
+		"players/PCore.h"
+
+		"players/PData.h"
+
+		"players/PInput.h"
+
+		"players/PProjectile.cpp"
+		"players/PProjectile.h"
+
+		"players/PSpawnPoint.h"
 )
 add_sources("entities_uber.cpp"
     PROJECTS ceblankfs

@@ -1,53 +1,21 @@
 #pragma once
 #include "StdAfx.h"
+#include "PData.h"
+#include "PInput.h"
 
 
 /**
- * @brief core player class
+ * @brief player core class
  * 
  */
-class CPlayer
+class PCore final
     :   public IEntityComponent
+    ,   PData
+    ,   PInput
 {
-	enum class EInputFlagType
-	{
-		Hold = 0,
-		Toggle
-	};
-
-	enum class EInputFlag : uint8
-	{
-		MoveLeft    = 1 << 0,
-		MoveRight   = 1 << 1,
-		MoveForward = 1 << 2,
-		MoveBack    = 1 << 3,
-		DoSprint    = 1 << 4,
-		DoJump      = 1 << 5,
-	};
-
-	static constexpr EEntityAspects InputAspect = eEA_GameClientD;
-
-
 public:
-    // default value data for CPlayer class
-    struct DVCPlayer
-    {
-        static constexpr float health = 100.f;
-        static constexpr float stamina = 100.0f;
-        static constexpr float movementSpeed = 50.f;
-        static constexpr float jumpForce = 6.f;
-        static constexpr float jumpCharge = 0.f;
-        static constexpr float jumpChargeMultiplier = 1.f;
-        static constexpr float jumpDurationOnHold = 0.f;
-        static constexpr float weight = 60.f;
-        static constexpr float sprintMultiplier = 2.f;
-
-        static constexpr float sensitivity = 1.f;
-    };
-
-public:
-	CPlayer();
-	virtual ~CPlayer();
+	PCore();
+	virtual ~PCore();
 
 	// IEntityComponent
 	virtual void Initialize() override;
@@ -60,15 +28,15 @@ public:
 	// ~IEntityComponent
 
 	// Reflect type to set a unique identifier for this component
-	static void ReflectType(Schematyc::CTypeDesc<CPlayer>& desc)
+	static void ReflectType(Schematyc::CTypeDesc<PCore>& desc)
 	{
 		desc.SetGUID("{7cdcdaa7-7f11-4801-9cb6-a674dd691dc0}"_cry_guid);
-        desc.SetLabel("CPlayer");
+        desc.SetLabel("PCore");
         desc.SetEditorCategory("_players");
-        desc.SetDescription("core player entity");
+        desc.SetDescription("player core component");
         #pragma region player data member
         desc.AddMember(
-            &CPlayer::m_username,
+            &PCore::m_username,
             'punm',
             "player-username",
             "username",
@@ -76,7 +44,7 @@ public:
             ""
         );
         desc.AddMember(
-            &CPlayer::m_character,
+            &PCore::m_character,
             'pcnm',
             "player-character-name",
             "character",
@@ -84,112 +52,108 @@ public:
             ""
         );
         desc.AddMember(
-            &CPlayer::m_health,
+            &PCore::m_health,
             'phv',
             "player-health",
             "health",
             "health value",
-            DVCPlayer::health
+            DVPData::health
         );
         desc.AddMember(
-            &CPlayer::m_stamina,
+            &PCore::m_stamina,
             'psv',
             "player-stamina",
             "stamina",
             "stamina value",
-            DVCPlayer::stamina
+            DVPData::stamina
         );
         desc.AddMember(
-            &CPlayer::m_stamina,
+            &PCore::m_stamina,
             'psv',
             "player-stamina",
             "stamina",
             "stamina value",
-            DVCPlayer::stamina
+            DVPData::stamina
         );
         desc.AddMember(
-            &CPlayer::m_movementSpeed,
+            &PCore::m_movementSpeed,
             'pmsv',
             "player-movement-peed",
             "movement speed",
             "movement speed value",
-            DVCPlayer::movementSpeed
+            DVPData::movementSpeed
         );
         desc.AddMember(
-            &CPlayer::m_jumpForce,
+            &PCore::m_jumpForce,
             'pjfv',
             "player-jump-force",
             "jump force",
             "jump force value",
-            DVCPlayer::jumpForce
+            DVPData::jumpForce
         );
         desc.AddMember(
-            &CPlayer::m_jumpCharge,
+            &PCore::m_jumpCharge,
             'pjcv',
             "player-jump-charge",
             "jump charge",
             "jump charge value",
-            DVCPlayer::jumpCharge
+            DVPData::jumpCharge
         );
         desc.AddMember(
-            &CPlayer::m_jumpChargeMultiplier,
+            &PCore::m_jumpChargeMultiplier,
             'pjcm',
             "player-jump-charge-multiplier",
             "jump charge multiplier",
             "jump charge multiplier value",
-            DVCPlayer::jumpChargeMultiplier
+            DVPData::jumpChargeMultiplier
         );
         desc.AddMember(
-            &CPlayer::m_jumpDurationOnHold,
+            &PCore::m_jumpDurationOnHold,
             'pjdh',
             "player-jump-duration-on-hold",
             "jump duration on hold",
             "jump duration on hold value",
-            DVCPlayer::jumpDurationOnHold
+            DVPData::jumpDurationOnHold
         );
         desc.AddMember(
-            &CPlayer::m_jumpDurationOnHold,
+            &PCore::m_jumpDurationOnHold,
             'pjdh',
             "player-jump-duration-on-hold",
             "jump duration on hold",
             "jump duration on hold value",
-            DVCPlayer::jumpDurationOnHold
+            DVPData::jumpDurationOnHold
         );
         desc.AddMember(
-            &CPlayer::m_jumpDurationOnHold,
+            &PCore::m_jumpDurationOnHold,
             'pwv',
             "player-weight",
             "weight",
             "weight value",
-            DVCPlayer::weight
+            DVPData::weight
         );
         desc.AddMember(
-            &CPlayer::m_sprintMultiplier,
+            &PCore::m_sprintMultiplier,
             'psmv',
             "player-sprint-multiplier",
             "sprint multiplier",
             "sprint multiplier value",
-            DVCPlayer::sprintMultiplier
+            DVPData::sprintMultiplier
         );
+        #pragma endregion
+        #pragma region player input member
         desc.AddMember(
-            &CPlayer::m_sensitivity,
+            &PCore::m_sensitivity,
             'pcs',
             "player-controller-sesnsitivity",
             "sesnsitivity",
             "sesnsitivity value",
-            DVCPlayer::sensitivity
+            DVPInput::sensitivity
         );
         #pragma endregion
-	}
+    }
 
 	void OnReadyForGameplayOnServer();
-	bool IsLocalClient() const { return (m_pEntity->GetFlags() & ENTITY_FLAG_LOCAL_PLAYER) != 0; }
-
-    // pub get current player character value
-    string PubGetCharacter() const
-    {
-        return m_character.c_str();
-    }
+    bool IsLocalClient() const { return (m_pEntity->GetFlags() & ENTITY_FLAG_LOCAL_PLAYER) != 0; }
 
 
 protected:
@@ -219,27 +183,29 @@ protected:
 	// Remote method intended to be called on all remote clients when a player spawns on the server
 	bool RemoteReviveOnClient(RemoteReviveParams&& params, INetChannel* pNetChannel);
 
+protected:
+    // initialize default data
     void InitializeDefaultData()
     {
         (m_username.length() <= 3)
-            ? m_username = "username"
+            ? m_username = "USER_DEBUG"
             : m_username = this->m_username;
 
         (m_character.length() <= 3)
-            ? m_character = "character"
+            ? m_character = "CHARACTERD_EBUG"
             : m_character = this->m_character;
 
-        m_health = DVCPlayer::health;
-        m_stamina = DVCPlayer::stamina;
-        m_movementSpeed = DVCPlayer::movementSpeed;
-        m_jumpForce = DVCPlayer::jumpForce;
-        m_jumpCharge = DVCPlayer::jumpCharge;
-        m_jumpChargeMultiplier = DVCPlayer::jumpChargeMultiplier;
-        m_jumpDurationOnHold = DVCPlayer::jumpDurationOnHold;
-        m_weight = DVCPlayer::weight;
-        m_sprintMultiplier = DVCPlayer::sprintMultiplier;
+        m_health = DVPData::health;
+        m_stamina = DVPData::stamina;
+        m_movementSpeed = DVPData::movementSpeed;
+        m_jumpForce = DVPData::jumpForce;
+        m_jumpCharge = DVPData::jumpCharge;
+        m_jumpChargeMultiplier = DVPData::jumpChargeMultiplier;
+        m_jumpDurationOnHold = DVPData::jumpDurationOnHold;
+        m_weight = DVPData::weight;
+        m_sprintMultiplier = DVPData::sprintMultiplier;
 
-        m_sensitivity = DVCPlayer::sensitivity;
+        m_sensitivity = DVPInput::sensitivity;
     }
 
     // value policy for non-unsigned data type
@@ -300,60 +266,21 @@ protected:
     }
 
 protected:
-    #pragma region player data variables
-    Schematyc::CSharedString m_username;
-    Schematyc::CSharedString m_character;
+    void HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
 
-    float m_health;
-    float m_stamina;
-    float m_movementSpeed;
-    float m_jumpForce;
-    float m_jumpCharge;
-    float m_jumpChargeMultiplier;
-    float m_jumpDurationOnHold;
-    float m_weight;
-    float m_sprintMultiplier;
+    void JumpHandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
 
-    float m_sensitivity;
-
-    const float m_minJumpCharge = 0.3f;
-    const float m_maxJumpCharge = 3.0f;
-
-    const float m_staminaMinLimit = 0.0f;
-    const float m_staminaMaxLimit = 100.0f;
-    const float m_staminaReductionRate = 30.0f;
-    const float m_staminaRegenerationRate = 15.0f;
-
-    const float m_rotationSpeed = 0.002f;
-
-    float m_rotationLimitsMinPitch = -0.85f; // dfr : -.84f;
-    float m_rotationLimitsMaxPitch = 1.6f; // dfr: 1.5f;
-    #pragma endregion
-
-    CEnumFlags<EInputFlag> m_inputFlags, m_jumpInputFlags;
-	Vec2 m_mouseDeltaRotation;
-    Quat m_lookOrientation;
-    Vec2 m_entityDeltaRotation;
-    Quat m_entityLookOrientation;
-
-	bool m_isAlive = false;
-    bool m_canJumpNow = false;
-    bool m_aimStance = false;
-
-    // player camera
-	Cry::DefaultComponents::CCameraComponent* m_pCamera = nullptr;
-	// player input
+protected:
+    // player input component
     Cry::DefaultComponents::CInputComponent* m_pInput = nullptr;
-	// player audio listener
+    // player camera component
+	Cry::DefaultComponents::CCameraComponent* m_pCamera = nullptr;
+	// player audio listener component
     Cry::Audio::DefaultComponents::CListenerComponent* m_pAudio = nullptr;
-    // player character controller
+    // player character controller component9
     Cry::DefaultComponents::CCharacterControllerComponent* m_pCC = nullptr;
 
 protected:
-    void HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
-    void JumpHandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
-
-
     // ground movement logic handler
     void GroundMovementHandler(float dt);
     // camera movement logic handler
@@ -364,8 +291,4 @@ protected:
     void GroundJumpHandler(float dt);
     // player aim stance handler
     void AimStanceHandler();
-
-
-private:
-    Vec3 m_defaultCameraPosition = Vec3(0, 0, 1.75f);
 };

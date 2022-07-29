@@ -1,35 +1,15 @@
-<AssetMetadata version="0" type="Level" guid="f952759e-6986-3127-3121-bcec56ab1acb" source="" timestamp="1658955730">
+<AssetMetadata version="0" type="Level" guid="f952759e-6986-3127-3121-bcec56ab1acb" source="" timestamp="1659054603">
  <Files>
   <File path="test-main_menu/test-main_menu.level"/>
  </Files>
  <Dependencies>
   <Path usageCount="1">%ENGINE%/EngineAssets/Shading/default.env</Path>
-  <Path>%editor%/crydesigner_timeofday.xml</Path>
-  <Path>%editor%/leveltemplates.xml</Path>
-  <Path>%editor%/mapscreenshotsettings.xml</Path>
-  <Path>%editor%/mbttemplates.xml</Path>
-  <Path>%editor%/modellingpanel.xml</Path>
-  <Path>%editor%/objecttemplates.xml</Path>
-  <Path>%editor%/propertyenumerations.xml</Path>
-  <Path>%editor%/soundtemplates.xml</Path>
-  <Path>%editor%/toolbox.xml</Path>
-  <Path>%editor%/usertools.xml</Path>
+  <Path>%engine%/config/defaultscripts/compressionpolicy.xml</Path>
   <Path>%engine%/engineassets/icons/averagememoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/highmemoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/livepreview.dds</Path>
   <Path>%engine%/engineassets/icons/lowmemoryusage.dds</Path>
-  <Path>%engine%/engineassets/materials/fog/fogvolumebox.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/fogvolumeellipsoid.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceaninto.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanintolowspec.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanoutof.mtl</Path>
-  <Path>%engine%/engineassets/materials/fog/oceanoutoflowspec.mtl</Path>
-  <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
-  <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
-  <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
-  <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
-  <Path>%engine%/engineassets/textures/skys/night/half_moon.dds</Path>
   <Path usageCount="1">libs/environmentpresets/test-env-1.env</Path>
  </Dependencies>
 </AssetMetadata>

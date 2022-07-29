@@ -3,28 +3,28 @@
 
 
 /**
- * @brief POSTPONE: core player projectile header
+ * @brief POSTPONE: player projectile
  * 
  */
-class CProjectile
+class PProjectile
     :   public IEntityComponent
 {
 public:
-    CProjectile(/* args */);
-    virtual ~CProjectile();
+    PProjectile(/* args */);
+    virtual ~PProjectile();
 
     virtual void Initialize() override
     {
         #ifndef NDEBUG
-        CryLog("# CProjectile::Initialize");
+        CryLog("# PProjectile::Initialize");
         #else
         #endif
     }
 
-    static void ReflectType(Schematyc::CTypeDesc<CProjectile>& desc)
+    static void ReflectType(Schematyc::CTypeDesc<PProjectile>& desc)
     {
         desc.SetGUID("{a372a85f-4956-45a2-849f-776fec044fd2}"_cry_guid);
-        desc.SetLabel("CProjectile");
+        desc.SetLabel("PProjectile");
         desc.SetEditorCategory("_players");
         desc.SetDescription("player projectile entity");
     }

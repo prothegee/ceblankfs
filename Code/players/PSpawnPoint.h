@@ -3,7 +3,7 @@
 
 
 /**
- * @brief player spawn point on game launcher
+ * @brief player spawn point
  * 
  */
 class CSpawnPoint

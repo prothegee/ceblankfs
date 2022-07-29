@@ -43,3 +43,5 @@
 #include <DefaultComponents/Geometry/AnimatedMeshComponent.h>
 #include <DefaultComponents/Geometry/BaseMeshComponent.h>
 #include <DefaultComponents/Geometry/StaticMeshComponent.h>
+
+#include <json/json.h>
