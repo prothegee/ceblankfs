@@ -1,4 +1,4 @@
-<AssetMetadata version="0" type="Level" guid="f952759e-6986-3127-3121-bcec56ab1acb" source="" timestamp="1659054603">
+<AssetMetadata version="0" type="Level" guid="f952759e-6986-3127-3121-bcec56ab1acb" source="" timestamp="1659102077">
  <Files>
   <File path="test-main_menu/test-main_menu.level"/>
  </Files>
@@ -11,5 +11,6 @@
   <Path>%engine%/engineassets/icons/lowmemoryusage.dds</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
   <Path usageCount="1">libs/environmentpresets/test-env-1.env</Path>
+  <Path>scripts/ai/factions.xml</Path>
  </Dependencies>
 </AssetMetadata>

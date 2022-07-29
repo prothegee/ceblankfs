@@ -6,19 +6,19 @@
  * @brief player spawn point
  * 
  */
-class CSpawnPoint
+class PSpawnPoint
     :   public IEntityComponent
 {
 public:
-    CSpawnPoint(/* args */);
-    virtual ~CSpawnPoint();
+    PSpawnPoint(/* args */);
+    virtual ~PSpawnPoint();
 };
 
 
-CSpawnPoint::CSpawnPoint(/* args */)
+PSpawnPoint::PSpawnPoint(/* args */)
 {
 }
-CSpawnPoint::~CSpawnPoint()
+PSpawnPoint::~PSpawnPoint()
 {
 }
 

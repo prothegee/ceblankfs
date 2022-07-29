@@ -14,6 +14,9 @@
 // Included only once per DLL module.
 #include <CryCore/Platform/platform_impl.inl>
 
+#include "systems/SLevelManager.h"
+
+
 CGamePlugin::~CGamePlugin()
 {
 	// Remove any registered listeners before 'this' becomes invalid
@@ -86,8 +89,31 @@ void CGamePlugin::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lp
 			m_players.clear();
 		}
 		break;
+
+        case ESYSTEM_EVENT_LEVEL_LOAD_START:
+        {
+            #ifndef NDEBUG
+            CryLog("# CGamePlugin ESYSTEM_EVENT_LEVEL_LOAD_START");
+            #else
+            #endif
+
+            SLevelManager::DSOLLS();
+        }
+        break;
+
+        case ESYSTEM_EVENT_LEVEL_LOAD_END:
+        {
+            #ifndef NDEBUG
+            CryLog("# CGamePlugin ESYSTEM_EVENT_LEVEL_LOAD_END");
+            #else
+            #endif
+
+            SLevelManager::DSOLLE();
+        }
+        break;
 	}
 }
+
 
 bool CGamePlugin::OnClientConnectionReceived(int channelId, bool bIsReset)
 {

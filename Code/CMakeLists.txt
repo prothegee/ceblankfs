@@ -1,5 +1,4 @@
 cmake_minimum_required (VERSION 3.14)
-
 set(CRYENGINE_DIR "D:/game-engine/cryengine/engine/crytek/cryengine-57-lts/5.7.1" CACHE STRING "CRYENGINE root directory.")
 set(TOOLS_CMAKE_DIR "${CRYENGINE_DIR}/Tools/CMake")
 
@@ -19,8 +18,8 @@ add_sources("Code_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "Root"
 		"GamePlugin.cpp"
-		"GamePlugin.h"
 		"StdAfx.cpp"
+		"GamePlugin.h"
 		"StdAfx.h"
 )
 add_sources("configs_uber.cpp"
@@ -29,31 +28,30 @@ add_sources("configs_uber.cpp"
 		"configs/CGame.cpp"
 		"configs/CGame.h"
 )
-add_sources("players_uber.cpp"
-    PROJECTS ceblankfs
-    SOURCE_GROUP "players"
-        "players/_PRegistrar.cpp"
-
-        "players/PCore_Handler.cpp"
-        "players/PCore_Initialize.cpp"
-        
-		"players/PCore.cpp"
-		"players/PCore.h"
-
-		"players/PData.h"
-
-		"players/PInput.h"
-
-		"players/PProjectile.cpp"
-		"players/PProjectile.h"
-
-		"players/PSpawnPoint.h"
-)
 add_sources("entities_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "entities"
 		"entities/ERotator.cpp"
 		"entities/ERotator.h"
+)
+add_sources("players_uber.cpp"
+    PROJECTS ceblankfs
+    SOURCE_GROUP "players"
+		"players/PCore.cpp"
+		"players/PCore_Handler.cpp"
+		"players/PCore_Initialize.cpp"
+		"players/PProjectile.cpp"
+		"players/_PRegistrar.cpp"
+		"players/PCore.h"
+		"players/PData.h"
+		"players/PInput.h"
+		"players/PProjectile.h"
+		"players/PSpawnPoint.h"
+)
+add_sources("systems_uber.cpp"
+    PROJECTS ceblankfs
+    SOURCE_GROUP "systems"
+		"systems/SLevelManager.h"
 )
 add_sources("tools_uber.cpp"
     PROJECTS ceblankfs
@@ -173,5 +171,5 @@ endif()
 #BEGIN-CUSTOM
 # Make any custom changes here, modifications outside of the block will be discarded on regeneration.
 find_package(jsoncpp CONFIG REQUIRED)
-target_link_libraries(ceblankfs PRIVATE jsoncpp_lib jsoncpp_object JsonCpp::JsonCpp)
+target_link_libraries(${THIS_PROJECT} PRIVATE jsoncpp_lib jsoncpp_object JsonCpp::JsonCpp)
 #END-CUSTOM

@@ -1,5 +1,6 @@
 // ONLY for player initialization
 #include "PCore.h"
+#include <GamePlugin.h>
 #include <CryNetwork/Rmi.h> // required on *.cc or *.cpp file
 
 
@@ -149,7 +150,7 @@ void PCore::InitializeLocalPlayer()
             if (activationMode == eAAM_OnPress)
             {
                 #ifndef NDEBUG
-                CryLog("# players::player shoot");
+                CryLog("# players PCore shoot");
                 #else
                 #endif
             }
@@ -177,7 +178,7 @@ void PCore::InitializeLocalPlayer()
                 }
 
                 #ifndef NDEBUG
-                CryLog("# players::player m_aimStance %s", m_aimStance ? "true" : "false");
+                CryLog("# players PCore m_aimStance %s", m_aimStance ? "true" : "false");
                 #else
                 #endif
             }
