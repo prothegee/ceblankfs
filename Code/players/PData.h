@@ -12,6 +12,8 @@ protected:
     bool m_isAlive = false;
     bool m_canJumpNow = false;
     bool m_aimStance = false;
+    bool m_spawnOnSpawnPoints = true;
+    bool m_disableInteraction = false;
 
     // default value data for PData class
     struct DVPData

@@ -1,5 +1,7 @@
 // ONLY for player event listener
 #include "PCore.h"
+#include "systems/SLevelManager.h"
+#include "systems/SGraphicManager.h"
 
 
 #pragma region event listener
@@ -19,7 +21,11 @@ void PCore::ProcessEvent(const SEntityEvent& e)
 	{
         case Cry::Entity::EEvent::GameplayStarted:
         {
-            // 
+            // check current map
+            #ifndef NDEBUG
+            CryLog("# current level: %s", SLevelManager::CurrentLevel());
+            #else
+            #endif
         }
         break;
 
@@ -38,14 +44,14 @@ void PCore::ProcessEvent(const SEntityEvent& e)
             
             const float dt = e.fParam[0];
 
-            ValuePolicy();
-            AimStanceHandler();
-
-            StaminaHanlder(dt);
-
             GroundMovementHandler(dt);
             CameraMovementHandler(dt);
             GroundJumpHandler(dt);
+
+            StaminaHanlder(dt);
+
+            ValuePolicy();
+            AimStanceHandler();
         }
         break;
 

@@ -1,5 +1,6 @@
 // ONLY for player initialization
 #include "PCore.h"
+#include "PSpawnPoint.h"
 #include <GamePlugin.h>
 #include <CryNetwork/Rmi.h> // required on *.cc or *.cpp file
 
@@ -190,6 +191,30 @@ void PCore::InitializeLocalPlayer()
             EKeyId::eKI_Mouse2);
     #pragma endregion
 }
+
+
+void PCore::InitializeDefaultData()
+{
+    (m_username.length() <= 3)
+        ? m_username = "USER_DEBUG"
+        : m_username = this->m_username;
+
+    (m_character.length() <= 3)
+        ? m_character = "CHARACTERD_EBUG"
+        : m_character = this->m_character;
+
+    m_health = DVPData::health;
+    m_stamina = DVPData::stamina;
+    m_movementSpeed = DVPData::movementSpeed;
+    m_jumpForce = DVPData::jumpForce;
+    m_jumpCharge = DVPData::jumpCharge;
+    m_jumpChargeMultiplier = DVPData::jumpChargeMultiplier;
+    m_jumpDurationOnHold = DVPData::jumpDurationOnHold;
+    m_weight = DVPData::weight;
+    m_sprintMultiplier = DVPData::sprintMultiplier;
+
+    m_sensitivity = DVPInput::sensitivity;
+}
 #pragma endregion
 
 
@@ -231,21 +256,33 @@ void PCore::OnReadyForGameplayOnServer()
 {
 	CRY_ASSERT(gEnv->bServer, "This function should only be called on the server!");
 	
-	Vec3 playerScale = Vec3(1.f);
-	Quat playerRotation = IDENTITY;
+    Vec3 playerScale;
+    Vec3 playerPosition;
+    Quat playerRotation;
+    Matrix34 newTransform;
 
-	// Position the player in the center of the map
-	const float heightOffset = 20.f;
-	const float terrainCenter = gEnv->p3DEngine->GetTerrainSize() / 2.f;
-	const float height = gEnv->p3DEngine->GetTerrainZ(terrainCenter, terrainCenter);
-	const Vec3 playerPosition = Vec3(terrainCenter, terrainCenter, height + heightOffset);
+    if (m_spawnOnSpawnPoints)
+    {
+        newTransform = PSpawnPoint::GetFirstSpawnPointTranform();
+    }
+	else
+    {
+        playerScale = Vec3(1.f);
+        playerRotation = IDENTITY;
 
-	const Matrix34 newTransform = Matrix34::Create(playerScale, playerRotation, playerPosition);
+        // Position the player in the center of the map
+        const float heightOffset = 20.f;
+        const float terrainCenter = gEnv->p3DEngine->GetTerrainSize() / 2.f;
+        const float height = gEnv->p3DEngine->GetTerrainZ(terrainCenter, terrainCenter);
+        playerPosition = Vec3(terrainCenter, terrainCenter, height + heightOffset);
+
+        newTransform = Matrix34::Create(playerScale, playerRotation, playerPosition);
+    }
 	
 	Revive(newTransform);
 	
 	// Invoke the RemoteReviveOnClient function on all remote clients, to ensure that Revive is called across the network
-	SRmi<RMI_WRAP(&PCore::RemoteReviveOnClient)>::InvokeOnOtherClients(this, RemoteReviveParams{ playerPosition, playerRotation });
+	SRmi<RMI_WRAP(&PCore::RemoteReviveOnClient)>::InvokeOnOtherClients(this, RemoteReviveParams{ newTransform.GetTranslation(), Quat(newTransform) });;
 	
 	// Go through all other players, and send the RemoteReviveOnClient on their instances to the new player that is ready for gameplay
 	const int channelId = m_pEntity->GetNetEntity()->GetChannelId();

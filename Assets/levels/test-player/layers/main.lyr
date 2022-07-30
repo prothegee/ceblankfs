@@ -1,5 +1,5 @@
 <ObjectLayer>
- <Layer Name="Main" FullName="Main" GUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1658952076">
+ <Layer Name="Main" FullName="Main" GUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659209334">
   <LayerObjects>
    <Object Type="EmptyEntity" Layer="Main" LayerGUID="d62d3a62-1ba8-3969-df55-4c95ddc44ca6" Id="acef6b83-f061-eb3d-f52a-d553fc5f86aa" Name="ERotator-3" Pos="271.82178,253.89601,48.519718" Rotate="-0.42370111,0.47143561,0.033162788,0.77273935" Scale="12.000025,12.000017,12.000007" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />

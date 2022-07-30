@@ -96,8 +96,6 @@ void CGamePlugin::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lp
             CryLog("# CGamePlugin ESYSTEM_EVENT_LEVEL_LOAD_START");
             #else
             #endif
-
-            SLevelManager::DSOLLS();
         }
         break;
 
@@ -107,8 +105,6 @@ void CGamePlugin::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lp
             CryLog("# CGamePlugin ESYSTEM_EVENT_LEVEL_LOAD_END");
             #else
             #endif
-
-            SLevelManager::DSOLLE();
         }
         break;
 	}

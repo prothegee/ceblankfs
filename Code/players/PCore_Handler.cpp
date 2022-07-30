@@ -3,6 +3,85 @@
 
 
 #pragma region player handler
+void PCore::ValuePolicy()
+{
+    // health
+    (m_health < 0.f)
+        ? m_health = 0.f
+        : m_health = this->m_health;
+    
+    // stamina
+    (m_stamina < m_staminaMinLimit)
+        ? m_stamina = m_staminaMinLimit
+        : m_stamina = this->m_stamina;
+    (m_stamina > m_staminaMaxLimit)
+        ? m_stamina = m_staminaMaxLimit
+        : m_stamina = this->m_stamina;
+    
+    // movement speed
+    (m_movementSpeed < 0.f)
+        ? m_movementSpeed = 0.f
+        : m_movementSpeed = this->m_movementSpeed;
+    
+    // jumpforce
+    (m_jumpForce < 0.f)
+        ? m_jumpForce = 0.f
+        : m_jumpForce = this->m_jumpForce;
+    
+    // jumpcharge
+    (m_jumpCharge < 0.f)
+        ? m_jumpCharge = 0.f
+        : m_jumpCharge = this->m_jumpCharge;
+    
+    // jumpcharge multiplier
+    (m_jumpChargeMultiplier < 0.f)
+        ? m_jumpChargeMultiplier = 0.f
+        : m_jumpChargeMultiplier = this->m_jumpChargeMultiplier;
+    
+    // jump on hold
+    (m_jumpDurationOnHold < 0.f)
+        ? m_jumpDurationOnHold = 0.f
+        : m_jumpDurationOnHold = this->m_jumpDurationOnHold;
+
+    // weight
+    (m_weight < 0.f)
+        ? m_weight = 0.f
+        : m_weight = this->m_weight;
+    
+    // sprint multiplier
+    (m_sprintMultiplier < 0.f)
+        ? m_sprintMultiplier = 0.f
+        : m_sprintMultiplier = this->m_sprintMultiplier;
+
+    // sensitivity
+    (m_sensitivity < 0.f)
+        ? m_sensitivity = 0.f
+        : m_sensitivity = this->m_sensitivity;
+
+    /**
+     * disable some interaction on some condition
+     * e.g. on main-menu and etc.
+     * 
+     * list:
+     * - movement speed
+     * - input interaction
+     * - camera view
+     * - animation fragment
+     * 
+     * return void
+     * 
+     */
+    if (m_disableInteraction)
+    {
+
+    }
+    else
+    {
+
+    }
+}
+
+
 void PCore::HandleInputFlagChange(const CEnumFlags<EInputFlag> flags, const CEnumFlags<EActionActivationMode> activationMode, const EInputFlagType type)
 {
 	switch (type)
@@ -95,6 +174,9 @@ void PCore::GroundMovementHandler(float dt)
 
     if (m_inputFlags & EInputFlag::DoSprint)
     {
+        m_aimStance = false; // break the aim stance
+        
+
         if (m_stamina > m_staminaMinLimit)
             m_pCC->AddVelocity(GetEntity()->GetWorldRotation() * (velocity * m_sprintMultiplier));
 

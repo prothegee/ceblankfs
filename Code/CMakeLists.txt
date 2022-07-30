@@ -37,21 +37,35 @@ add_sources("entities_uber.cpp"
 add_sources("players_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "players"
-		"players/PCore.cpp"
+        "players/_PRegistrar.cpp"
+		
+        "players/PCore.cpp"
 		"players/PCore_Handler.cpp"
 		"players/PCore_Initialize.cpp"
-		"players/PProjectile.cpp"
-		"players/_PRegistrar.cpp"
-		"players/PCore.h"
-		"players/PData.h"
-		"players/PInput.h"
-		"players/PProjectile.h"
-		"players/PSpawnPoint.h"
+		
+        "players/PCore.h"
+		
+        "players/PData.h"
+		
+        "players/PInput.h"
+		
+        "players/PProjectile.cpp"
+        "players/PProjectile.h"
+		
+        "players/PSpawnPoint.cpp"
+        "players/PSpawnPoint.h"
 )
 add_sources("systems_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "systems"
+        "systems/SGlobalEnvironment.cpp"
+        "systems/SGlobalEnvironment.h"
+
+		"systems/SLevelManager.cpp"
 		"systems/SLevelManager.h"
+
+        "systems/SGraphicManager.cpp"
+		"systems/SGraphicManager.h"
 )
 add_sources("tools_uber.cpp"
     PROJECTS ceblankfs

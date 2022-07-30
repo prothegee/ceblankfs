@@ -13,6 +13,10 @@ class PCore final
     ,   PData
     ,   PInput
 {
+private:
+    // 
+
+
 public:
 	PCore();
 	virtual ~PCore();
@@ -33,7 +37,7 @@ public:
 		desc.SetGUID("{7cdcdaa7-7f11-4801-9cb6-a674dd691dc0}"_cry_guid);
         desc.SetLabel("PCore");
         desc.SetEditorCategory("_players");
-        desc.SetDescription("player core component");
+        desc.SetDescription("Player core component");
         #pragma region player data member
         desc.AddMember(
             &PCore::m_username,
@@ -185,89 +189,12 @@ protected:
 
 protected:
     // initialize default data
-    void InitializeDefaultData()
-    {
-        (m_username.length() <= 3)
-            ? m_username = "USER_DEBUG"
-            : m_username = this->m_username;
-
-        (m_character.length() <= 3)
-            ? m_character = "CHARACTERD_EBUG"
-            : m_character = this->m_character;
-
-        m_health = DVPData::health;
-        m_stamina = DVPData::stamina;
-        m_movementSpeed = DVPData::movementSpeed;
-        m_jumpForce = DVPData::jumpForce;
-        m_jumpCharge = DVPData::jumpCharge;
-        m_jumpChargeMultiplier = DVPData::jumpChargeMultiplier;
-        m_jumpDurationOnHold = DVPData::jumpDurationOnHold;
-        m_weight = DVPData::weight;
-        m_sprintMultiplier = DVPData::sprintMultiplier;
-
-        m_sensitivity = DVPInput::sensitivity;
-    }
-
-    // value policy for non-unsigned data type
-    void ValuePolicy()
-    {
-        // health
-        (m_health < 0.f)
-            ? m_health = 0.f
-            : m_health = this->m_health;
-        
-        // stamina
-        (m_stamina < m_staminaMinLimit)
-            ? m_stamina = m_staminaMinLimit
-            : m_stamina = this->m_stamina;
-        (m_stamina > m_staminaMaxLimit)
-            ? m_stamina = m_staminaMaxLimit
-            : m_stamina = this->m_stamina;
-        
-        // movement speed
-        (m_movementSpeed < 0.f)
-            ? m_movementSpeed = 0.f
-            : m_movementSpeed = this->m_movementSpeed;
-        
-        // jumpforce
-        (m_jumpForce < 0.f)
-            ? m_jumpForce = 0.f
-            : m_jumpForce = this->m_jumpForce;
-        
-        // jumpcharge
-        (m_jumpCharge < 0.f)
-            ? m_jumpCharge = 0.f
-            : m_jumpCharge = this->m_jumpCharge;
-        
-        // jumpcharge multiplier
-        (m_jumpChargeMultiplier < 0.f)
-            ? m_jumpChargeMultiplier = 0.f
-            : m_jumpChargeMultiplier = this->m_jumpChargeMultiplier;
-        
-        // jump on hold
-        (m_jumpDurationOnHold < 0.f)
-            ? m_jumpDurationOnHold = 0.f
-            : m_jumpDurationOnHold = this->m_jumpDurationOnHold;
-
-        // weight
-        (m_weight < 0.f)
-            ? m_weight = 0.f
-            : m_weight = this->m_weight;
-        
-        // sprint multiplier
-        (m_sprintMultiplier < 0.f)
-            ? m_sprintMultiplier = 0.f
-            : m_sprintMultiplier = this->m_sprintMultiplier;
-
-        // sensitivity
-        (m_sensitivity < 0.f)
-            ? m_sensitivity = 0.f
-            : m_sensitivity = this->m_sensitivity;
-    }
+    void InitializeDefaultData();
 
 protected:
+    // common player handle input change
     void HandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
-
+    // jump player handle input change
     void JumpHandleInputFlagChange(CEnumFlags<EInputFlag> flags, CEnumFlags<EActionActivationMode> activationMode, EInputFlagType type = EInputFlagType::Hold);
 
 protected:
@@ -277,10 +204,12 @@ protected:
 	Cry::DefaultComponents::CCameraComponent* m_pCamera = nullptr;
 	// player audio listener component
     Cry::Audio::DefaultComponents::CListenerComponent* m_pAudio = nullptr;
-    // player character controller component9
+    // player character controller component
     Cry::DefaultComponents::CCharacterControllerComponent* m_pCC = nullptr;
 
 protected:
+    // value policy for non-unsigned data type
+    void ValuePolicy();
     // ground movement logic handler
     void GroundMovementHandler(float dt);
     // camera movement logic handler
