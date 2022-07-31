@@ -1,9 +1,0 @@
-<ObjectLayer>
- <Layer Name="Manager" FullName="Manager" GUID="be7a4e9b-066e-9d48-727d-93e105a3fab5" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659082213">
-  <LayerObjects>
-   <Object Type="EmptyEntity" Layer="Manager" LayerGUID="be7a4e9b-066e-9d48-727d-93e105a3fab5" Id="3e808176-8af7-7aa6-2f56-a32a9c049376" Name="level-manager" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
-    <Properties />
-   </Object>
-  </LayerObjects>
- </Layer>
-</ObjectLayer>

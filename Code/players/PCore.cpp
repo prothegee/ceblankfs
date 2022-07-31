@@ -4,6 +4,16 @@
 #include "systems/SGraphicManager.h"
 
 
+#pragma region register PCore
+PCore::PCore(/* args */)
+{
+}
+PCore::~PCore()
+{
+}
+#pragma endregion
+
+
 #pragma region event listener
 Cry::Entity::EventFlags PCore::GetEventMask() const
 {
@@ -32,7 +42,6 @@ void PCore::ProcessEvent(const SEntityEvent& e)
         case Cry::Entity::EEvent::BecomeLocalPlayer:
         {
             InitializeLocalPlayer();
-
             InitializeDefaultData();
         }
         break;
@@ -45,13 +54,9 @@ void PCore::ProcessEvent(const SEntityEvent& e)
             const float dt = e.fParam[0];
 
             GroundMovementHandler(dt);
-            CameraMovementHandler(dt);
-            GroundJumpHandler(dt);
+            OrientHandler(dt);
 
-            StaminaHanlder(dt);
-
-            ValuePolicy();
-            AimStanceHandler();
+            ValuePolicy(dt);
         }
         break;
 

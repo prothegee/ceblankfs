@@ -1,0 +1,26 @@
+<AssetMetadata version="0" type="Level" guid="a5f3314b-70dd-7ca3-40a0-7b76c315b22f" source="" timestamp="1659266688">
+ <Files>
+  <File path="test-main/test-main.level"/>
+ </Files>
+ <Dependencies>
+  <Path usageCount="1">%ENGINE%/EngineAssets/Shading/default.env</Path>
+  <Path>%engine%/engineassets/icons/averagememoryusage.dds</Path>
+  <Path>%engine%/engineassets/icons/highmemoryusage.dds</Path>
+  <Path>%engine%/engineassets/icons/livepreview.dds</Path>
+  <Path>%engine%/engineassets/icons/lowmemoryusage.dds</Path>
+  <Path>%engine%/engineassets/materials/fog/fogvolumebox.mtl</Path>
+  <Path>%engine%/engineassets/materials/fog/fogvolumeellipsoid.mtl</Path>
+  <Path>%engine%/engineassets/materials/fog/oceaninto.mtl</Path>
+  <Path>%engine%/engineassets/materials/fog/oceanintolowspec.mtl</Path>
+  <Path>%engine%/engineassets/materials/fog/oceanoutof.mtl</Path>
+  <Path>%engine%/engineassets/materials/fog/oceanoutoflowspec.mtl</Path>
+  <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
+  <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
+  <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
+  <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
+  <Path>%engine%/engineassets/textures/grey.dds</Path>
+  <Path>%engine%/engineassets/textures/skys/night/half_moon.dds</Path>
+  <Path usageCount="1">libs/environmentpresets/example.env</Path>
+  <Path usageCount="1">libs/environmentpresets/example1.env</Path>
+ </Dependencies>
+</AssetMetadata>

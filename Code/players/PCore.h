@@ -1,5 +1,6 @@
 #pragma once
 #include "StdAfx.h"
+#include "PCH.h"
 #include "PData.h"
 #include "PInput.h"
 
@@ -208,16 +209,10 @@ protected:
     Cry::DefaultComponents::CCharacterControllerComponent* m_pCC = nullptr;
 
 protected:
-    // value policy for non-unsigned data type
-    void ValuePolicy();
     // ground movement logic handler
     void GroundMovementHandler(float dt);
     // camera movement logic handler
-    void CameraMovementHandler(float dt);
-    // player stamina reduction & regeneration handler
-    void StaminaHanlder(float dt);
-    // player ground jump handler
-    void GroundJumpHandler(float dt);
-    // player aim stance handler
-    void AimStanceHandler();
+    void OrientHandler(float dt);
+    // value policy for non-unsigned data type
+    void ValuePolicy(float dt);
 };

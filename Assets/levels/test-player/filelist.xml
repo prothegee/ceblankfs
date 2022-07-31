@@ -1,6 +1,0 @@
-<download name="test-player" type="Map">
- <index src="filelist.xml" dest="filelist.xml"/>
- <files>
-  <file src="level.pak" dest="level.pak" size="666090" md5="d00a30d982ba0a8010199472a33a74e8"/>
- </files>
-</download>
