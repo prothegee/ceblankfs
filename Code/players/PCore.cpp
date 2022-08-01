@@ -31,9 +31,18 @@ void PCore::ProcessEvent(const SEntityEvent& e)
 	{
         case Cry::Entity::EEvent::GameplayStarted:
         {
-            // check current map
             #ifndef NDEBUG
+            // check current map
             CryLog("# current level: %s", SLevelManager::CurrentLevel());
+
+            // get current editor camera?
+            auto cameditor = gEnv->pSystem->GetViewCamera();
+
+            auto campos = cameditor.GetPosition();
+            auto camangle = cameditor.GetAngles();
+
+            CryLog("# editor campos: %f, %f, %f", campos.x, campos.y, campos.z);
+            CryLog("# editor camangle: %f, %f, %f", camangle.x, camangle.y, camangle.z);
             #else
             #endif
         }

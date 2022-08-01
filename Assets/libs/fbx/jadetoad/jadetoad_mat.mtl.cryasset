@@ -1,0 +1,16 @@
+<AssetMetadata version="0" type="Material" guid="df83ef75-50e2-913c-736c-88d4bedb4764" source="" timestamp="1659370762">
+ <Files>
+  <File path="jadetoad_mat.mtl"/>
+ </Files>
+ <Details>
+  <Detail name="subMaterialCount">0</Detail>
+  <Detail name="textureCount">5</Detail>
+ </Details>
+ <Dependencies>
+  <Path usageCount="1">textures/jadetoad/toad_final_scale_low_toad_diffuse.dds</Path>
+  <Path usageCount="1">textures/jadetoad/toad_final_scale_low_toad_normal.dds</Path>
+  <Path usageCount="2">textures/jadetoad/toad_final_scale_low_toad_glossiness.dds</Path>
+  <Path usageCount="1">textures/jadetoad/toad_final_scale_low_toad_specular.dds</Path>
+  <Path usageCount="1">textures/jadetoad/toad_final_scale_low_toad_height.dds</Path>
+ </Dependencies>
+</AssetMetadata>

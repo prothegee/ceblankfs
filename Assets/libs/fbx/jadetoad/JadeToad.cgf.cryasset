@@ -1,0 +1,14 @@
+<AssetMetadata version="0" type="Mesh" guid="938f3d23-170f-58a5-a2e6-1b628a17f894" source="JadeToad.fbx" timestamp="1659369611">
+ <Files>
+  <File path="JadeToad.cgf"/>
+ </Files>
+ <Details>
+  <Detail name="materialCount">3</Detail>
+  <Detail name="triangleCount">6456</Detail>
+  <Detail name="vertexCount">3389</Detail>
+  <Detail name="16BitPrecision">false</Detail>
+ </Details>
+ <Dependencies>
+  <Path usageCount="1">./JadeToad.mtl</Path>
+ </Dependencies>
+</AssetMetadata>
