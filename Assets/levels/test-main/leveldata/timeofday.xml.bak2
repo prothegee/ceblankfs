@@ -1,6 +1,8 @@
-<TimeOfDay Time="0" TimeStart="0" TimeEnd="24" TimeAnimSpeed="0">
+<TimeOfDay Time="14.1325" TimeStart="0" TimeEnd="24" TimeAnimSpeed="0">
  <Presets>
   <Preset Name="%ENGINE%/EngineAssets/Shading/default.env"/>
-  <Preset Name="libs/environmentpresets/example1.env" Default="1"/>
+  <Preset Name="libs/environmentpresets/dark.env" Default="1"/>
+  <Preset Name="libs/environmentpresets/example.env"/>
+  <Preset Name="libs/environmentpresets/example1.env"/>
  </Presets>
 </TimeOfDay>

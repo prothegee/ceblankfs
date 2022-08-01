@@ -1,7 +1,7 @@
 <ObjectLayer>
- <Layer Name="objects" FullName="objects" GUID="10131a20-bf72-48fe-06f8-7d4fe30278cd" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659370625">
+ <Layer Name="objects" FullName="objects" GUID="10131a20-bf72-48fe-06f8-7d4fe30278cd" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659377606">
   <LayerObjects>
-   <Object Type="EmptyEntity" Layer="objects" LayerGUID="10131a20-bf72-48fe-06f8-7d4fe30278cd" Id="f3f861dc-872c-f73d-6d1d-26cf71554c24" Name="jadetoad" Pos="58.247726,37.932716,43.647305" Rotate="0.70710683,0,0,-0.70710683" Scale="6,6,6" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EmptyEntity" Layer="objects" LayerGUID="10131a20-bf72-48fe-06f8-7d4fe30278cd" Id="f3f861dc-872c-f73d-6d1d-26cf71554c24" Name="jadetoad" Pos="58.247726,37.932716,43.612469" Rotate="0.70710683,0,0,-0.70710683" Scale="6,6,6" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
     <Components>
      <Component CryXmlVersion="2" TypeGUID="6ddd0033-6aaa-4b71-b8ea-108258205e29" TypeName="Cry::DefaultComponents::CStaticMeshComponent" GUID="22ebd9f9-d162-195e-7d20-0e3b10637e0d" Name="" UserAdded="true">
@@ -22,12 +22,18 @@
       </Transform>
       <properties Type="RenderAndCollider" FilePath="libs/fbx/jadetoad/JadeToad.cgf" Material="libs/fbx/jadetoad/jadetoad_mat.mtl">
        <IEditorEntityComponent />
-       <Render ShadowSpec="Low" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="None"/>
+       <Render ShadowSpec="VeryHigh" IgnoreVisArea="false" IgnoreTerrainLayerBlend="false" IgnoreDecalBlend="false" ViewDistRatio="100" LODDistance="100" GIMode="AnalyticalProxySoft"/>
        <Physics WeightType="EWeightType::Mass" Density="9.9999997e-05" Mass="10"/>
       </properties>
      </Component>
-     <Component CryXmlVersion="2" TypeGUID="6705341c-f532-444b-84c7-b73fc3a9ed4f" TypeName="ERotator" GUID="ef7c9513-636c-1de1-39cd-42c557c14336" Name="" UserAdded="true">
-      <properties rotation-x="0" rotation-y="0" rotation-z="1"/>
+     <Component CryXmlVersion="2" TypeGUID="912c6ce8-56f7-4ffa-9134-f98d4e307bd6" TypeName="Cry::DefaultComponents::CRigidBodyComponent" GUID="5de4b696-8bb2-48fd-469b-f375560ccebb" Name="" UserAdded="true">
+      <properties Networked="false" EnabledByDefault="true" Resting="false" Type="Rigid" SendCollisionSignal="true">
+       <Buoyancy Damping="0" Density="1000" Resistance="1000"/>
+       <Simulation MaxTimeStep="0.02" SleepSpeed="0.039999999" Damping="0"/>
+      </properties>
+     </Component>
+     <Component CryXmlVersion="2" TypeGUID="6705341c-f532-444b-84c7-b73fc3a9ed4f" TypeName="ERotator" GUID="f2666056-20d2-47d0-061f-1205c3d13453" Name="" UserAdded="true">
+      <properties rotation-x="0" rotation-y="0" rotation-z="0.25"/>
      </Component>
     </Components>
    </Object>

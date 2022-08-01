@@ -1,8 +1,69 @@
 <ObjectLayer>
- <Layer Name="lights" FullName="lights" GUID="de4f279e-4c69-c65c-1146-8d41fc1bfdf0" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659369896">
+ <Layer Name="lights" FullName="lights" GUID="de4f279e-4c69-c65c-1146-8d41fc1bfdf0" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659376749">
   <LayerObjects>
-   <Object Type="Brush" Layer="lights" LayerGUID="de4f279e-4c69-c65c-1146-8d41fc1bfdf0" Id="94a0234d-ccf5-5805-fda4-b3becfd4816e" Name="JadeToad-1" Pos="56.332729,36.686203,43.309128" Rotate="0.74062896,0,0,-0.67191309" Scale="2.5799999,2.5799999,2.5799999" ColorRGB="16777215" UseCustomLevelLayerColor="1" Material="libs/fbx/jadetoad/jadetoad_mat" MinSpec="0" MatLayersMask="0" Prefab="libs/fbx/jadetoad/JadeToad.cgf" IgnoreVisareas="0" CastShadowMaps="1" GIMode="1" RainOccluder="1" SupportSecondVisarea="0" DynamicDistanceShadows="0" Hideable="0" LodRatio="100" ViewDistRatio="100" ExcludeFromNavigation="0" NoDynamicWater="0" AIRadius="-1" NoStaticDecals="0" RecvWind="0" Occluder="0" DrawLast="0" ShadowLodBias="0" IgnoreTerrainLayerBlend="0" IgnoreDecalBlend="0" RndFlags="180060000408">
-    <CollisionFiltering />
+   <Object Type="EntityWithComponent" Layer="lights" LayerGUID="de4f279e-4c69-c65c-1146-8d41fc1bfdf0" Id="30a5dd12-767b-e63a-0432-8fca343b03fe" Name="rect-light-1" Pos="58.269115,44.375679,51.740826" Rotate="2.2027012e-07,-9.123886e-08,-0.38268358,0.92387998" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="0a86908d-642f-4590-acef-484e8e39f31b" TypeName="Cry::DefaultComponents::CPointLightComponent" GUID="e08e3bd6-389e-f038-e0f7-3acb6a63aa3b" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Active="true" Radius="20" ViewDistance="50">
+       <Optics Enable="true" LensFlare="" AttachtToSun="false" FlareFOV="360"/>
+       <Color DiffMult="9.5445118" SpecMult="1">
+        <Color r="1" g="1" b="1" a="1"/>
+       </Color>
+       <Shadows ShadowSpec="VeryHigh" ShadowBias="1" ShadowSlopeBias="1" ShadownResolution="1" ShadowUpdateMin="4" ShadowMinRes="0" ShadowUpdateRatio="1"/>
+       <Options AttenuationBulbSize="0.1" IgnoreVisAreas="false" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="false" LinkToSkyColor="false" Ambient="false" FogRadialLobe="0" GIMode="None"/>
+       <Animations Style="0" Speed="1"/>
+       <Shape Shape="Rectangle" TwoSided="false" TexturePath="" Width="6" Height="6"/>
+      </properties>
+     </Component>
+    </Components>
+   </Object>
+   <Object Type="EntityWithComponent" Layer="lights" LayerGUID="de4f279e-4c69-c65c-1146-8d41fc1bfdf0" Id="d5ac4164-dbff-2654-e1a5-2114d40c831e" Name="rect-light-2" Pos="58.269115,23.557369,51.808182" Rotate="0.92387938,-0.38268372,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+    <Properties />
+    <Components>
+     <Component CryXmlVersion="2" TypeGUID="0a86908d-642f-4590-acef-484e8e39f31b" TypeName="Cry::DefaultComponents::CPointLightComponent" GUID="4e1d0514-1032-4062-eabe-8b8b82cb2593" Name="" UserAdded="true">
+      <Transform>
+       <translation>
+        <position>
+         <element element="0"/>
+         <element element="0"/>
+         <element element="0"/>
+        </position>
+       </translation>
+       <rotation x="0" y="-0" z="0"/>
+       <scale>
+        <element element="1"/>
+        <element element="1"/>
+        <element element="1"/>
+       </scale>
+      </Transform>
+      <properties Active="true" Radius="20" ViewDistance="50">
+       <Optics Enable="true" LensFlare="" AttachtToSun="false" FlareFOV="360"/>
+       <Color DiffMult="9.5445118" SpecMult="1">
+        <Color r="1" g="1" b="1" a="1"/>
+       </Color>
+       <Shadows ShadowSpec="VeryHigh" ShadowBias="1" ShadowSlopeBias="1" ShadownResolution="1" ShadowUpdateMin="4" ShadowMinRes="0" ShadowUpdateRatio="1"/>
+       <Options AttenuationBulbSize="0.1" IgnoreVisAreas="false" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="false" LinkToSkyColor="false" Ambient="false" FogRadialLobe="0" GIMode="None"/>
+       <Animations Style="0" Speed="1"/>
+       <Shape Shape="Rectangle" TwoSided="false" TexturePath="" Width="6" Height="6"/>
+      </properties>
+     </Component>
+    </Components>
    </Object>
   </LayerObjects>
  </Layer>
