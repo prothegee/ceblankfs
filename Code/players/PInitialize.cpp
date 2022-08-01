@@ -19,13 +19,15 @@ void PCore::InitializeLocalPlayer()
 {
     #pragma region pointer components
 	m_pCamera = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCameraComponent>();
+    m_pCamera->SetNearPlane(.1f);
+    // todo: if any joint, bind to head cam joint
 
 	m_pAudio = m_pEntity->GetOrCreateComponent<Cry::Audio::DefaultComponents::CListenerComponent>();
 
 	m_pInput = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CInputComponent>();
 
     m_pCC = m_pEntity->GetOrCreateComponent<Cry::DefaultComponents::CCharacterControllerComponent>();
-    m_pCC->SetTransformMatrix(Matrix34::Create(Vec3(.5f), IDENTITY, Vec3(0, 0, .5f)));
+    m_pCC->SetTransformMatrix(Matrix34::Create(Vec3(1.75f), IDENTITY, Vec3(0, 0, 1.75f)));
     #pragma endregion
 
 

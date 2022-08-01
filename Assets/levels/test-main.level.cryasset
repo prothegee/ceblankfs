@@ -1,9 +1,11 @@
-<AssetMetadata version="0" type="Level" guid="a5f3314b-70dd-7ca3-40a0-7b76c315b22f" source="" timestamp="1659266688">
+<AssetMetadata version="0" type="Level" guid="a5f3314b-70dd-7ca3-40a0-7b76c315b22f" source="" timestamp="1659342417">
  <Files>
   <File path="test-main/test-main.level"/>
  </Files>
  <Dependencies>
   <Path usageCount="1">%ENGINE%/EngineAssets/Shading/default.env</Path>
+  <Path>%editor%/objects/envcube.cgf</Path>
+  <Path>%editor%/objects/envcube.mtl</Path>
   <Path>%engine%/engineassets/icons/averagememoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/highmemoryusage.dds</Path>
   <Path>%engine%/engineassets/icons/livepreview.dds</Path>
@@ -17,10 +19,20 @@
   <Path>%engine%/engineassets/materials/material_terrain_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/ocean_default.mtl</Path>
   <Path>%engine%/engineassets/materials/water/wateroceanbottom.mtl</Path>
+  <Path>%engine%/engineassets/objects/primitive_sphere.cgf</Path>
   <Path>%engine%/engineassets/texturemsg/defaultnouvs.dds</Path>
+  <Path>%engine%/engineassets/texturemsg/defaultsolids.mtl</Path>
   <Path>%engine%/engineassets/textures/grey.dds</Path>
   <Path>%engine%/engineassets/textures/skys/night/half_moon.dds</Path>
+  <Path>editor/resourcecache/textures/cubemaps/test-main/environment-prob-1_cm.dds</Path>
+  <Path>editor/resourcecache/textures/cubemaps/test-main/environment-prob-1_cm_diff.dds</Path>
   <Path usageCount="1">libs/environmentpresets/example.env</Path>
   <Path usageCount="1">libs/environmentpresets/example1.env</Path>
+  <Path>materials/test-blue.mtl</Path>
+  <Path>materials/test-red.mtl</Path>
+  <Path>textures/cubemaps/test-main/environment-prob-1_cm.dds</Path>
+  <Path>textures/cubemaps/test-main/environment-prob-1_cm.dds</Path>
+  <Path>textures/cubemaps/test-main/environment-prob-1_cm_diff.dds</Path>
+  <Path>textures/cubemaps/test-main/environment-prob-1_cm_diff.dds</Path>
  </Dependencies>
 </AssetMetadata>

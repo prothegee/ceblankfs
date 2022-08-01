@@ -33,6 +33,8 @@ add_sources("configs_uber.cpp"
 add_sources("entities_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "entities"
+		"entities/EColorSwitch.cpp"
+		"entities/EColorSwitch.h"
 		"entities/ERotator.cpp"
 		"entities/ERotator.h"
 )
