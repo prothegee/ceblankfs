@@ -1,7 +1,7 @@
 <ObjectLayer>
- <Layer Name="environment" FullName="environment" GUID="5f8d48e0-622d-402b-7a33-25164193eb0c" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659340098">
+ <Layer Name="environment" FullName="environment" GUID="5f8d48e0-622d-402b-7a33-25164193eb0c" Hidden="0" Frozen="0" Expanded="0" Type="0" Exportable="1" ExportLayerPak="1" DefaultLoaded="0" HavePhysics="1" IsDefaultColor="1" Color="4671303" Timestamp="1659343680">
   <LayerObjects>
-   <Object Type="EntityWithComponent" Layer="environment" LayerGUID="5f8d48e0-622d-402b-7a33-25164193eb0c" Id="ed61f684-c847-ec4f-85ec-5418f8381b75" Name="environment-prob-1" Pos="64,64,34" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
+   <Object Type="EntityWithComponent" Layer="environment" LayerGUID="5f8d48e0-622d-402b-7a33-25164193eb0c" Id="ed61f684-c847-ec4f-85ec-5418f8381b75" Name="environment-prob-1" Pos="64,64,64" Rotate="1,0,0,0" Scale="1,1,1" ColorRGB="65535" UseCustomLevelLayerColor="0" MinSpec="0" MatLayersMask="0" OutdoorOnly="0" CastShadow="1" CastShadowMinspec="1" DynamicDistanceShadows="0" GIMode="0" LodRatio="100" ViewDistRatio="100" HiddenInGame="0" RecvWind="0" RenderNearest="0" NoStaticDecals="0" EntityClass="Entity" HasEntity="1">
     <Properties />
     <Components>
      <Component CryXmlVersion="2" TypeGUID="63297e89-ea00-4f56-ac23-2e93c68fe71d" TypeName="Cry::DefaultComponents::CEnvironmentProbeComponent" GUID="986ce0d2-f04f-007a-c190-b8e2c3dc4c82" Name="" UserAdded="true">
@@ -21,9 +21,9 @@
        </scale>
       </Transform>
       <properties Active="true">
-       <BoxSize x="256" y="256" z="128"/>
+       <BoxSize x="512" y="512" z="512"/>
        <Options IgnoreVisAreas="false" SortPriority="0" AttenuationFalloffMax="1" AffectVolumetricFog="true" VolumetricFogOnly="false" OnlyAffectThisArea="true" BoxProjection="false"/>
-       <Color DiffMult="0" SpecMult="1">
+       <Color DiffMult="1" SpecMult="1">
         <Color r="1" g="1" b="1" a="1"/>
        </Color>
        <Generation GeneratedCubemapPath="textures\cubemaps\test-main\environment-prob-1_cm.tif" AutoLoad="true" Resolution="Low"/>

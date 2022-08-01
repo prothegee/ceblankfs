@@ -48,15 +48,23 @@ void CGamePlugin::OnSystemEvent(ESystemEvent event, UINT_PTR wparam, UINT_PTR lp
 		// Called when the game framework has initialized and we are ready for game logic to start
 		case ESYSTEM_EVENT_GAME_POST_INIT:
 		{
-			// Listen for client connection events, in order to create the local player
+			// Listen for client connection events, in order to create the local player○
 			gEnv->pGameFramework->AddNetworkedClientListener(*this);
 
-			// Don't need to load the map in editor
-			if (!gEnv->IsEditor())
+            // editor mode
+			if (gEnv->IsEditor())
+            {
+                gEnv->pConsole->ExecuteString("e_VolumetricFog 1", false, true);
+                gEnv->pConsole->ExecuteString("r_VolumetricClouds 1", false, true);
+            }
+            // game mode
+			if (gEnv->IsGameOrSimulation())
 			{
-				// Load the example map in client server mode
 				gEnv->pConsole->ExecuteString("map test-main", false, true);
 				gEnv->pConsole->ExecuteString("sys_spec 4", false, true);
+
+                gEnv->pConsole->ExecuteString("e_VolumetricFog 1", false, true);
+                gEnv->pConsole->ExecuteString("r_VolumetricClouds 1", false, true);
 			}
 		}
 		break;

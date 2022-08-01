@@ -1,0 +1,10 @@
+<AssetMetadata version="0" type="Texture" guid="a6488852-04a5-9102-2e7d-2e5fe1fa0b8b" source="toad_final_scale_low_toad_specular.tif">
+ <Files>
+  <File path="toad_final_scale_low_toad_specular.dds"/>
+ </Files>
+ <Details>
+  <Detail name="width">1024</Detail>
+  <Detail name="height">1024</Detail>
+  <Detail name="mipCount">9</Detail>
+ </Details>
+</AssetMetadata>

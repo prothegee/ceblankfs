@@ -73,14 +73,6 @@ public:
             DVPData::stamina
         );
         desc.AddMember(
-            &PCore::m_stamina,
-            'psv',
-            "player-stamina",
-            "stamina",
-            "stamina value",
-            DVPData::stamina
-        );
-        desc.AddMember(
             &PCore::m_movementSpeed,
             'pmsv',
             "player-movement-peed",

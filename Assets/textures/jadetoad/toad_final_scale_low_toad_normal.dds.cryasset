@@ -1,0 +1,10 @@
+<AssetMetadata version="0" type="Texture" guid="837f37d2-a686-9d02-592d-d9350e4f2334" source="toad_final_scale_low_toad_normal.tif">
+ <Files>
+  <File path="toad_final_scale_low_toad_normal.dds"/>
+ </Files>
+ <Details>
+  <Detail name="width">1024</Detail>
+  <Detail name="height">1024</Detail>
+  <Detail name="mipCount">9</Detail>
+ </Details>
+</AssetMetadata>
