@@ -14,6 +14,11 @@ include("${TOOLS_CMAKE_DIR}/Configure.cmake")
 start_sources()
 
 sources_platform(ALL)
+<<<<<<< HEAD
+=======
+
+# celbankfs
+>>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
 add_sources("Code_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "Root"
@@ -34,8 +39,13 @@ add_sources("entities_uber.cpp"
     PROJECTS ceblankfs
     SOURCE_GROUP "entities"
 		"entities/EColorSwitch.cpp"
+<<<<<<< HEAD
 		"entities/ERotator.cpp"
 		"entities/EColorSwitch.h"
+=======
+		"entities/EColorSwitch.h"
+		"entities/ERotator.cpp"
+>>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
 		"entities/ERotator.h"
 )
 add_sources("players_uber.cpp"
@@ -70,7 +80,11 @@ add_sources("tools_uber.cpp"
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")
     add_sources("NoUberFile"
+<<<<<<< HEAD
         PROJECTS Game
+=======
+        PROJECTS ceblankfs
+>>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
         SOURCE_GROUP "Root"
             "CVarOverrides.h"
     )
@@ -78,7 +92,11 @@ endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/EngineDefineOverrides.h")
     add_sources("NoUberFile"
+<<<<<<< HEAD
         PROJECTS Game
+=======
+        PROJECTS ceblankfs
+>>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
         SOURCE_GROUP "Root"
             "EngineDefineOverrides.h"
     )
@@ -86,6 +104,10 @@ endif()
 end_sources()
 
 CryGameModule(ceblankfs FORCE_SHARED PCH "StdAfx.cpp" SOLUTION_FOLDER "Project")
+<<<<<<< HEAD
+=======
+# celbankfs
+>>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
 
 target_include_directories(${THIS_PROJECT}
 PRIVATE
