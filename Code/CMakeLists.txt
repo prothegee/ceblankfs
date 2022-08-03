@@ -70,11 +70,7 @@ add_sources("tools_uber.cpp"
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/CVarOverrides.h")
     add_sources("NoUberFile"
-<<<<<<< HEAD
         PROJECTS Game
-=======
-        PROJECTS ceblankfs
->>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
         SOURCE_GROUP "Root"
             "CVarOverrides.h"
     )
@@ -82,11 +78,7 @@ endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/EngineDefineOverrides.h")
     add_sources("NoUberFile"
-<<<<<<< HEAD
         PROJECTS Game
-=======
-        PROJECTS ceblankfs
->>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
         SOURCE_GROUP "Root"
             "EngineDefineOverrides.h"
     )
@@ -94,10 +86,6 @@ endif()
 end_sources()
 
 CryGameModule(ceblankfs FORCE_SHARED PCH "StdAfx.cpp" SOLUTION_FOLDER "Project")
-<<<<<<< HEAD
-=======
-# celbankfs
->>>>>>> 1f0b69f4de2bd4277569d567afced0d0ac7af4eb
 
 target_include_directories(${THIS_PROJECT}
 PRIVATE
