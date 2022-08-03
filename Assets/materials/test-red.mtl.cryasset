@@ -1,0 +1,9 @@
+<AssetMetadata version="0" type="Material" guid="30a5971c-c966-e4c9-d757-e789281c35c7" source="" timestamp="1659333469">
+ <Files>
+  <File path="test-red.mtl"/>
+ </Files>
+ <Details>
+  <Detail name="subMaterialCount">0</Detail>
+  <Detail name="textureCount">0</Detail>
+ </Details>
+</AssetMetadata>
